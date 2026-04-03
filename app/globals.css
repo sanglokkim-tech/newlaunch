@@ -1,0 +1,210 @@
+@import "tailwindcss";
+
+:root {
+  --bg:   #0B0B12;
+  --s1:   #11111C;
+  --s2:   #16162A;
+  --s3:   #1C1C2E;
+  --s4:   #252535;
+  --s5:   #333345;
+  --border:     rgba(255,255,255,0.06);
+  --border-mid: rgba(255,255,255,0.10);
+  --border-hi:  rgba(255,255,255,0.20);
+  --text-1: #F0F0FF;
+  --text-2: #8A8AA8;
+  --text-3: #4A4A60;
+
+  /* Pillar colors — matching reference image */
+  --body-c:    #4ECDC4;
+  --mind-c:    #8B5CF6;
+  --wealth-c:  #60A5FA;
+  --soul-c:    #F472B6;
+
+  --body-glow:   rgba(78, 205, 196, 0.15);
+  --mind-glow:   rgba(139, 92, 246, 0.15);
+  --wealth-glow: rgba(96, 165, 250, 0.15);
+  --soul-glow:   rgba(244, 114, 182, 0.15);
+}
+
+@theme inline {
+  --color-background: var(--bg);
+  --color-foreground: var(--text-1);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+body {
+  background: var(--bg);
+  color: var(--text-1);
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+.gsap-reveal { visibility: hidden; }
+
+/* ─── Glow card base ─── */
+.pillar-card {
+  position: relative;
+  overflow: hidden;
+  transition:
+    transform 0.3s cubic-bezier(0.25, 1, 0.5, 1),
+    box-shadow 0.3s ease,
+    border-color 0.3s ease;
+  cursor: default;
+}
+
+/* shimmer sweep on click */
+.pillar-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    110deg,
+    transparent 20%,
+    rgba(255, 255, 255, 0.06) 50%,
+    transparent 80%
+  );
+  transform: translateX(-100%);
+  pointer-events: none;
+  border-radius: inherit;
+}
+.pillar-card:active::after {
+  animation: shimmer-sweep 0.4s ease forwards;
+}
+
+@keyframes shimmer-sweep {
+  0%   { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* Glow pulse on click */
+@keyframes glow-pulse {
+  0%   { opacity: 1; transform: scale(1); }
+  50%  { opacity: 0.6; transform: scale(1.04); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+.pillar-card:active {
+  animation: glow-pulse 0.35s ease;
+}
+
+/* ─── Per-pillar glow variants ─── */
+.glow-body {
+  box-shadow:
+    0 0 0 1px rgba(78, 205, 196, 0.10),
+    0 0 20px rgba(78, 205, 196, 0.04),
+    0 4px 24px rgba(0,0,0,0.4);
+}
+.glow-body:hover {
+  transform: scale(1.03);
+  box-shadow:
+    0 0 0 1px rgba(78, 205, 196, 0.35),
+    0 0 32px rgba(78, 205, 196, 0.18),
+    0 8px 40px rgba(0,0,0,0.5);
+  border-color: rgba(78, 205, 196, 0.3) !important;
+}
+.glow-body.active, .glow-body:focus-within {
+  box-shadow:
+    0 0 0 1px rgba(78, 205, 196, 0.5),
+    0 0 48px rgba(78, 205, 196, 0.22),
+    0 12px 48px rgba(0,0,0,0.5);
+  transform: translateY(-2px);
+}
+
+.glow-mind {
+  box-shadow:
+    0 0 0 1px rgba(139, 92, 246, 0.10),
+    0 0 20px rgba(139, 92, 246, 0.04),
+    0 4px 24px rgba(0,0,0,0.4);
+}
+.glow-mind:hover {
+  transform: scale(1.03);
+  box-shadow:
+    0 0 0 1px rgba(139, 92, 246, 0.35),
+    0 0 32px rgba(139, 92, 246, 0.18),
+    0 8px 40px rgba(0,0,0,0.5);
+  border-color: rgba(139, 92, 246, 0.3) !important;
+}
+.glow-mind.active, .glow-mind:focus-within {
+  box-shadow:
+    0 0 0 1px rgba(139, 92, 246, 0.5),
+    0 0 48px rgba(139, 92, 246, 0.22),
+    0 12px 48px rgba(0,0,0,0.5);
+  transform: translateY(-2px);
+}
+
+.glow-wealth {
+  box-shadow:
+    0 0 0 1px rgba(96, 165, 250, 0.10),
+    0 0 20px rgba(96, 165, 250, 0.04),
+    0 4px 24px rgba(0,0,0,0.4);
+}
+.glow-wealth:hover {
+  transform: scale(1.03);
+  box-shadow:
+    0 0 0 1px rgba(96, 165, 250, 0.35),
+    0 0 32px rgba(96, 165, 250, 0.18),
+    0 8px 40px rgba(0,0,0,0.5);
+  border-color: rgba(96, 165, 250, 0.3) !important;
+}
+.glow-wealth.active, .glow-wealth:focus-within {
+  box-shadow:
+    0 0 0 1px rgba(96, 165, 250, 0.5),
+    0 0 48px rgba(96, 165, 250, 0.22),
+    0 12px 48px rgba(0,0,0,0.5);
+  transform: translateY(-2px);
+}
+
+.glow-soul {
+  box-shadow:
+    0 0 0 1px rgba(244, 114, 182, 0.10),
+    0 0 20px rgba(244, 114, 182, 0.04),
+    0 4px 24px rgba(0,0,0,0.4);
+}
+.glow-soul:hover {
+  transform: scale(1.03);
+  box-shadow:
+    0 0 0 1px rgba(244, 114, 182, 0.35),
+    0 0 32px rgba(244, 114, 182, 0.18),
+    0 8px 40px rgba(0,0,0,0.5);
+  border-color: rgba(244, 114, 182, 0.3) !important;
+}
+.glow-soul.active, .glow-soul:focus-within {
+  box-shadow:
+    0 0 0 1px rgba(244, 114, 182, 0.5),
+    0 0 48px rgba(244, 114, 182, 0.22),
+    0 12px 48px rgba(0,0,0,0.5);
+  transform: translateY(-2px);
+}
+
+/* ─── Neutral glow (stat cards, steps) ─── */
+.glow-neutral {
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,0.06),
+    0 4px 24px rgba(0,0,0,0.4);
+  transition:
+    transform 0.3s cubic-bezier(0.25, 1, 0.5, 1),
+    box-shadow 0.3s ease,
+    border-color 0.3s ease;
+}
+.glow-neutral:hover {
+  transform: scale(1.03);
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,0.14),
+    0 0 28px rgba(78, 205, 196, 0.10),
+    0 8px 40px rgba(0,0,0,0.5);
+  border-color: rgba(255,255,255,0.12) !important;
+}
+
+/* ─── Left-border accent (active pillar row) ─── */
+.pillar-row {
+  transition: background 0.25s ease, border-left-color 0.25s ease, padding-left 0.2s ease;
+  border-left: 3px solid transparent;
+}
+.pillar-row:hover { background: rgba(255,255,255,0.03); }
+.pillar-row.active-body   { border-left-color: var(--body-c);   background: linear-gradient(90deg, rgba(78,205,196,0.08) 0%, transparent 60%); }
+.pillar-row.active-mind   { border-left-color: var(--mind-c);   background: linear-gradient(90deg, rgba(139,92,246,0.08) 0%, transparent 60%); }
+.pillar-row.active-wealth { border-left-color: var(--wealth-c); background: linear-gradient(90deg, rgba(96,165,250,0.08) 0%, transparent 60%); }
+.pillar-row.active-soul   { border-left-color: var(--soul-c);   background: linear-gradient(90deg, rgba(244,114,182,0.08) 0%, transparent 60%); }

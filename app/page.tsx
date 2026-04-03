@@ -1,0 +1,23 @@
+"use client";
+
+import { LifeOSHero } from "@/components/ui/lifeos-cinematic-hero";
+import Problem from "@/components/sections/problem";
+import HowItWorks from "@/components/sections/how-it-works";
+import Features from "@/components/sections/features";
+import Waitlist from "@/components/sections/waitlist";
+import Footer from "@/components/sections/footer";
+
+export default function Home() {
+  return (
+    <main style={{ backgroundColor: "#0B0B12" }}>
+      <div id="top">
+        <LifeOSHero />
+      </div>
+      <Problem />
+      <HowItWorks />
+      <Features />
+      <Waitlist />
+      <Footer />
+    </main>
+  );
+}
