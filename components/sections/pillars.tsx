@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, type ReactElement } from "react";
 
 // ─── Data ────────────────────────────────────────────────────────────────────
 const PILLARS = [
@@ -142,7 +142,7 @@ function PyramidChart({ activeId, onToggle }: { activeId: string | null; onToggl
     x: 30 + gx * 0.62 - gy * 0.62,
     y: BASE_Y + 12 + gx * 0.28 + gy * 0.28,
   });
-  const gridLines: JSX.Element[] = [];
+  const gridLines: ReactElement[] = [];
   for (let r = 0; r <= 9; r++) {
     const a = iso(0, r * 20), b = iso(16 * 38, r * 20);
     gridLines.push(<line key={`hr${r}`} x1={a.x} y1={a.y} x2={b.x} y2={b.y} stroke="rgba(255,255,255,0.07)" strokeWidth="0.5" />);
