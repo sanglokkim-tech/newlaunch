@@ -1,7 +1,7 @@
 "use client";
 
 import { LifeOSHero } from "@/components/ui/lifeos-cinematic-hero";
-import Problem from "@/components/sections/problem";
+import ScrollNarrative from "@/components/sections/scroll-narrative";
 import LifeScoreWidget from "@/components/sections/life-score-widget";
 import HowItWorks from "@/components/sections/how-it-works";
 import Pillars from "@/components/sections/pillars";
@@ -15,7 +15,7 @@ export default function Home() {
       <div id="top">
         <LifeOSHero />
       </div>
-      <Problem />
+      <ScrollNarrative />
       <LifeScoreWidget />
       <HowItWorks />
       <Pillars />
