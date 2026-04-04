@@ -2,7 +2,6 @@
 
 import { LifeOSHero } from "@/components/ui/lifeos-cinematic-hero";
 import ScrollNarrative from "@/components/sections/scroll-narrative";
-import LifeScoreWidget from "@/components/sections/life-score-widget";
 import HowItWorks from "@/components/sections/how-it-works";
 import Pillars from "@/components/sections/pillars";
 import Waitlist from "@/components/sections/waitlist";
@@ -15,7 +14,6 @@ export default function Home() {
         <LifeOSHero />
       </div>
       <ScrollNarrative />
-      <LifeScoreWidget />
       <HowItWorks />
       <Pillars />
       <Waitlist />

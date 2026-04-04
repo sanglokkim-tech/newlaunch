@@ -96,22 +96,6 @@ export default function ScrollNarrative() {
   // ── Cards ──────────────────────────────────────────────────────────────────
   const cardTriggers  = [BP.card1, BP.card2, BP.card3, BP.card4];
   const cardsAlpha    = norm(p, BP.card1 - 0.02, BP.card1 + 0.04);
-  const ctaAlpha      = norm(p, BP.ctaIn, BP.ctaIn + 0.04);
-
-  const [email, setEmail] = useState("");
-  const [submitted, setSubmitted] = useState(false);
-
-  async function handleSubmit(e: React.FormEvent) {
-    e.preventDefault();
-    if (!email.trim()) return;
-    await fetch("https://formspree.io/f/xvzvolzk", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email }),
-    });
-    setSubmitted(true);
-  }
-
   return (
     <div ref={wrapperRef} style={{ height: "650vh" }} className="relative">
       <div
@@ -248,50 +232,6 @@ export default function ScrollNarrative() {
               })}
             </div>
 
-            {/* CTA */}
-            <div
-              className="flex flex-col items-center gap-4"
-              style={{ opacity: ctaAlpha }}
-            >
-              <p className="text-white font-semibold text-lg tracking-tight text-center">
-                All of this.{" "}
-                <span style={{ color: "#1D9E75" }}>Early access.</span>
-              </p>
-
-              {submitted ? (
-                <p className="text-sm font-semibold" style={{ color: "#1D9E75" }}>
-                  You&apos;re on the list. We&apos;ll be in touch.
-                </p>
-              ) : (
-                <form
-                  onSubmit={handleSubmit}
-                  className="flex flex-col sm:flex-row gap-2.5 w-full"
-                >
-                  <input
-                    type="email"
-                    required
-                    placeholder="your@email.com"
-                    value={email}
-                    onChange={e => setEmail(e.target.value)}
-                    className="flex-1 rounded-xl px-4 py-3 text-white text-sm outline-none placeholder-white/30"
-                    style={{
-                      background: "rgba(255,255,255,0.05)",
-                      border: "1px solid rgba(255,255,255,0.10)",
-                      minWidth: 0,
-                    }}
-                    onFocus={e => { e.currentTarget.style.borderColor = "rgba(29,158,117,0.5)"; }}
-                    onBlur={e  => { e.currentTarget.style.borderColor = "rgba(255,255,255,0.10)"; }}
-                  />
-                  <button
-                    type="submit"
-                    className="rounded-xl px-6 py-3 text-sm font-semibold whitespace-nowrap"
-                    style={{ background: "#1D9E75", color: "#fff" }}
-                  >
-                    Join waitlist →
-                  </button>
-                </form>
-              )}
-            </div>
           </div>
         </div>
 
