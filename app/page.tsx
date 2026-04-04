@@ -2,6 +2,7 @@
 
 import { LifeOSHero } from "@/components/ui/lifeos-cinematic-hero";
 import Problem from "@/components/sections/problem";
+import LifeScoreWidget from "@/components/sections/life-score-widget";
 import HowItWorks from "@/components/sections/how-it-works";
 import Features from "@/components/sections/features";
 import Waitlist from "@/components/sections/waitlist";
@@ -14,6 +15,7 @@ export default function Home() {
         <LifeOSHero />
       </div>
       <Problem />
+      <LifeScoreWidget />
       <HowItWorks />
       <Features />
       <Waitlist />
