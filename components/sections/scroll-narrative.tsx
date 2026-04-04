@@ -132,9 +132,9 @@ export default function ScrollNarrative() {
           style={{ opacity: problemAlpha, pointerEvents: "none", transition: "opacity 0.3s ease" }}
         >
           {[
-            { text: "You're busy.", opacity: line1Opacity, scale: line1Scale },
-            { text: "But one pillar is collapsing.", opacity: line2Opacity, scale: line2Scale },
-            { text: "You won't notice until it's too late.", opacity: line3Opacity, scale: line3Scale },
+            { text: "Same goals. Same year. Same result.", opacity: line1Opacity, scale: line1Scale },
+            { text: "The problem isn't motivation.", opacity: line2Opacity, scale: line2Scale },
+            { text: "It's knowing where to focus.", opacity: line3Opacity, scale: line3Scale },
           ].map(({ text, opacity, scale }) => (
             <p
               key={text}
