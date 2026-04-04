@@ -10,7 +10,7 @@ import Footer from "@/components/sections/footer";
 
 export default function Home() {
   return (
-    <main style={{ backgroundColor: "#F5F5F7" }}>
+    <main style={{ backgroundColor: "#F4F5F7" }}>
       <div id="top">
         <LifeOSHero />
       </div>

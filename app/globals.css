@@ -1,27 +1,21 @@
 @import "tailwindcss";
 
 :root {
-  /* Light mode surface tokens */
-  --bg:        #F5F5F7;
-  --card:      #FFFFFF;
-  --card-2:    #F9F9FB;
-  --border:    rgba(0,0,0,0.08);
-  --border-md: rgba(0,0,0,0.12);
-  --border-hi: rgba(0,0,0,0.20);
-  --text-1:    #1C1C2E;
-  --text-2:    #6B6B80;
-  --text-3:    #9999B0;
-  --score-c:   #E8A020;
+  --bg:          #F4F5F7;
+  --card:        #FFFFFF;
+  --border:      #E5E7EB;
+  --text-1:      #111827;
+  --text-2:      #6B7280;
+  --text-3:      #9CA3AF;
+  --accent:      #00C9A7;
+  --dark-bg:     #0F1117;
+  --dark-panel:  #1A1D27;
+  --score-c:     #F59E0B;
 
-  /* Pillar colours — matching screenshot exactly */
-  --physical-c:  #24A066;
-  --mental-c:    #5E59CC;
-  --financial-c: #2E7DD4;
-  --social-c:    #D4537E;
-
-  /* Dark accent (hero, footer, CTA) */
-  --dark-bg:   #0B0B12;
-  --dark-card: #11111C;
+  --physical-c:  #1D9E75;
+  --mental-c:    #7C3AED;
+  --financial-c: #2563EB;
+  --social-c:    #E11D48;
 }
 
 @theme inline {
@@ -34,7 +28,7 @@
 body {
   background: var(--bg);
   color: var(--text-1);
-  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-family: var(--font-geist-sans), 'Inter', 'DM Sans', system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -42,34 +36,66 @@ body {
 html { scroll-behavior: smooth; }
 .gsap-reveal { visibility: hidden; }
 
-/* ─── Shared card ─── */
+/* ── Card ── */
 .app-card {
   background: var(--card);
   border: 1px solid var(--border);
-  border-radius: 14px;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.04), 0 4px 16px rgba(0,0,0,0.04);
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06);
 }
 
-/* ─── Pillar progress bar ─── */
-.pillar-bar-track {
-  height: 4px;
-  border-radius: 2px;
-  background: rgba(0,0,0,0.07);
+/* ── Progress bar ── */
+.bar-track {
+  height: 6px;
+  border-radius: 999px;
+  background: #F3F4F6;
+  overflow: hidden;
+}
+.bar-fill {
+  height: 100%;
+  border-radius: 999px;
 }
 
-/* ─── Pill tab ─── */
+/* ── Buttons ── */
+.btn-primary {
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-weight: 500;
+  font-size: 15px;
+  cursor: pointer;
+  transition: opacity 0.15s;
+}
+.btn-primary:hover { opacity: 0.9; }
+
+.btn-secondary {
+  background: #fff;
+  color: var(--text-1);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-weight: 500;
+  font-size: 15px;
+  cursor: pointer;
+  transition: border-color 0.15s;
+}
+.btn-secondary:hover { border-color: #D1D5DB; }
+
+/* ── Tab pill ── */
 .tab-pill {
   flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 6px;
-  padding: 10px 16px;
-  border-radius: 10px;
+  padding: 9px 16px;
+  border-radius: 8px;
   font-size: 13px;
   font-weight: 600;
   cursor: pointer;
-  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+  transition: background 0.15s, color 0.15s, box-shadow 0.15s;
   border: none;
   background: transparent;
   color: var(--text-3);
@@ -77,37 +103,14 @@ html { scroll-behavior: smooth; }
 .tab-pill.active {
   background: var(--card);
   color: var(--text-1);
-  box-shadow: 0 1px 4px rgba(0,0,0,0.10), 0 2px 8px rgba(0,0,0,0.06);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.10);
 }
 
-/* ─── Glow card (dark sections only) ─── */
-.pillar-card {
-  position: relative;
-  overflow: hidden;
-  transition: transform 0.3s cubic-bezier(0.25,1,0.5,1), box-shadow 0.3s ease, border-color 0.3s ease;
-  cursor: default;
+/* ── Section label ── */
+.section-label {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
 }
-.pillar-card::after {
-  content: '';
-  position: absolute; inset: 0;
-  background: linear-gradient(110deg, transparent 20%, rgba(255,255,255,0.06) 50%, transparent 80%);
-  transform: translateX(-100%);
-  pointer-events: none;
-  border-radius: inherit;
-}
-.pillar-card:active::after { animation: shimmer-sweep 0.4s ease forwards; }
-@keyframes shimmer-sweep {
-  0%   { transform: translateX(-100%); }
-  100% { transform: translateX(100%); }
-}
-
-.glow-body   { box-shadow: 0 0 0 1px rgba(36,160,102,0.10), 0 4px 24px rgba(0,0,0,0.4); }
-.glow-body:hover   { transform: scale(1.03); box-shadow: 0 0 0 1px rgba(36,160,102,0.35), 0 0 32px rgba(36,160,102,0.18), 0 8px 40px rgba(0,0,0,0.5); border-color: rgba(36,160,102,0.3) !important; }
-.glow-mind   { box-shadow: 0 0 0 1px rgba(94,89,204,0.10), 0 4px 24px rgba(0,0,0,0.4); }
-.glow-mind:hover   { transform: scale(1.03); box-shadow: 0 0 0 1px rgba(94,89,204,0.35), 0 0 32px rgba(94,89,204,0.18), 0 8px 40px rgba(0,0,0,0.5); border-color: rgba(94,89,204,0.3) !important; }
-.glow-wealth { box-shadow: 0 0 0 1px rgba(46,125,212,0.10), 0 4px 24px rgba(0,0,0,0.4); }
-.glow-wealth:hover { transform: scale(1.03); box-shadow: 0 0 0 1px rgba(46,125,212,0.35), 0 0 32px rgba(46,125,212,0.18), 0 8px 40px rgba(0,0,0,0.5); border-color: rgba(46,125,212,0.3) !important; }
-.glow-soul   { box-shadow: 0 0 0 1px rgba(212,83,126,0.10), 0 4px 24px rgba(0,0,0,0.4); }
-.glow-soul:hover   { transform: scale(1.03); box-shadow: 0 0 0 1px rgba(212,83,126,0.35), 0 0 32px rgba(212,83,126,0.18), 0 8px 40px rgba(0,0,0,0.5); border-color: rgba(212,83,126,0.3) !important; }
-.glow-neutral { box-shadow: 0 0 0 1px rgba(255,255,255,0.06), 0 4px 24px rgba(0,0,0,0.4); transition: transform 0.3s cubic-bezier(0.25,1,0.5,1), box-shadow 0.3s ease; }
-.glow-neutral:hover { transform: scale(1.03); box-shadow: 0 0 0 1px rgba(255,255,255,0.14), 0 0 28px rgba(36,160,102,0.10), 0 8px 40px rgba(0,0,0,0.5); border-color: rgba(255,255,255,0.12) !important; }

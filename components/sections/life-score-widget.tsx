@@ -2,16 +2,16 @@
 import { useEffect, useRef, useState } from "react";
 
 const PHASES = [
-  { label: "Struggling", score: 22, pillars: [15, 10, 8,  25], color: "#D4537E" },
-  { label: "Building",   score: 64, pillars: [70, 60, 42, 85], color: "#2E7DD4" },
-  { label: "Thriving",   score: 88, pillars: [90, 85, 80, 92], color: "#24A066" },
+  { label: "Struggling", score: 22, pillars: [15, 10, 8,  25], color: "#E11D48" },
+  { label: "Building",   score: 64, pillars: [70, 60, 42, 85], color: "#2563EB" },
+  { label: "Thriving",   score: 88, pillars: [90, 85, 80, 92], color: "#1D9E75" },
 ];
 
 const PILLARS = [
-  { name: "Physical",  color: "#24A066" },
-  { name: "Mental",    color: "#5E59CC" },
-  { name: "Financial", color: "#2E7DD4" },
-  { name: "Social",    color: "#D4537E" },
+  { name: "Physical",  color: "#1D9E75" },
+  { name: "Mental",    color: "#7C3AED" },
+  { name: "Financial", color: "#2563EB" },
+  { name: "Social",    color: "#E11D48" },
 ];
 
 function lerp(a: number, b: number, t: number) { return a + (b - a) * t; }
