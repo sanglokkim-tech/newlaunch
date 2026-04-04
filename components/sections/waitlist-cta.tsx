@@ -2,12 +2,18 @@
 
 import { useEffect, useRef, useState } from "react";
 
+const RATE_LIMIT_MS = 60_000;
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+
 export default function WaitlistCTA() {
   const barRef = useRef<HTMLDivElement>(null);
   const [barTriggered, setBarTriggered] = useState(false);
   const [email, setEmail] = useState("");
+  const [honeypot, setHoneypot] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+  const lastSubmit = useRef(0);
 
   useEffect(() => {
     const node = barRef.current;
@@ -29,13 +35,33 @@ export default function WaitlistCTA() {
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    if (!email) return;
+    setError("");
+
+    // Honeypot check
+    if (honeypot) return;
+
+    // Rate limit
+    const now = Date.now();
+    if (now - lastSubmit.current < RATE_LIMIT_MS) {
+      setError("Please wait before submitting again.");
+      return;
+    }
+
+    // Email validation
+    const clean = email.trim().toLowerCase();
+    if (!EMAIL_RE.test(clean)) {
+      setError("Please enter a valid email address.");
+      return;
+    }
+
     setLoading(true);
+    lastSubmit.current = now;
+
     try {
       await fetch("https://formspree.io/f/xvzvolzk", {
         method: "POST",
         headers: { "Content-Type": "application/json", Accept: "application/json" },
-        body: JSON.stringify({ email }),
+        body: JSON.stringify({ email: clean }),
       });
       setSubmitted(true);
     } catch {
@@ -49,11 +75,7 @@ export default function WaitlistCTA() {
     <section id="waitlist" style={{ backgroundColor: "#F4F5F7" }}>
       <div
         className="mx-auto px-6 text-center"
-        style={{
-          maxWidth: "1100px",
-          paddingTop: "120px",
-          paddingBottom: "120px",
-        }}
+        style={{ maxWidth: "1100px", paddingTop: "120px", paddingBottom: "120px" }}
       >
         {/* Label */}
         <p
@@ -130,47 +152,68 @@ export default function WaitlistCTA() {
             You&apos;re on the list. We&apos;ll be in touch!
           </p>
         ) : (
-          <form
-            onSubmit={handleSubmit}
-            style={{ marginTop: "32px" }}
-            className="flex flex-col sm:flex-row gap-3 max-w-sm mx-auto"
-          >
-            <input
-              type="email"
-              placeholder="your@email.com"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-              style={{
-                flex: 1,
-                background: "#fff",
-                border: "1px solid #E5E7EB",
-                borderRadius: "8px",
-                padding: "10px 16px",
-                fontSize: "14px",
-                color: "#111827",
-                outline: "none",
-              }}
-            />
-            <button
-              type="submit"
-              disabled={loading}
-              style={{
-                backgroundColor: "#1D9E75",
-                color: "#fff",
-                borderRadius: "8px",
-                padding: "10px 24px",
-                fontSize: "14px",
-                fontWeight: 500,
-                border: "none",
-                cursor: loading ? "not-allowed" : "pointer",
-                opacity: loading ? 0.7 : 1,
-                whiteSpace: "nowrap",
-              }}
+          <>
+            <form
+              onSubmit={handleSubmit}
+              style={{ marginTop: "32px" }}
+              className="flex flex-col sm:flex-row gap-3 max-w-sm mx-auto"
             >
-              {loading ? "Joining…" : "Join waitlist"}
-            </button>
-          </form>
+              {/* Honeypot — hidden from real users */}
+              <input
+                type="text"
+                name="website"
+                value={honeypot}
+                onChange={(e) => setHoneypot(e.target.value)}
+                tabIndex={-1}
+                autoComplete="off"
+                aria-hidden="true"
+                style={{ display: "none" }}
+              />
+              <input
+                type="email"
+                placeholder="your@email.com"
+                value={email}
+                onChange={(e) => { setEmail(e.target.value); setError(""); }}
+                required
+                style={{
+                  flex: 1,
+                  background: "#fff",
+                  border: `1px solid ${error ? "#E11D48" : "#E5E7EB"}`,
+                  borderRadius: "8px",
+                  padding: "10px 16px",
+                  fontSize: "14px",
+                  color: "#111827",
+                  outline: "none",
+                  transition: "border-color 0.2s ease",
+                }}
+              />
+              <button
+                type="submit"
+                disabled={loading}
+                className="lifeos-btn-primary"
+                style={{
+                  backgroundColor: "#1D9E75",
+                  color: "#fff",
+                  borderRadius: "8px",
+                  padding: "10px 24px",
+                  fontSize: "14px",
+                  fontWeight: 500,
+                  border: "none",
+                  cursor: loading ? "not-allowed" : "pointer",
+                  opacity: loading ? 0.7 : 1,
+                  whiteSpace: "nowrap",
+                  transition: "opacity 0.2s ease, transform 0.15s ease",
+                }}
+              >
+                {loading ? "Joining…" : "Join waitlist"}
+              </button>
+            </form>
+            {error && (
+              <p style={{ fontSize: "12px", color: "#E11D48", marginTop: "8px" }}>
+                {error}
+              </p>
+            )}
+          </>
         )}
 
         {/* Disclaimer */}

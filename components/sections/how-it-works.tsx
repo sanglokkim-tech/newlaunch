@@ -1,3 +1,7 @@
+"use client";
+
+import { useEffect, useRef, useState } from "react";
+
 const steps = [
   {
     num: "01",
@@ -17,15 +21,32 @@ const steps = [
 ];
 
 export default function HowItWorks() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const [triggered, setTriggered] = useState(false);
+
+  useEffect(() => {
+    const node = sectionRef.current;
+    if (!node) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setTriggered(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.2 }
+    );
+
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <section style={{ backgroundColor: "#FFFFFF" }}>
+    <section ref={sectionRef} style={{ backgroundColor: "#FFFFFF" }}>
       <div
         className="mx-auto px-6"
-        style={{
-          maxWidth: "1100px",
-          paddingTop: "120px",
-          paddingBottom: "120px",
-        }}
+        style={{ maxWidth: "1100px", paddingTop: "120px", paddingBottom: "120px" }}
       >
         {/* Label */}
         <p
@@ -37,6 +58,9 @@ export default function HowItWorks() {
             letterSpacing: "0.12em",
             margin: 0,
             textAlign: "center",
+            opacity: triggered ? 1 : 0,
+            transform: triggered ? "translateY(0)" : "translateY(16px)",
+            transition: "opacity 0.6s ease, transform 0.6s ease",
           }}
         >
           HOW IT WORKS
@@ -51,6 +75,9 @@ export default function HowItWorks() {
             margin: "16px 0 0",
             letterSpacing: "-0.02em",
             textAlign: "center",
+            opacity: triggered ? 1 : 0,
+            transform: triggered ? "translateY(0)" : "translateY(16px)",
+            transition: "opacity 0.6s ease 100ms, transform 0.6s ease 100ms",
           }}
         >
           Three steps. One clear day.
@@ -92,8 +119,16 @@ export default function HowItWorks() {
             }}
           />
 
-          {steps.map((step) => (
-            <div key={step.num} style={{ padding: "0 24px" }}>
+          {steps.map((step, i) => (
+            <div
+              key={step.num}
+              style={{
+                padding: "0 24px",
+                opacity: triggered ? 1 : 0,
+                transform: triggered ? "translateY(0)" : "translateY(24px)",
+                transition: `opacity 0.6s ease ${200 + i * 150}ms, transform 0.6s ease ${200 + i * 150}ms`,
+              }}
+            >
               <p
                 style={{
                   color: "#1D9E75",

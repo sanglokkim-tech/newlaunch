@@ -13,18 +13,28 @@ export default function Nav() {
         </span>
         <a
           href="#waitlist"
-          style={{
-            backgroundColor: "#1D9E75",
-            color: "#fff",
-            borderRadius: "8px",
-            padding: "8px 20px",
-            fontSize: "14px",
-            fontWeight: 500,
-            textDecoration: "none",
-          }}
+          className="nav-cta"
         >
-          Get early access
+          Join waitlist
         </a>
+
+        <style>{`
+          .nav-cta {
+            background-color: #1D9E75;
+            color: #fff;
+            border-radius: 8px;
+            padding: 8px 20px;
+            font-size: 14px;
+            font-weight: 500;
+            text-decoration: none;
+            display: inline-block;
+            transition: opacity 0.15s ease, transform 0.15s ease;
+          }
+          .nav-cta:hover {
+            opacity: 0.88;
+            transform: translateY(-1px);
+          }
+        `}</style>
       </div>
     </nav>
   );

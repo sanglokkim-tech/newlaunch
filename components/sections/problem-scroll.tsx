@@ -1,96 +1,149 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-const lines = [
-  { text: "Same goals.", delay: 0 },
-  { text: "Same year.", delay: 350 },
-  { text: "Same result.", delay: 700 },
-];
+gsap.registerPlugin(ScrollTrigger);
 
 export default function ProblemScroll() {
   const sectionRef = useRef<HTMLElement>(null);
-  const [visible, setVisible] = useState<boolean[]>([false, false, false]);
-  const [subtextVisible, setSubtextVisible] = useState(false);
-  const triggered = useRef(false);
+  const line0Ref = useRef<HTMLParagraphElement>(null);
+  const line1Ref = useRef<HTMLParagraphElement>(null);
+  const line2Ref = useRef<HTMLParagraphElement>(null);
+  const subtextRef = useRef<HTMLParagraphElement>(null);
+  const overlayRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const node = sectionRef.current;
-    if (!node) return;
+    const ctx = gsap.context(() => {
+      const l0 = line0Ref.current;
+      const l1 = line1Ref.current;
+      const l2 = line2Ref.current;
+      const sub = subtextRef.current;
+      const overlay = overlayRef.current;
+      if (!l0 || !l1 || !l2 || !sub || !overlay) return;
 
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && !triggered.current) {
-          triggered.current = true;
+      // Hide everything initially
+      gsap.set([l0, l1, l2], { opacity: 0, y: 40, scale: 0.9 });
+      gsap.set(sub, { opacity: 0 });
+      gsap.set(overlay, { opacity: 0 });
 
-          lines.forEach((line, i) => {
-            setTimeout(() => {
-              setVisible((prev) => {
-                const next = [...prev];
-                next[i] = true;
-                return next;
-              });
-            }, line.delay);
-          });
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top top",
+          end: "+=3000",
+          pin: true,
+          scrub: 1,
+        },
+      });
 
-          setTimeout(() => {
-            setSubtextVisible(true);
-          }, 1200);
-        }
-      },
-      { threshold: 0.25 }
-    );
+      tl
+        // Line 1 reveals (0→1)
+        .to(l0, { opacity: 1, y: 0, scale: 1, duration: 1, ease: "power3.out" }, 0)
+        // Line 2 reveals, line 1 dims (1→2)
+        .to(l0, { opacity: 0.15, duration: 0.6 }, 1)
+        .to(l1, { opacity: 1, y: 0, scale: 1, duration: 1, ease: "power3.out" }, 1)
+        // Line 3 reveals, line 2 dims (2→3)
+        .to(l1, { opacity: 0.15, duration: 0.6 }, 2)
+        .to(l2, { opacity: 1, y: 0, scale: 1, duration: 1, ease: "power3.out" }, 2)
+        // Subtext fades in (3→3.5)
+        .to(sub, { opacity: 1, duration: 0.5 }, 3)
+        // White overlay transitions to next section (3.6→4)
+        .to(overlay, { opacity: 1, duration: 0.4 }, 3.6);
+    }, sectionRef);
 
-    observer.observe(node);
-    return () => observer.disconnect();
+    return () => ctx.revert();
   }, []);
-
-  // Determine which line is "active" (the latest revealed one)
-  const lastVisible = visible.lastIndexOf(true);
 
   return (
     <section
       ref={sectionRef}
-      style={{ backgroundColor: "#F4F5F7", minHeight: "100vh" }}
-      className="flex flex-col items-center justify-center px-6 text-center gap-8"
+      style={{
+        position: "relative",
+        height: "100vh",
+        background: "#080F0A",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        overflow: "hidden",
+        padding: "0 24px",
+      }}
     >
-      <div className="flex flex-col items-center gap-4">
-        {lines.map((line, i) => {
-          const isRevealed = visible[i];
-          const isDimmed = isRevealed && i < lastVisible;
-
-          return (
-            <p
-              key={i}
-              style={{
-                fontWeight: 700,
-                color: "#111827",
-                margin: 0,
-                opacity: isRevealed ? (isDimmed ? 0.15 : 1) : 0,
-                transform: isRevealed ? "translateY(0)" : "translateY(16px)",
-                transition: "opacity 0.6s ease, transform 0.6s ease",
-                lineHeight: 1.1,
-              }}
-              className="text-[36px] sm:text-[56px]"
-            >
-              {line.text}
-            </p>
-          );
-        })}
-      </div>
-
-      <p
+      <div
         style={{
-          fontSize: "16px",
-          color: "#6B7280",
-          margin: 0,
-          opacity: subtextVisible ? 1 : 0,
-          transition: "opacity 0.6s ease",
-          maxWidth: "480px",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          textAlign: "center",
+          gap: 16,
         }}
       >
-        The problem isn&apos;t motivation. It&apos;s knowing where to focus.
-      </p>
+        <p
+          ref={line0Ref}
+          style={{
+            fontWeight: 700,
+            color: "#FFFFFF",
+            margin: 0,
+            lineHeight: 1.1,
+            letterSpacing: "-0.03em",
+          }}
+          className="text-[36px] sm:text-[56px]"
+        >
+          Same goals.
+        </p>
+        <p
+          ref={line1Ref}
+          style={{
+            fontWeight: 700,
+            color: "#FFFFFF",
+            margin: 0,
+            lineHeight: 1.1,
+            letterSpacing: "-0.03em",
+          }}
+          className="text-[36px] sm:text-[56px]"
+        >
+          Same year.
+        </p>
+        <p
+          ref={line2Ref}
+          style={{
+            fontWeight: 700,
+            color: "#FFFFFF",
+            margin: 0,
+            lineHeight: 1.1,
+            letterSpacing: "-0.03em",
+          }}
+          className="text-[36px] sm:text-[56px]"
+        >
+          Same result.
+        </p>
+        <p
+          ref={subtextRef}
+          style={{
+            fontSize: 16,
+            color: "#6B7280",
+            margin: "24px 0 0",
+            maxWidth: 480,
+            lineHeight: 1.6,
+          }}
+        >
+          The problem isn&apos;t motivation. It&apos;s knowing where to focus.
+        </p>
+      </div>
+
+      {/* Transition overlay — fades to next section's background */}
+      <div
+        ref={overlayRef}
+        style={{
+          position: "absolute",
+          inset: 0,
+          background: "#F4F5F7",
+          pointerEvents: "none",
+          zIndex: 10,
+        }}
+      />
     </section>
   );
 }

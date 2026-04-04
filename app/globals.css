@@ -1,17 +1,26 @@
 @import "tailwindcss";
 
 :root {
+  /* Light section palette */
   --bg:          #F4F5F7;
   --card:        #FFFFFF;
   --border:      #E5E7EB;
   --text-1:      #111827;
   --text-2:      #6B7280;
   --text-3:      #9CA3AF;
-  --accent:      #00C9A7;
-  --dark-bg:     #0F1117;
-  --dark-panel:  #1A1D27;
+  --accent:      #1D9E75;
+
+  /* Dark section palette */
+  --dark-bg:     #080F0A;
+  --dark-panel:  #0D2B1F;
+  --dark-border: #1A3A28;
+  --dark-accent: #4ADE80;
+
+  /* Semantic */
+  --nav-bg:      #1A1D27;
   --score-c:     #F59E0B;
 
+  /* Pillar colours — never change */
   --physical-c:  #1D9E75;
   --mental-c:    #7C3AED;
   --financial-c: #2563EB;
@@ -21,96 +30,94 @@
 @theme inline {
   --color-background: var(--bg);
   --color-foreground: var(--text-1);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-dm-sans);
 }
 
 body {
   background: var(--bg);
   color: var(--text-1);
-  font-family: var(--font-geist-sans), 'Inter', 'DM Sans', system-ui, sans-serif;
+  font-family: var(--font-dm-sans), 'DM Sans', system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
 }
 
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
-.gsap-reveal { visibility: hidden; }
 
-/* ── Card ── */
-.app-card {
-  background: var(--card);
-  border: 1px solid var(--border);
+/* ── Cards — light ── */
+.card-light {
+  background: #FFFFFF;
+  border: 1px solid #E5E7EB;
   border-radius: 12px;
+  padding: 20px 24px;
   box-shadow: 0 1px 3px rgba(0,0,0,0.06);
 }
 
-/* ── Progress bar ── */
+/* ── Cards — dark ── */
+.card-dark {
+  background: #0D2B1F;
+  border: 1px solid #1A3A28;
+  border-radius: 12px;
+  padding: 20px 24px;
+}
+
+/* ── Progress bars ── */
 .bar-track {
   height: 6px;
   border-radius: 999px;
-  background: #F3F4F6;
   overflow: hidden;
 }
+.bar-track-light { background: #F3F4F6; }
+.bar-track-dark  { background: #1A3A28; }
 .bar-fill {
   height: 100%;
   border-radius: 999px;
 }
 
 /* ── Buttons ── */
-.btn-primary {
-  background: var(--accent);
+.btn-primary-light {
+  background: #1D9E75;
   color: #fff;
   border: none;
   border-radius: 8px;
-  padding: 10px 20px;
+  padding: 10px 24px;
   font-weight: 500;
-  font-size: 15px;
+  font-size: 14px;
   cursor: pointer;
-  transition: opacity 0.15s;
+  transition: opacity 0.15s, transform 0.15s;
+  white-space: nowrap;
 }
-.btn-primary:hover { opacity: 0.9; }
-
-.btn-secondary {
-  background: #fff;
-  color: var(--text-1);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 10px 20px;
-  font-weight: 500;
-  font-size: 15px;
-  cursor: pointer;
-  transition: border-color 0.15s;
+.btn-primary-light:hover:not(:disabled) {
+  opacity: 0.88;
+  transform: translateY(-1px);
 }
-.btn-secondary:hover { border-color: #D1D5DB; }
+.btn-primary-light:active:not(:disabled) { transform: translateY(0); }
+.btn-primary-light:disabled { opacity: 0.7; cursor: not-allowed; }
 
-/* ── Tab pill ── */
-.tab-pill {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  padding: 9px 16px;
-  border-radius: 8px;
-  font-size: 13px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background 0.15s, color 0.15s, box-shadow 0.15s;
+.btn-primary-dark {
+  background: #4ADE80;
+  color: #080F0A;
   border: none;
-  background: transparent;
-  color: var(--text-3);
+  border-radius: 8px;
+  padding: 10px 24px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: opacity 0.15s, transform 0.15s;
+  white-space: nowrap;
 }
-.tab-pill.active {
-  background: var(--card);
-  color: var(--text-1);
-  box-shadow: 0 1px 3px rgba(0,0,0,0.10);
+.btn-primary-dark:hover:not(:disabled) {
+  opacity: 0.88;
+  transform: translateY(-2px);
 }
+.btn-primary-dark:disabled { opacity: 0.7; cursor: not-allowed; }
 
 /* ── Section label ── */
 .section-label {
   font-size: 11px;
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--text-2);
+  letter-spacing: 0.12em;
 }
+
+/* ── GSAP helpers ── */
+.gsap-hide { visibility: hidden; }
