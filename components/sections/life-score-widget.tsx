@@ -3,14 +3,14 @@ import { useEffect, useRef, useState } from "react";
 
 const PHASES = [
   { label: "Struggling", score: 22,  pillars: [15, 10, 8,  25], color: "#D4537E" },
-  { label: "Building",   score: 64,  pillars: [70, 60, 42, 85], color: "#378ADD" },
-  { label: "Thriving",   score: 88,  pillars: [90, 85, 80, 92], color: "#1D9E75" },
+  { label: "Building",   score: 64,  pillars: [70, 60, 42, 85], color: "#2E7DD4" },
+  { label: "Thriving",   score: 88,  pillars: [90, 85, 80, 92], color: "#24A066" },
 ];
 
 const PILLARS = [
-  { name: "Physical",  color: "#1D9E75" },
-  { name: "Mental",    color: "#7F77DD" },
-  { name: "Financial", color: "#378ADD" },
+  { name: "Physical",  color: "#24A066" },
+  { name: "Mental",    color: "#5E59CC" },
+  { name: "Financial", color: "#2E7DD4" },
   { name: "Social",    color: "#D4537E" },
 ];
 

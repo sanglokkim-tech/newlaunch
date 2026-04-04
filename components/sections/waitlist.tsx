@@ -1,5 +1,4 @@
 "use client";
-
 import { useState, type FormEvent } from "react";
 
 export default function Waitlist() {
@@ -20,8 +19,8 @@ export default function Waitlist() {
   return (
     <section
       id="waitlist"
-      className="w-full py-[120px] px-6 relative overflow-hidden"
-      style={{ backgroundColor: "#0B0B12" }}
+      className="w-full py-[100px] px-6 relative overflow-hidden"
+      style={{ backgroundColor: "#1C1C2E" }}
     >
       {/* Ambient orbs */}
       <div
@@ -29,64 +28,63 @@ export default function Waitlist() {
         aria-hidden="true"
         style={{
           background: `
-            radial-gradient(ellipse 60% 50% at 30% 50%, rgba(78,205,196,0.05) 0%, transparent 70%),
-            radial-gradient(ellipse 60% 50% at 70% 50%, rgba(139,92,246,0.05) 0%, transparent 70%)
+            radial-gradient(ellipse 55% 50% at 25% 60%, rgba(36,160,102,0.08) 0%, transparent 70%),
+            radial-gradient(ellipse 55% 50% at 75% 40%, rgba(94,89,204,0.08) 0%, transparent 70%)
           `,
         }}
       />
 
-      <div className="relative mx-auto max-w-[960px] flex flex-col items-center text-center">
-        <p className="text-xs font-semibold uppercase tracking-widest mb-6" style={{ color: "#4ECDC4" }}>
+      <div className="relative mx-auto max-w-[580px] flex flex-col items-center text-center">
+        <div
+          className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-8 text-xs font-semibold uppercase tracking-widest"
+          style={{ background: "rgba(36,160,102,0.12)", border: "1px solid rgba(36,160,102,0.25)", color: "#24A066" }}
+        >
+          <span className="w-1.5 h-1.5 rounded-full bg-[#24A066] animate-pulse inline-block" />
           Early access — 200 spots
-        </p>
+        </div>
 
         <h2
-          className="text-5xl sm:text-[64px] font-bold leading-tight text-white mb-5"
-          style={{ letterSpacing: "-0.02em" }}
+          className="text-5xl sm:text-[60px] font-bold leading-tight text-white mb-4"
+          style={{ letterSpacing: "-0.025em" }}
         >
           Join the waitlist.
         </h2>
 
-        <p style={{ color: "rgba(240,240,255,0.45)" }} className="text-lg leading-relaxed mb-12 max-w-md">
+        <p className="text-lg leading-relaxed mb-10 max-w-sm" style={{ color: "rgba(255,255,255,0.45)" }}>
           Be among the first 200. No spam. Launch notification only.
         </p>
 
         {submitted ? (
-          <p className="text-lg font-semibold" style={{ color: "#4ECDC4" }}>
+          <p className="text-lg font-semibold" style={{ color: "#24A066" }}>
             You&apos;re on the list. We&apos;ll be in touch.
           </p>
         ) : (
           <form
             onSubmit={handleSubmit}
-            className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full max-w-xl"
+            className="flex flex-col sm:flex-row items-stretch gap-3 w-full"
           >
             <input
               type="email"
               required
               placeholder="your@email.com"
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="flex-1 rounded-2xl px-6 py-4 text-white text-base outline-none transition-all placeholder:text-white/30"
+              onChange={e => setEmail(e.target.value)}
+              className="flex-1 rounded-xl px-5 py-3.5 text-white text-sm outline-none transition-all placeholder-white/30"
               style={{
-                background: "rgba(255,255,255,0.04)",
-                border: "1px solid rgba(255,255,255,0.08)",
+                background: "rgba(255,255,255,0.06)",
+                border: "1px solid rgba(255,255,255,0.10)",
                 minWidth: 0,
               }}
-              onFocus={(e) => {
-                e.currentTarget.style.borderColor = "rgba(78,205,196,0.4)";
-                e.currentTarget.style.boxShadow = "0 0 0 4px rgba(78,205,196,0.08)";
-              }}
-              onBlur={(e) => {
-                e.currentTarget.style.borderColor = "rgba(255,255,255,0.08)";
-                e.currentTarget.style.boxShadow = "none";
-              }}
+              onFocus={e => { e.currentTarget.style.borderColor = "rgba(36,160,102,0.5)"; e.currentTarget.style.boxShadow = "0 0 0 3px rgba(36,160,102,0.10)"; }}
+              onBlur={e =>  { e.currentTarget.style.borderColor = "rgba(255,255,255,0.10)"; e.currentTarget.style.boxShadow = "none"; }}
             />
             <button
               type="submit"
-              className="rounded-2xl px-8 py-4 font-bold text-[#0B0B12] text-base whitespace-nowrap transition-all hover:-translate-y-0.5 hover:shadow-[0_0_24px_rgba(78,205,196,0.35)] active:translate-y-0"
+              className="rounded-xl px-7 py-3.5 font-semibold text-sm whitespace-nowrap transition-all hover:-translate-y-0.5 active:translate-y-0"
               style={{
-                background: "linear-gradient(180deg, #4ECDC4 0%, #2da89f 100%)",
-                border: "1px solid rgba(78,205,196,0.3)",
+                background: "#24A066",
+                color: "#FFFFFF",
+                boxShadow: "0 4px 20px rgba(36,160,102,0.35)",
               }}
             >
               Join the waitlist →
