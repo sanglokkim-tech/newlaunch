@@ -1,76 +1,129 @@
-const STEPS = [
+const steps = [
   {
-    number: "01", color: "#1D9E75",
-    title: "Rate your pillars",
-    description: "Score Physical, Mental, Financial, and Social 1–4. Honest, fast, weekly.",
-    icon: (c: string) => (
-      <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-        <rect x="2" y="2" width="6" height="6" rx="1.5" stroke={c} strokeWidth="1.6" />
-        <rect x="12" y="2" width="6" height="6" rx="1.5" stroke={c} strokeWidth="1.6" />
-        <rect x="2" y="12" width="6" height="6" rx="1.5" stroke={c} strokeWidth="1.6" />
-        <rect x="12" y="12" width="6" height="6" rx="1.5" stroke={c} strokeWidth="1.6" />
-      </svg>
-    ),
+    num: "01",
+    label: "Rate your pillars",
+    desc: "Score each area 1–4 in under 2 minutes",
   },
   {
-    number: "02", color: "#7C3AED",
-    title: "Get your action list",
-    description: "lifeOS surfaces the one pillar that needs attention most and gives you specific, achievable actions for it.",
-    icon: (c: string) => (
-      <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-        <path d="M3 6l2 2 4-4" stroke={c} strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
-        <path d="M11 7h6" stroke={c} strokeWidth="1.6" strokeLinecap="round" />
-        <path d="M3 13l2 2 4-4" stroke={c} strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
-        <path d="M11 14h6" stroke={c} strokeWidth="1.6" strokeLinecap="round" />
-      </svg>
-    ),
+    num: "02",
+    label: "Get your priority",
+    desc: "The AI Conductor identifies your biggest gap",
   },
   {
-    number: "03", color: "#2563EB",
-    title: "Track and adjust",
-    description: "Check in daily. Watch your pillars rise together. The system adapts as your life does.",
-    icon: (c: string) => (
-      <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-        <polyline points="2,15 7,9 11,12 18,4" stroke={c} strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
-        <polyline points="13,4 18,4 18,9"        stroke={c} strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
-      </svg>
-    ),
+    num: "03",
+    label: "Take one action",
+    desc: "One focused task. Repeated daily. That's the system.",
   },
 ];
 
 export default function HowItWorks() {
   return (
-    <section style={{ backgroundColor: "#F4F5F7" }} className="w-full py-[80px] px-6">
-      <div className="mx-auto max-w-[1280px]">
-        <p className="section-label mb-5">How it works</p>
-
-        <h2
-          className="font-semibold mb-14"
-          style={{ fontSize: 32, color: "#111827", letterSpacing: "-0.01em" }}
+    <section style={{ backgroundColor: "#FFFFFF" }}>
+      <div
+        className="mx-auto px-6"
+        style={{
+          maxWidth: "1100px",
+          paddingTop: "120px",
+          paddingBottom: "120px",
+        }}
+      >
+        {/* Label */}
+        <p
+          style={{
+            color: "#1D9E75",
+            fontSize: "11px",
+            fontWeight: 600,
+            textTransform: "uppercase",
+            letterSpacing: "0.12em",
+            margin: 0,
+            textAlign: "center",
+          }}
         >
-          Three steps. One system.
+          HOW IT WORKS
+        </p>
+
+        {/* Heading */}
+        <h2
+          style={{
+            fontSize: "40px",
+            fontWeight: 700,
+            color: "#111827",
+            margin: "16px 0 0",
+            letterSpacing: "-0.02em",
+            textAlign: "center",
+          }}
+        >
+          Three steps. One clear day.
         </h2>
 
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-          {STEPS.map((step) => (
-            <div key={step.number} className="app-card px-6 py-6 flex flex-col gap-4">
-              <div
-                className="w-10 h-10 rounded-xl flex items-center justify-center"
-                style={{ background: `${step.color}12`, border: `1px solid ${step.color}25` }}
+        {/* Steps */}
+        <div
+          className="grid grid-cols-1 sm:grid-cols-3"
+          style={{
+            gap: "32px",
+            maxWidth: "900px",
+            margin: "56px auto 0",
+            position: "relative",
+          }}
+        >
+          {/* Vertical dividers (desktop only) */}
+          <div
+            aria-hidden
+            className="hidden sm:block"
+            style={{
+              position: "absolute",
+              left: "calc(33.333% - 0.5px)",
+              top: 0,
+              bottom: 0,
+              width: "1px",
+              backgroundColor: "#E5E7EB",
+            }}
+          />
+          <div
+            aria-hidden
+            className="hidden sm:block"
+            style={{
+              position: "absolute",
+              left: "calc(66.666% - 0.5px)",
+              top: 0,
+              bottom: 0,
+              width: "1px",
+              backgroundColor: "#E5E7EB",
+            }}
+          />
+
+          {steps.map((step) => (
+            <div key={step.num} style={{ padding: "0 24px" }}>
+              <p
+                style={{
+                  color: "#1D9E75",
+                  fontSize: "30px",
+                  fontWeight: 700,
+                  margin: "0 0 16px",
+                }}
               >
-                {step.icon(step.color)}
-              </div>
-              <div>
-                <p className="text-[11px] font-600 uppercase tracking-[0.1em] mb-1.5" style={{ color: step.color }}>
-                  Step {step.number}
-                </p>
-                <h3 className="font-semibold mb-1.5" style={{ fontSize: 15, color: "#111827" }}>
-                  {step.title}
-                </h3>
-                <p style={{ fontSize: 15, color: "#6B7280", lineHeight: 1.6 }}>
-                  {step.description}
-                </p>
-              </div>
+                {step.num}
+              </p>
+              <p
+                style={{
+                  fontSize: "18px",
+                  fontWeight: 600,
+                  color: "#111827",
+                  margin: "0 0 8px",
+                }}
+              >
+                {step.label}
+              </p>
+              <p
+                style={{
+                  fontSize: "15px",
+                  color: "#6B7280",
+                  lineHeight: 1.6,
+                  margin: 0,
+                }}
+              >
+                {step.desc}
+              </p>
             </div>
           ))}
         </div>
