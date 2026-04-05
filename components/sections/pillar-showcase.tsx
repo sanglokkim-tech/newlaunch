@@ -73,19 +73,15 @@ export default function PillarShowcase() {
   }, []);
 
   return (
-    <section style={{ backgroundColor: "#F4F5F7" }}>
+    <section style={{ backgroundColor: "#080F0A" }}>
       <div
         className="mx-auto px-6 text-center"
-        style={{
-          maxWidth: "1100px",
-          paddingTop: "120px",
-          paddingBottom: "120px",
-        }}
+        style={{ maxWidth: "1100px", paddingTop: "100px", paddingBottom: "100px" }}
       >
         {/* Label */}
         <p
           style={{
-            color: "#1D9E75",
+            color: "#4ADE80",
             fontSize: "11px",
             fontWeight: 600,
             textTransform: "uppercase",
@@ -99,9 +95,9 @@ export default function PillarShowcase() {
         {/* Heading */}
         <h2
           style={{
-            fontSize: "40px",
+            fontSize: "clamp(28px, 3.5vw, 40px)",
             fontWeight: 700,
-            color: "#111827",
+            color: "#FFFFFF",
             margin: "16px 0 0",
             letterSpacing: "-0.02em",
           }}
@@ -110,13 +106,7 @@ export default function PillarShowcase() {
         </h2>
 
         {/* Subtext */}
-        <p
-          style={{
-            fontSize: "16px",
-            color: "#6B7280",
-            margin: "12px 0 0",
-          }}
-        >
+        <p style={{ fontSize: "16px", color: "#9CA3AF", margin: "12px 0 0" }}>
           Four areas. Honest scores. One clear priority.
         </p>
 
@@ -136,13 +126,12 @@ export default function PillarShowcase() {
             <div
               key={pillar.name}
               style={{
-                backgroundColor: "#FFFFFF",
-                border: "1px solid #E5E7EB",
+                backgroundColor: "#0D2B1F",
+                border: "1px solid #1A3A28",
                 borderRadius: "12px",
-                padding: "24px",
-                boxShadow: "0 1px 3px rgba(0,0,0,0.06)",
+                padding: "20px 24px",
                 textAlign: "left",
-                opacity: triggered ? 1 : 0.2,
+                opacity: triggered ? 1 : 0.15,
                 filter: triggered ? "blur(0px)" : "blur(4px)",
                 transition: `opacity 0.6s ease ${i * 150}ms, filter 0.6s ease ${i * 150}ms`,
               }}
@@ -150,13 +139,7 @@ export default function PillarShowcase() {
               {/* Top row */}
               <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
                 <span style={{ color: pillar.color }}>{pillar.icon}</span>
-                <span
-                  style={{
-                    fontSize: "14px",
-                    fontWeight: 500,
-                    color: "#6B7280",
-                  }}
-                >
+                <span style={{ fontSize: "14px", fontWeight: 500, color: "#9CA3AF" }}>
                   {pillar.name}
                 </span>
               </div>
@@ -166,7 +149,7 @@ export default function PillarShowcase() {
                 style={{
                   height: "6px",
                   borderRadius: "999px",
-                  backgroundColor: "#F3F4F6",
+                  backgroundColor: "#1A3A28",
                   overflow: "hidden",
                   marginTop: "12px",
                   marginBottom: "16px",

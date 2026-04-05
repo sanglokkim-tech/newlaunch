@@ -29,13 +29,12 @@ export default function ScoreReveal() {
   }, []);
 
   function animateScore() {
-    const duration = 1400; // ms
+    const duration = 1400;
     const start = performance.now();
 
     function frame(now: number) {
       const elapsed = now - start;
       const progress = Math.min(elapsed / duration, 1);
-      // ease-out cubic
       const eased = 1 - Math.pow(1 - progress, 3);
       const current = Math.round(eased * TARGET);
       setScore(current);
@@ -56,13 +55,13 @@ export default function ScoreReveal() {
   return (
     <section
       ref={sectionRef}
-      style={{ backgroundColor: "#FFFFFF", minHeight: "100vh" }}
+      style={{ backgroundColor: "#080F0A", minHeight: "100vh" }}
       className="flex flex-col items-center justify-center px-6 text-center"
     >
       {/* Label */}
       <p
         style={{
-          color: "#1D9E75",
+          color: "#4ADE80",
           fontSize: "11px",
           fontWeight: 600,
           textTransform: "uppercase",
@@ -99,7 +98,7 @@ export default function ScoreReveal() {
         <p
           style={{
             fontSize: "16px",
-            color: "#6B7280",
+            color: "#9CA3AF",
             maxWidth: "400px",
             margin: "0 auto",
             lineHeight: 1.7,

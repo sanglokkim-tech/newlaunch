@@ -32,7 +32,7 @@ export default function ProblemScroll() {
         scrollTrigger: {
           trigger: sectionRef.current,
           start: "top top",
-          end: "+=3000",
+          end: "+=2000",
           pin: true,
           scrub: 1,
         },
@@ -133,13 +133,13 @@ export default function ProblemScroll() {
         </p>
       </div>
 
-      {/* Transition overlay — fades to next section's background */}
+      {/* Transition overlay */}
       <div
         ref={overlayRef}
         style={{
           position: "absolute",
           inset: 0,
-          background: "#F4F5F7",
+          background: "#080F0A",
           pointerEvents: "none",
           zIndex: 10,
         }}

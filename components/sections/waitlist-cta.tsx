@@ -36,18 +36,14 @@ export default function WaitlistCTA() {
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setError("");
-
-    // Honeypot check
     if (honeypot) return;
 
-    // Rate limit
     const now = Date.now();
     if (now - lastSubmit.current < RATE_LIMIT_MS) {
       setError("Please wait before submitting again.");
       return;
     }
 
-    // Email validation
     const clean = email.trim().toLowerCase();
     if (!EMAIL_RE.test(clean)) {
       setError("Please enter a valid email address.");
@@ -72,83 +68,45 @@ export default function WaitlistCTA() {
   }
 
   return (
-    <section id="waitlist" style={{ backgroundColor: "#F4F5F7" }}>
+    <section id="waitlist" style={{ backgroundColor: "#080F0A" }}>
       <div
         className="mx-auto px-6 text-center"
-        style={{ maxWidth: "1100px", paddingTop: "120px", paddingBottom: "120px" }}
+        style={{ maxWidth: "1100px", paddingTop: "100px", paddingBottom: "100px" }}
       >
         {/* Label */}
-        <p
-          style={{
-            color: "#1D9E75",
-            fontSize: "11px",
-            fontWeight: 600,
-            textTransform: "uppercase",
-            letterSpacing: "0.12em",
-            margin: 0,
-          }}
-        >
+        <p style={{ color: "#4ADE80", fontSize: "11px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.12em", margin: 0 }}>
           EARLY ACCESS
         </p>
 
         {/* Heading */}
-        <h2
-          style={{
-            fontSize: "48px",
-            fontWeight: 700,
-            color: "#111827",
-            margin: "16px 0 0",
-            letterSpacing: "-0.02em",
-          }}
-        >
+        <h2 style={{ fontSize: "clamp(32px, 4vw, 48px)", fontWeight: 700, color: "#FFFFFF", margin: "16px 0 0", letterSpacing: "-0.02em" }}>
           Get in before it fills.
         </h2>
 
         {/* Spot count */}
-        <p
-          style={{
-            color: "#1D9E75",
-            fontSize: "13px",
-            fontWeight: 500,
-            margin: "12px 0 0",
-          }}
-        >
+        <p style={{ color: "#4ADE80", fontSize: "13px", fontWeight: 500, margin: "12px 0 0" }}>
           47 of 200 spots claimed
         </p>
 
         {/* Progress bar */}
         <div
           ref={barRef}
-          style={{
-            maxWidth: "320px",
-            margin: "16px auto 0",
-            height: "6px",
-            borderRadius: "999px",
-            backgroundColor: "#E5E7EB",
-            overflow: "hidden",
-          }}
+          style={{ maxWidth: "320px", margin: "16px auto 0", height: "6px", borderRadius: "999px", backgroundColor: "#1A3A28", overflow: "hidden" }}
         >
           <div
             style={{
               height: "100%",
               borderRadius: "999px",
-              backgroundColor: "#1D9E75",
+              backgroundColor: "#4ADE80",
               width: barTriggered ? "23.5%" : "0%",
               transition: "width 1s ease",
             }}
           />
         </div>
 
-        {/* Email form */}
+        {/* Form */}
         {submitted ? (
-          <p
-            style={{
-              marginTop: "32px",
-              fontSize: "15px",
-              color: "#1D9E75",
-              fontWeight: 500,
-            }}
-          >
+          <p style={{ marginTop: "32px", fontSize: "15px", color: "#4ADE80", fontWeight: 500 }}>
             You&apos;re on the list. We&apos;ll be in touch!
           </p>
         ) : (
@@ -158,17 +116,8 @@ export default function WaitlistCTA() {
               style={{ marginTop: "32px" }}
               className="flex flex-col sm:flex-row gap-3 max-w-sm mx-auto"
             >
-              {/* Honeypot — hidden from real users */}
-              <input
-                type="text"
-                name="website"
-                value={honeypot}
-                onChange={(e) => setHoneypot(e.target.value)}
-                tabIndex={-1}
-                autoComplete="off"
-                aria-hidden="true"
-                style={{ display: "none" }}
-              />
+              <input type="text" name="website" value={honeypot} onChange={(e) => setHoneypot(e.target.value)}
+                tabIndex={-1} autoComplete="off" aria-hidden="true" style={{ display: "none" }} />
               <input
                 type="email"
                 placeholder="your@email.com"
@@ -177,12 +126,12 @@ export default function WaitlistCTA() {
                 required
                 style={{
                   flex: 1,
-                  background: "#fff",
-                  border: `1px solid ${error ? "#E11D48" : "#E5E7EB"}`,
+                  background: "rgba(255,255,255,0.05)",
+                  border: `1px solid ${error ? "#E11D48" : "rgba(255,255,255,0.1)"}`,
                   borderRadius: "8px",
                   padding: "10px 16px",
                   fontSize: "14px",
-                  color: "#111827",
+                  color: "#fff",
                   outline: "none",
                   transition: "border-color 0.2s ease",
                 }}
@@ -190,34 +139,28 @@ export default function WaitlistCTA() {
               <button
                 type="submit"
                 disabled={loading}
-                className="lifeos-btn-primary"
                 style={{
-                  backgroundColor: "#1D9E75",
+                  background: "linear-gradient(180deg, #1A3A28 0%, #0D1F16 100%)",
                   color: "#fff",
                   borderRadius: "8px",
                   padding: "10px 24px",
                   fontSize: "14px",
-                  fontWeight: 500,
-                  border: "none",
+                  fontWeight: 600,
+                  border: "1px solid rgba(74,222,128,0.2)",
                   cursor: loading ? "not-allowed" : "pointer",
                   opacity: loading ? 0.7 : 1,
                   whiteSpace: "nowrap",
                   transition: "opacity 0.2s ease, transform 0.15s ease",
                 }}
               >
-                {loading ? "Joining…" : "Join waitlist"}
+                {loading ? "Joining…" : "Claim your spot →"}
               </button>
             </form>
-            {error && (
-              <p style={{ fontSize: "12px", color: "#E11D48", marginTop: "8px" }}>
-                {error}
-              </p>
-            )}
+            {error && <p style={{ fontSize: "12px", color: "#E11D48", marginTop: "8px" }}>{error}</p>}
           </>
         )}
 
-        {/* Disclaimer */}
-        <p style={{ fontSize: "12px", color: "#9CA3AF", marginTop: "16px" }}>
+        <p style={{ fontSize: "12px", color: "rgba(255,255,255,0.2)", marginTop: "16px" }}>
           No spam. Launch notification only.
         </p>
       </div>

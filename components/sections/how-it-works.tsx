@@ -43,15 +43,15 @@ export default function HowItWorks() {
   }, []);
 
   return (
-    <section ref={sectionRef} style={{ backgroundColor: "#FFFFFF" }}>
+    <section ref={sectionRef} style={{ backgroundColor: "#080F0A" }}>
       <div
         className="mx-auto px-6"
-        style={{ maxWidth: "1100px", paddingTop: "120px", paddingBottom: "120px" }}
+        style={{ maxWidth: "1100px", paddingTop: "100px", paddingBottom: "100px" }}
       >
         {/* Label */}
         <p
           style={{
-            color: "#1D9E75",
+            color: "#4ADE80",
             fontSize: "11px",
             fontWeight: 600,
             textTransform: "uppercase",
@@ -69,9 +69,9 @@ export default function HowItWorks() {
         {/* Heading */}
         <h2
           style={{
-            fontSize: "40px",
+            fontSize: "clamp(28px, 3.5vw, 40px)",
             fontWeight: 700,
-            color: "#111827",
+            color: "#FFFFFF",
             margin: "16px 0 0",
             letterSpacing: "-0.02em",
             textAlign: "center",
@@ -86,38 +86,11 @@ export default function HowItWorks() {
         {/* Steps */}
         <div
           className="grid grid-cols-1 sm:grid-cols-3"
-          style={{
-            gap: "32px",
-            maxWidth: "900px",
-            margin: "56px auto 0",
-            position: "relative",
-          }}
+          style={{ gap: "32px", maxWidth: "900px", margin: "56px auto 0", position: "relative" }}
         >
-          {/* Vertical dividers (desktop only) */}
-          <div
-            aria-hidden
-            className="hidden sm:block"
-            style={{
-              position: "absolute",
-              left: "calc(33.333% - 0.5px)",
-              top: 0,
-              bottom: 0,
-              width: "1px",
-              backgroundColor: "#E5E7EB",
-            }}
-          />
-          <div
-            aria-hidden
-            className="hidden sm:block"
-            style={{
-              position: "absolute",
-              left: "calc(66.666% - 0.5px)",
-              top: 0,
-              bottom: 0,
-              width: "1px",
-              backgroundColor: "#E5E7EB",
-            }}
-          />
+          {/* Dividers */}
+          <div aria-hidden className="hidden sm:block" style={{ position: "absolute", left: "calc(33.333% - 0.5px)", top: 0, bottom: 0, width: "1px", backgroundColor: "#1A3A28" }} />
+          <div aria-hidden className="hidden sm:block" style={{ position: "absolute", left: "calc(66.666% - 0.5px)", top: 0, bottom: 0, width: "1px", backgroundColor: "#1A3A28" }} />
 
           {steps.map((step, i) => (
             <div
@@ -129,34 +102,13 @@ export default function HowItWorks() {
                 transition: `opacity 0.6s ease ${200 + i * 150}ms, transform 0.6s ease ${200 + i * 150}ms`,
               }}
             >
-              <p
-                style={{
-                  color: "#1D9E75",
-                  fontSize: "30px",
-                  fontWeight: 700,
-                  margin: "0 0 16px",
-                }}
-              >
+              <p style={{ color: "#4ADE80", fontSize: "30px", fontWeight: 700, margin: "0 0 16px" }}>
                 {step.num}
               </p>
-              <p
-                style={{
-                  fontSize: "18px",
-                  fontWeight: 600,
-                  color: "#111827",
-                  margin: "0 0 8px",
-                }}
-              >
+              <p style={{ fontSize: "18px", fontWeight: 600, color: "#FFFFFF", margin: "0 0 8px" }}>
                 {step.label}
               </p>
-              <p
-                style={{
-                  fontSize: "15px",
-                  color: "#6B7280",
-                  lineHeight: 1.6,
-                  margin: 0,
-                }}
-              >
+              <p style={{ fontSize: "15px", color: "#9CA3AF", lineHeight: 1.6, margin: 0 }}>
                 {step.desc}
               </p>
             </div>
