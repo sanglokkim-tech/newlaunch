@@ -244,7 +244,7 @@ export default function Hero() {
         </h1>
         <h1
           className="lo-text-clip text-5xl md:text-7xl lg:text-[6rem] font-extrabold tracking-tighter"
-          style={{ color: "#4DB8B0" }}
+          style={{ color: "#4DB8B0", paddingBottom: "0.2em" }}
         >
           Start using it.
         </h1>
