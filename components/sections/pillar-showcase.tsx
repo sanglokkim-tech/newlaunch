@@ -73,7 +73,7 @@ export default function PillarShowcase() {
   }, []);
 
   return (
-    <section style={{ backgroundColor: "#080F0A" }}>
+    <section style={{ backgroundColor: "#F4F5F7" }}>
       <div
         className="mx-auto px-6 text-center"
         style={{ maxWidth: "1100px", paddingTop: "100px", paddingBottom: "100px" }}
@@ -81,7 +81,7 @@ export default function PillarShowcase() {
         {/* Label */}
         <p
           style={{
-            color: "#4ADE80",
+            color: "#1D9E75",
             fontSize: "11px",
             fontWeight: 600,
             textTransform: "uppercase",
@@ -106,7 +106,7 @@ export default function PillarShowcase() {
         </h2>
 
         {/* Subtext */}
-        <p style={{ fontSize: "16px", color: "#9CA3AF", margin: "12px 0 0" }}>
+        <p style={{ fontSize: "16px", color: "#6B7280", margin: "12px 0 0" }}>
           Four areas. Honest scores. One clear priority.
         </p>
 
@@ -126,8 +126,8 @@ export default function PillarShowcase() {
             <div
               key={pillar.name}
               style={{
-                backgroundColor: "#0D2B1F",
-                border: "1px solid #1A3A28",
+                backgroundColor: "#FFFFFF",
+                border: "1px solid #E5E7EB",
                 borderRadius: "12px",
                 padding: "20px 24px",
                 textAlign: "left",
@@ -139,7 +139,7 @@ export default function PillarShowcase() {
               {/* Top row */}
               <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
                 <span style={{ color: pillar.color }}>{pillar.icon}</span>
-                <span style={{ fontSize: "14px", fontWeight: 500, color: "#9CA3AF" }}>
+                <span style={{ fontSize: "14px", fontWeight: 500, color: "#6B7280" }}>
                   {pillar.name}
                 </span>
               </div>
@@ -149,7 +149,7 @@ export default function PillarShowcase() {
                 style={{
                   height: "6px",
                   borderRadius: "999px",
-                  backgroundColor: "#1A3A28",
+                  backgroundColor: "#F3F4F6",
                   overflow: "hidden",
                   marginTop: "12px",
                   marginBottom: "16px",

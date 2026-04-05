@@ -55,13 +55,13 @@ export default function ScoreReveal() {
   return (
     <section
       ref={sectionRef}
-      style={{ backgroundColor: "#080F0A", minHeight: "100vh" }}
+      style={{ backgroundColor: "#FFFFFF", minHeight: "100vh" }}
       className="flex flex-col items-center justify-center px-6 text-center"
     >
       {/* Label */}
       <p
         style={{
-          color: "#4ADE80",
+          color: "#1D9E75",
           fontSize: "11px",
           fontWeight: 600,
           textTransform: "uppercase",
@@ -98,7 +98,7 @@ export default function ScoreReveal() {
         <p
           style={{
             fontSize: "16px",
-            color: "#9CA3AF",
+            color: "#6B7280",
             maxWidth: "400px",
             margin: "0 auto",
             lineHeight: 1.7,

@@ -19,58 +19,42 @@ const PILLARS = [
 ];
 
 const INJECTED_STYLES = `
-  .lo-film-grain {
-    position: absolute; inset: 0; width: 100%; height: 100%;
-    pointer-events: none; z-index: 50; opacity: 0.05; mix-blend-mode: overlay;
-    background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(%23n)"/></svg>');
-  }
   .lo-bg-grid {
     background-size: 60px 60px;
     background-image:
-      linear-gradient(to right, rgba(255,255,255,0.04) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(255,255,255,0.04) 1px, transparent 1px);
+      linear-gradient(to right, rgba(0,0,0,0.04) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(0,0,0,0.04) 1px, transparent 1px);
     mask-image: radial-gradient(ellipse at center, black 0%, transparent 70%);
     -webkit-mask-image: radial-gradient(ellipse at center, black 0%, transparent 70%);
   }
   .lo-text-3d {
-    color: #FFFFFF;
-    text-shadow: 0 10px 30px rgba(255,255,255,0.2), 0 2px 4px rgba(255,255,255,0.1);
+    color: #111827;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.08);
   }
-  .lo-text-silver {
-    background: linear-gradient(180deg, #FFFFFF 0%, rgba(255,255,255,0.4) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    filter: drop-shadow(0px 10px 20px rgba(255,255,255,0.15)) drop-shadow(0px 2px 4px rgba(255,255,255,0.1));
+  .lo-text-accent {
+    color: #1D9E75;
   }
-  .lo-text-card-silver {
-    background: linear-gradient(180deg, #FFFFFF 0%, #A1A1AA 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    filter: drop-shadow(0px 12px 24px rgba(0,0,0,0.8)) drop-shadow(0px 4px 8px rgba(0,0,0,0.6));
+  .lo-text-card-dark {
+    color: #111827;
   }
   .lo-depth-card {
-    background: linear-gradient(145deg, #0D2B1F 0%, #080F0A 100%);
+    background: #FFFFFF;
     box-shadow:
-      0 40px 100px -20px rgba(0,0,0,0.9),
-      0 20px 40px -20px rgba(0,0,0,0.8),
-      inset 0 1px 2px rgba(255,255,255,0.15),
-      inset 0 -2px 4px rgba(0,0,0,0.8);
-    border: 1px solid rgba(255,255,255,0.04);
+      0 40px 100px -20px rgba(0,0,0,0.12),
+      0 20px 40px -20px rgba(0,0,0,0.08);
+    border: 1px solid #E5E7EB;
   }
   .lo-card-sheen {
     position: absolute; inset: 0; border-radius: inherit; pointer-events: none; z-index: 50;
-    background: radial-gradient(800px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255,255,255,0.05) 0%, transparent 40%);
-    mix-blend-mode: screen;
+    background: radial-gradient(800px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(29,158,117,0.04) 0%, transparent 40%);
   }
   .lo-iphone {
     background-color: #111;
     box-shadow:
       inset 0 0 0 2px #52525B,
       inset 0 0 0 7px #000,
-      0 40px 80px -15px rgba(0,0,0,0.9),
-      0 15px 25px -5px rgba(0,0,0,0.7);
+      0 40px 80px -15px rgba(0,0,0,0.25),
+      0 15px 25px -5px rgba(0,0,0,0.15);
     transform-style: preserve-3d;
   }
   .lo-hw-btn {
@@ -78,52 +62,35 @@ const INJECTED_STYLES = `
     box-shadow: -2px 0 5px rgba(0,0,0,0.8), inset -1px 0 1px rgba(255,255,255,0.15), inset 1px 0 2px rgba(0,0,0,0.8);
   }
   .lo-badge {
-    background: linear-gradient(135deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.01) 100%);
+    background: rgba(255,255,255,0.9);
     backdrop-filter: blur(24px);
     -webkit-backdrop-filter: blur(24px);
     box-shadow:
-      0 0 0 1px rgba(255,255,255,0.1),
-      0 25px 50px -12px rgba(0,0,0,0.8),
-      inset 0 1px 1px rgba(255,255,255,0.2),
-      inset 0 -1px 1px rgba(0,0,0,0.5);
+      0 0 0 1px rgba(0,0,0,0.06),
+      0 8px 24px rgba(0,0,0,0.08);
   }
   .lo-widget {
-    background: linear-gradient(180deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.01) 100%);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.3), inset 0 1px 1px rgba(255,255,255,0.05), inset 0 -1px 1px rgba(0,0,0,0.5);
-    border: 1px solid rgba(255,255,255,0.03);
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.04);
   }
   .lo-pillar-bar {
     height: 3px; border-radius: 999px;
-    background: rgba(255,255,255,0.06); overflow: hidden;
+    background: rgba(255,255,255,0.1); overflow: hidden;
   }
   .lo-pillar-fill { height: 100%; border-radius: 999px; }
   .lo-score-ring {
     transform: rotate(-90deg); transform-origin: center;
     stroke-dasharray: 251; stroke-dashoffset: 251; stroke-linecap: round;
   }
-  .lo-btn-dark {
-    background: linear-gradient(180deg, #1A3A28 0%, #0D1F16 100%);
+  .lo-btn-primary {
+    background: #1D9E75;
     color: #FFFFFF;
-    box-shadow:
-      0 0 0 1px rgba(74,222,128,0.15),
-      0 2px 4px rgba(0,0,0,0.6),
-      0 12px 24px -4px rgba(0,0,0,0.9),
-      inset 0 1px 1px rgba(255,255,255,0.1),
-      inset 0 -3px 6px rgba(0,0,0,0.8);
-    transition: all 0.4s cubic-bezier(0.25,1,0.5,1);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1), 0 8px 24px -4px rgba(29,158,117,0.3);
+    transition: all 0.3s cubic-bezier(0.25,1,0.5,1);
     border: none; cursor: pointer;
   }
-  .lo-btn-dark:hover {
-    transform: translateY(-3px);
-    background: linear-gradient(180deg, #22503A 0%, #1A3A28 100%);
-    box-shadow:
-      0 0 0 1px rgba(74,222,128,0.25),
-      0 6px 12px -2px rgba(0,0,0,0.7),
-      0 20px 32px -6px rgba(0,0,0,1),
-      inset 0 1px 1px rgba(255,255,255,0.15),
-      inset 0 -3px 6px rgba(0,0,0,0.8);
-  }
-  .lo-btn-dark:disabled { opacity: 0.7; cursor: not-allowed; transform: none; }
+  .lo-btn-primary:hover { transform: translateY(-2px); opacity: 0.9; }
+  .lo-btn-primary:disabled { opacity: 0.7; cursor: not-allowed; transform: none; }
 `;
 
 export default function Hero() {
@@ -139,7 +106,6 @@ export default function Hero() {
   const [error, setError] = useState("");
   const lastSubmit = useRef(0);
 
-  // Mouse parallax + card sheen
   useEffect(() => {
     const onMouse = (e: MouseEvent) => {
       if (window.scrollY > window.innerHeight * 2) return;
@@ -151,22 +117,13 @@ export default function Hero() {
         mainCardRef.current.style.setProperty("--mouse-y", `${e.clientY - rect.top}px`);
         const xVal = (e.clientX / window.innerWidth - 0.5) * 2;
         const yVal = (e.clientY / window.innerHeight - 0.5) * 2;
-        gsap.to(mockupRef.current, {
-          rotationY: xVal * 12,
-          rotationX: -yVal * 12,
-          ease: "power3.out",
-          duration: 1.2,
-        });
+        gsap.to(mockupRef.current, { rotationY: xVal * 12, rotationX: -yVal * 12, ease: "power3.out", duration: 1.2 });
       });
     };
     window.addEventListener("mousemove", onMouse);
-    return () => {
-      window.removeEventListener("mousemove", onMouse);
-      cancelAnimationFrame(rafRef.current);
-    };
+    return () => { window.removeEventListener("mousemove", onMouse); cancelAnimationFrame(rafRef.current); };
   }, []);
 
-  // GSAP ScrollTrigger cinematic sequence
   useEffect(() => {
     const isMobile = window.innerWidth < 768;
     const ctx = gsap.context(() => {
@@ -176,13 +133,11 @@ export default function Hero() {
       gsap.set([".lo-card-left", ".lo-card-right", ".lo-mockup-wrap", ".lo-badge", ".lo-phone-widget"], { autoAlpha: 0 });
       gsap.set(".lo-cta-wrap", { autoAlpha: 0, scale: 0.8, filter: "blur(30px)" });
 
-      // Entry animation
       const introTl = gsap.timeline({ delay: 0.3 });
       introTl
         .to(".lo-text-track", { duration: 1.8, autoAlpha: 1, y: 0, scale: 1, filter: "blur(0px)", rotationX: 0, ease: "expo.out" })
         .to(".lo-text-clip", { duration: 1.4, clipPath: "inset(0 0% 0 0)", ease: "power4.inOut" }, "-=1.0");
 
-      // Scroll timeline
       const scrollTl = gsap.timeline({
         scrollTrigger: {
           trigger: containerRef.current,
@@ -195,41 +150,31 @@ export default function Hero() {
       });
 
       scrollTl
-        // Hero text blurs out, card rises
         .to([".lo-hero-text", ".lo-bg-grid"], { scale: 1.15, filter: "blur(20px)", opacity: 0.2, ease: "power2.inOut", duration: 2 }, 0)
         .to(".lo-main-card", { y: 0, ease: "power3.inOut", duration: 2 }, 0)
-        // Card expands full screen
         .to(".lo-main-card", { width: "100%", height: "100%", borderRadius: "0px", ease: "power3.inOut", duration: 1.5 })
-        // Mockup rises with 3D intro
         .fromTo(".lo-mockup-wrap",
           { y: 300, z: -500, rotationX: 50, rotationY: -30, autoAlpha: 0, scale: 0.6 },
           { y: 0, z: 0, rotationX: 0, rotationY: 0, autoAlpha: 1, scale: 1, ease: "expo.out", duration: 2.5 },
           "-=0.8"
         )
-        // Phone widgets stagger in
         .fromTo(".lo-phone-widget",
           { y: 40, autoAlpha: 0, scale: 0.95 },
           { y: 0, autoAlpha: 1, scale: 1, stagger: 0.15, ease: "back.out(1.2)", duration: 1.5 },
           "-=1.5"
         )
-        // Score ring draws
         .to(".lo-score-ring", { strokeDashoffset: 60, duration: 2, ease: "power3.inOut" }, "-=1.2")
-        // Floating badges pop in
         .fromTo(".lo-badge",
           { y: 100, autoAlpha: 0, scale: 0.7, rotationZ: -10 },
           { y: 0, autoAlpha: 1, scale: 1, rotationZ: 0, ease: "back.out(1.5)", duration: 1.5, stagger: 0.2 },
           "-=2.0"
         )
-        // Left/right copy slides in
         .fromTo(".lo-card-left", { x: -50, autoAlpha: 0 }, { x: 0, autoAlpha: 1, ease: "power4.out", duration: 1.5 }, "-=1.5")
         .fromTo(".lo-card-right", { x: 50, autoAlpha: 0, scale: 0.8 }, { x: 0, autoAlpha: 1, scale: 1, ease: "expo.out", duration: 1.5 }, "<")
-        // Hold
         .to({}, { duration: 2.5 })
-        // Swap to CTA
         .set(".lo-hero-text", { autoAlpha: 0 })
         .set(".lo-cta-wrap", { autoAlpha: 1 })
         .to({}, { duration: 1.5 })
-        // Card pulls back
         .to([".lo-mockup-wrap", ".lo-badge", ".lo-card-left", ".lo-card-right"], {
           scale: 0.9, y: -40, z: -200, autoAlpha: 0, ease: "power3.in", duration: 1.2, stagger: 0.05,
         })
@@ -241,7 +186,6 @@ export default function Hero() {
           duration: 1.8,
         }, "pullback")
         .to(".lo-cta-wrap", { scale: 1, filter: "blur(0px)", ease: "expo.inOut", duration: 1.8 }, "pullback")
-        // Card exits upward
         .to(".lo-main-card", { y: -window.innerHeight - 300, ease: "power3.in", duration: 1.5 });
 
     }, containerRef);
@@ -286,50 +230,48 @@ export default function Hero() {
     <div
       ref={containerRef}
       className="relative w-screen h-screen overflow-hidden flex items-center justify-center"
-      style={{ background: "#080F0A", perspective: "1500px" }}
+      style={{ background: "#F4F5F7", perspective: "1500px" }}
     >
       <style dangerouslySetInnerHTML={{ __html: INJECTED_STYLES }} />
 
-      {/* Film grain */}
-      <div className="lo-film-grain" aria-hidden="true" />
-
       {/* Grid background */}
-      <div className="lo-bg-grid absolute inset-0 z-0 pointer-events-none opacity-50" aria-hidden="true" />
+      <div className="lo-bg-grid absolute inset-0 z-0 pointer-events-none" aria-hidden="true" />
 
       {/* ── Hero tagline ── */}
       <div className="lo-hero-text absolute z-10 flex flex-col items-center justify-center text-center w-screen px-4">
         <h1 className="lo-text-track text-5xl md:text-7xl lg:text-[6rem] font-bold tracking-tight mb-2 lo-text-3d">
           Stop consuming self-help.
         </h1>
-        <h1 className="lo-text-clip text-5xl md:text-7xl lg:text-[6rem] font-extrabold tracking-tighter lo-text-silver"
-          style={{ color: "#4ADE80" }}>
+        <h1
+          className="lo-text-clip text-5xl md:text-7xl lg:text-[6rem] font-extrabold tracking-tighter"
+          style={{ color: "#1D9E75" }}
+        >
           Start using it.
         </h1>
       </div>
 
-      {/* ── CTA (shown after pullback) ── */}
+      {/* ── CTA (shown after card pullback) ── */}
       <div className="lo-cta-wrap absolute z-10 flex flex-col items-center justify-center text-center w-screen px-4 pointer-events-auto">
-        <p style={{ fontSize: 11, fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "#4ADE80", marginBottom: 16, opacity: 0.8 }}>
+        <p style={{ fontSize: 11, fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "#1D9E75", marginBottom: 16 }}>
           Early Access · 200 spots
         </p>
-        <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight lo-text-silver" style={{ marginBottom: 24 }}>
+        <h2
+          className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight"
+          style={{ color: "#111827", marginBottom: 24, letterSpacing: "-0.03em" }}
+        >
           Get early access.
         </h2>
-        <p style={{ fontSize: 18, color: "#9CA3AF", marginBottom: 40, maxWidth: 480, lineHeight: 1.7 }}>
+        <p style={{ fontSize: 18, color: "#6B7280", marginBottom: 40, maxWidth: 480, lineHeight: 1.7 }}>
           Join the waitlist. Be among the first 200 to shape what lifeOS becomes.
         </p>
 
         {submitted ? (
-          <p style={{ fontSize: 15, color: "#4ADE80", fontWeight: 500 }}>
+          <p style={{ fontSize: 15, color: "#1D9E75", fontWeight: 500 }}>
             You&apos;re on the list. We&apos;ll be in touch!
           </p>
         ) : (
           <>
-            <form
-              onSubmit={handleSubmit}
-              className="flex flex-col sm:flex-row gap-4 items-center"
-            >
-              {/* Honeypot */}
+            <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-4 items-center">
               <input type="text" name="website" value={honeypot} onChange={(e) => setHoneypot(e.target.value)}
                 tabIndex={-1} autoComplete="off" aria-hidden="true" style={{ display: "none" }} />
               <input
@@ -340,25 +282,25 @@ export default function Hero() {
                 required
                 style={{
                   padding: "14px 24px",
-                  borderRadius: 20,
-                  background: "rgba(255,255,255,0.05)",
-                  border: `1px solid ${error ? "#E11D48" : "rgba(255,255,255,0.1)"}`,
-                  color: "#fff",
+                  borderRadius: 12,
+                  background: "#FFFFFF",
+                  border: `1px solid ${error ? "#E11D48" : "#E5E7EB"}`,
+                  color: "#111827",
                   fontSize: 15,
                   outline: "none",
                   width: 280,
                   transition: "border-color 0.2s ease",
                 }}
               />
-              <button type="submit" disabled={loading} className="lo-btn-dark"
-                style={{ padding: "14px 28px", borderRadius: 20, fontSize: 15, fontWeight: 600, letterSpacing: "-0.01em" }}>
+              <button type="submit" disabled={loading} className="lo-btn-primary"
+                style={{ padding: "14px 28px", borderRadius: 12, fontSize: 15, fontWeight: 600 }}>
                 {loading ? "Joining…" : "Join the waitlist →"}
               </button>
             </form>
             {error && <p style={{ fontSize: 12, color: "#E11D48", marginTop: 8 }}>{error}</p>}
           </>
         )}
-        <p style={{ color: "rgba(255,255,255,0.2)", fontSize: 12, marginTop: 20, letterSpacing: "0.05em" }}>
+        <p style={{ color: "#9CA3AF", fontSize: 12, marginTop: 20 }}>
           No spam. Launch notification only.
         </p>
       </div>
@@ -377,8 +319,8 @@ export default function Hero() {
 
             {/* Right: wordmark */}
             <div className="lo-card-right order-1 lg:order-3 flex justify-center lg:justify-end z-20 w-full">
-              <h2 className="text-6xl md:text-[6rem] lg:text-[7rem] font-black uppercase tracking-tighter lo-text-card-silver leading-none">
-                Life<span style={{ color: "#4ADE80" }}>OS</span>
+              <h2 className="text-6xl md:text-[6rem] lg:text-[7rem] font-black uppercase tracking-tighter lo-text-card-dark leading-none">
+                Life<span style={{ color: "#1D9E75" }}>OS</span>
               </h2>
             </div>
 
@@ -391,58 +333,42 @@ export default function Hero() {
                 <div ref={mockupRef} className="lo-iphone relative flex flex-col"
                   style={{ width: 280, height: 580, borderRadius: "3rem" }}>
 
-                  {/* Hardware buttons */}
                   <div className="lo-hw-btn absolute" style={{ top: 120, left: -3, width: 3, height: 25, borderRadius: "3px 0 0 3px" }} aria-hidden="true" />
                   <div className="lo-hw-btn absolute" style={{ top: 160, left: -3, width: 3, height: 45, borderRadius: "3px 0 0 3px" }} aria-hidden="true" />
                   <div className="lo-hw-btn absolute" style={{ top: 220, left: -3, width: 3, height: 45, borderRadius: "3px 0 0 3px" }} aria-hidden="true" />
                   <div className="lo-hw-btn absolute" style={{ top: 170, right: -3, width: 3, height: 70, borderRadius: "0 3px 3px 0", transform: "scaleX(-1)" }} aria-hidden="true" />
 
-                  {/* Screen */}
+                  {/* Screen — stays dark, it's a phone */}
                   <div className="absolute text-white overflow-hidden z-10"
                     style={{ inset: 7, background: "#030A06", borderRadius: "2.5rem", boxShadow: "inset 0 0 15px rgba(0,0,0,1)" }}>
-
-                    {/* Screen glare */}
                     <div className="absolute inset-0 z-40 pointer-events-none"
                       style={{ background: "linear-gradient(110deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0) 45%)", borderRadius: "2.5rem" }}
                       aria-hidden="true" />
-
-                    {/* Dynamic Island */}
                     <div className="absolute z-50 flex items-center justify-end"
                       style={{ top: 5, left: "50%", transform: "translateX(-50%)", width: 100, height: 28, background: "#000", borderRadius: 999, paddingRight: 10 }}>
-                      <div className="animate-pulse" style={{ width: 6, height: 6, borderRadius: "50%", background: "#4ADE80", boxShadow: "0 0 8px rgba(74,222,128,0.8)" }} />
+                      <div className="animate-pulse" style={{ width: 6, height: 6, borderRadius: "50%", background: "#1D9E75", boxShadow: "0 0 8px rgba(29,158,117,0.8)" }} />
                     </div>
 
-                    {/* App content */}
                     <div className="relative w-full h-full flex flex-col gap-3" style={{ paddingTop: 48, paddingLeft: 14, paddingRight: 14, paddingBottom: 24 }}>
-
-                      {/* Header */}
                       <div className="lo-phone-widget flex justify-between items-center">
                         <div>
-                          <span style={{ fontSize: 9, color: "rgba(74,222,128,0.6)", textTransform: "uppercase", letterSpacing: "0.15em", fontWeight: 700 }}>
-                            Today&apos;s Focus
-                          </span>
-                          <p style={{ fontSize: 15, fontWeight: 700, color: "#fff", margin: "2px 0 0", letterSpacing: "-0.02em" }}>
-                            Life Check-in
-                          </p>
+                          <span style={{ fontSize: 9, color: "rgba(29,158,117,0.7)", textTransform: "uppercase", letterSpacing: "0.15em", fontWeight: 700 }}>Today&apos;s Focus</span>
+                          <p style={{ fontSize: 15, fontWeight: 700, color: "#fff", margin: "2px 0 0", letterSpacing: "-0.02em" }}>Life Check-in</p>
                         </div>
-                        <div style={{ width: 30, height: 30, borderRadius: "50%", background: "rgba(74,222,128,0.1)", border: "1px solid rgba(74,222,128,0.2)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 11, fontWeight: 700, color: "#4ADE80" }}>
-                          S
-                        </div>
+                        <div style={{ width: 30, height: 30, borderRadius: "50%", background: "rgba(29,158,117,0.1)", border: "1px solid rgba(29,158,117,0.2)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 11, fontWeight: 700, color: "#1D9E75" }}>S</div>
                       </div>
 
-                      {/* Score ring */}
                       <div className="lo-phone-widget relative mx-auto flex items-center justify-center" style={{ width: 130, height: 130 }}>
                         <svg className="absolute inset-0 w-full h-full" viewBox="0 0 144 144" aria-hidden="true">
                           <circle cx="72" cy="72" r="60" fill="none" stroke="rgba(255,255,255,0.04)" strokeWidth="10" />
-                          <circle className="lo-score-ring" cx="72" cy="72" r="60" fill="none" stroke="#4ADE80" strokeWidth="10" />
+                          <circle className="lo-score-ring" cx="72" cy="72" r="60" fill="none" stroke="#1D9E75" strokeWidth="10" />
                         </svg>
                         <div className="z-10 flex flex-col items-center">
                           <span style={{ fontSize: 30, fontWeight: 800, color: "#fff", letterSpacing: "-0.03em", lineHeight: 1 }}>2.5</span>
-                          <span style={{ fontSize: 8, color: "rgba(74,222,128,0.4)", textTransform: "uppercase", letterSpacing: "0.15em", fontWeight: 700, marginTop: 2 }}>Life Score</span>
+                          <span style={{ fontSize: 8, color: "rgba(29,158,117,0.5)", textTransform: "uppercase", letterSpacing: "0.15em", fontWeight: 700, marginTop: 2 }}>Life Score</span>
                         </div>
                       </div>
 
-                      {/* Pillar bars */}
                       <div className="lo-phone-widget lo-widget flex flex-col gap-2.5" style={{ borderRadius: 16, padding: "10px 12px" }}>
                         {PILLARS.map((p) => (
                           <div key={p.label}>
@@ -457,24 +383,20 @@ export default function Hero() {
                         ))}
                       </div>
 
-                      {/* AI Conductor */}
                       <div className="lo-phone-widget lo-widget flex items-start gap-2.5" style={{ borderRadius: 16, padding: "10px 12px" }}>
-                        <div style={{ width: 28, height: 28, borderRadius: 10, background: "rgba(74,222,128,0.1)", border: "1px solid rgba(74,222,128,0.2)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, marginTop: 2 }}>
-                          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#4ADE80" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                        <div style={{ width: 28, height: 28, borderRadius: 10, background: "rgba(29,158,117,0.1)", border: "1px solid rgba(29,158,117,0.2)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, marginTop: 2 }}>
+                          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#1D9E75" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                             <path d="M13 10V3L4 14h7v7l9-11h-7z" />
                           </svg>
                         </div>
                         <div>
-                          <p style={{ fontSize: 9, color: "rgba(74,222,128,0.6)", textTransform: "uppercase", letterSpacing: "0.12em", fontWeight: 700, margin: "0 0 3px" }}>
-                            AI Conductor
-                          </p>
+                          <p style={{ fontSize: 9, color: "rgba(29,158,117,0.7)", textTransform: "uppercase", letterSpacing: "0.12em", fontWeight: 700, margin: "0 0 3px" }}>AI Conductor</p>
                           <p style={{ fontSize: 10, color: "rgba(255,255,255,0.7)", lineHeight: 1.5, margin: 0 }}>
                             Relationships neglected 5 days. One intentional action today balances your week.
                           </p>
                         </div>
                       </div>
 
-                      {/* Home indicator */}
                       <div className="absolute" style={{ bottom: 8, left: "50%", transform: "translateX(-50%)", width: 100, height: 4, background: "rgba(255,255,255,0.15)", borderRadius: 999 }} />
                     </div>
                   </div>
@@ -482,19 +404,19 @@ export default function Hero() {
 
                 {/* Badge: Deep Focus */}
                 <div className="lo-badge absolute z-30 flex items-center gap-3" style={{ top: 16, left: -15, borderRadius: 14, padding: "10px 14px" }}>
-                  <div style={{ width: 30, height: 30, borderRadius: "50%", background: "rgba(74,222,128,0.1)", border: "1px solid rgba(74,222,128,0.2)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 15 }}>🎯</div>
+                  <div style={{ width: 30, height: 30, borderRadius: "50%", background: "rgba(29,158,117,0.1)", border: "1px solid rgba(29,158,117,0.15)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 15 }}>🎯</div>
                   <div>
-                    <p style={{ fontSize: 12, fontWeight: 700, color: "#fff", margin: 0 }}>Deep Focus</p>
-                    <p style={{ fontSize: 10, color: "rgba(74,222,128,0.5)", margin: 0 }}>Mode active</p>
+                    <p style={{ fontSize: 12, fontWeight: 700, color: "#111827", margin: 0 }}>Deep Focus</p>
+                    <p style={{ fontSize: 10, color: "#6B7280", margin: 0 }}>Mode active</p>
                   </div>
                 </div>
 
                 {/* Badge: Streak */}
                 <div className="lo-badge absolute z-30 flex items-center gap-3" style={{ bottom: 56, right: -15, borderRadius: 14, padding: "10px 14px" }}>
-                  <div style={{ width: 30, height: 30, borderRadius: "50%", background: "rgba(251,191,36,0.1)", border: "1px solid rgba(251,191,36,0.2)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 15 }}>🔥</div>
+                  <div style={{ width: 30, height: 30, borderRadius: "50%", background: "rgba(245,158,11,0.1)", border: "1px solid rgba(245,158,11,0.2)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 15 }}>🔥</div>
                   <div>
-                    <p style={{ fontSize: 12, fontWeight: 700, color: "#fff", margin: 0 }}>14-Day Streak</p>
-                    <p style={{ fontSize: 10, color: "rgba(74,222,128,0.5)", margin: 0 }}>Consistent check-ins</p>
+                    <p style={{ fontSize: 12, fontWeight: 700, color: "#111827", margin: 0 }}>14-Day Streak</p>
+                    <p style={{ fontSize: 10, color: "#6B7280", margin: 0 }}>Consistent check-ins</p>
                   </div>
                 </div>
               </div>
@@ -502,20 +424,20 @@ export default function Hero() {
 
             {/* Left: copy */}
             <div className="lo-card-left order-3 lg:order-1 flex flex-col justify-center text-center lg:text-left z-20 w-full px-4 lg:px-0">
-              <p className="hidden md:block" style={{ fontSize: 10, color: "rgba(74,222,128,0.7)", textTransform: "uppercase", letterSpacing: "0.2em", fontWeight: 700, margin: "0 0 12px" }}>
+              <p className="hidden md:block" style={{ fontSize: 10, color: "#1D9E75", textTransform: "uppercase", letterSpacing: "0.2em", fontWeight: 700, margin: "0 0 12px" }}>
                 The operating system for your life
               </p>
-              <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight" style={{ color: "#fff", margin: "0 0 16px", letterSpacing: "-0.02em", lineHeight: 1.2 }}>
+              <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight" style={{ color: "#111827", margin: "0 0 16px", letterSpacing: "-0.02em", lineHeight: 1.2 }}>
                 Your priorities,<br />finally clear.
               </h3>
-              <p className="hidden md:block" style={{ fontSize: 14, color: "rgba(156,163,175,0.8)", lineHeight: 1.7, margin: "0 0 24px", maxWidth: 340 }}>
-                <span style={{ color: "#fff", fontWeight: 600 }}>lifeOS</span> gives you a universal system to balance and prioritise every area of your life — Physical, Mental, Capital, and Social — so you always know exactly what to focus on next.
+              <p className="hidden md:block" style={{ fontSize: 14, color: "#6B7280", lineHeight: 1.7, margin: "0 0 24px", maxWidth: 340 }}>
+                <span style={{ color: "#111827", fontWeight: 600 }}>lifeOS</span> gives you a universal system to balance and prioritise every area of your life — Physical, Mental, Capital, and Social — so you always know exactly what to focus on next.
               </p>
               <div className="hidden md:flex gap-6">
                 {["4 Pillars", "AI Insights", "Deep Focus"].map((tag) => (
                   <div key={tag} className="flex items-center gap-1.5">
-                    <div style={{ width: 6, height: 6, borderRadius: "50%", background: "#4ADE80", flexShrink: 0 }} />
-                    <span style={{ fontSize: 12, color: "rgba(255,255,255,0.4)", fontWeight: 500 }}>{tag}</span>
+                    <div style={{ width: 6, height: 6, borderRadius: "50%", background: "#1D9E75", flexShrink: 0 }} />
+                    <span style={{ fontSize: 12, color: "#6B7280", fontWeight: 500 }}>{tag}</span>
                   </div>
                 ))}
               </div>

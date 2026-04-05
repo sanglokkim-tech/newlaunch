@@ -1,15 +1,15 @@
 export default function Footer() {
   return (
     <footer
-      style={{ backgroundColor: "#080F0A", borderTop: "1px solid #1A3A28" }}
+      style={{ backgroundColor: "#F4F5F7", borderTop: "1px solid #E5E7EB" }}
       className="w-full px-6 py-8"
     >
       <div
         className="mx-auto flex flex-col sm:flex-row items-center justify-between gap-4"
         style={{ maxWidth: "1100px" }}
       >
-        <span className="text-white font-bold text-base">
-          Life<span style={{ color: "#4ADE80" }}>OS</span>
+        <span style={{ fontWeight: 700, fontSize: "15px", color: "#111827" }}>
+          Life<span style={{ color: "#1D9E75" }}>OS</span>
         </span>
 
         <div className="flex items-center gap-6">
@@ -17,7 +17,7 @@ export default function Footer() {
           <a href="/terms" className="footer-link">Terms of Use</a>
         </div>
 
-        <span style={{ fontSize: "13px", color: "rgba(255,255,255,0.2)" }}>
+        <span style={{ fontSize: "13px", color: "#9CA3AF" }}>
           Stop consuming self-help. Start using it.
         </span>
       </div>
@@ -25,11 +25,11 @@ export default function Footer() {
       <style>{`
         .footer-link {
           font-size: 13px;
-          color: rgba(255,255,255,0.3);
+          color: #6B7280;
           text-decoration: none;
           transition: color 0.15s ease;
         }
-        .footer-link:hover { color: rgba(255,255,255,0.7); }
+        .footer-link:hover { color: #111827; }
       `}</style>
     </footer>
   );

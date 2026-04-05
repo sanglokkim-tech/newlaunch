@@ -62,7 +62,7 @@ export default function ProblemScroll() {
       style={{
         position: "relative",
         height: "100vh",
-        background: "#080F0A",
+        background: "#F4F5F7",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
@@ -84,7 +84,7 @@ export default function ProblemScroll() {
           ref={line0Ref}
           style={{
             fontWeight: 700,
-            color: "#FFFFFF",
+            color: "#111827",
             margin: 0,
             lineHeight: 1.1,
             letterSpacing: "-0.03em",
@@ -97,7 +97,7 @@ export default function ProblemScroll() {
           ref={line1Ref}
           style={{
             fontWeight: 700,
-            color: "#FFFFFF",
+            color: "#111827",
             margin: 0,
             lineHeight: 1.1,
             letterSpacing: "-0.03em",
@@ -110,7 +110,7 @@ export default function ProblemScroll() {
           ref={line2Ref}
           style={{
             fontWeight: 700,
-            color: "#FFFFFF",
+            color: "#111827",
             margin: 0,
             lineHeight: 1.1,
             letterSpacing: "-0.03em",
@@ -139,7 +139,7 @@ export default function ProblemScroll() {
         style={{
           position: "absolute",
           inset: 0,
-          background: "#080F0A",
+          background: "#F4F5F7",
           pointerEvents: "none",
           zIndex: 10,
         }}
