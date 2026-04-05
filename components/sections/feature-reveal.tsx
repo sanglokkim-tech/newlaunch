@@ -2,9 +2,6 @@
 
 import { useEffect, useRef, useState } from "react";
 
-const RATE_LIMIT_MS = 60_000;
-const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
-
 const FEATURES = [
   {
     title: "AI Conductor",
@@ -49,7 +46,7 @@ const FEATURES = [
 ];
 
 const LOCK_ICON = (
-  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#4ADE80" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1D9E75" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
     <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
     <path d="M7 11V7a5 5 0 0 1 10 0v4" />
   </svg>
@@ -59,15 +56,7 @@ export default function FeatureReveal() {
   const sectionRef = useRef<HTMLElement>(null);
   const [unlocked, setUnlocked] = useState(0);
   const [pulsing, setPulsing] = useState<Set<number>>(new Set());
-  const [allDone, setAllDone] = useState(false);
   const triggered = useRef(false);
-
-  const [email, setEmail] = useState("");
-  const [honeypot, setHoneypot] = useState("");
-  const [submitted, setSubmitted] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [formError, setFormError] = useState("");
-  const lastSubmit = useRef(0);
 
   useEffect(() => {
     const node = sectionRef.current;
@@ -90,10 +79,6 @@ export default function FeatureReveal() {
                   return next;
                 });
               }, 600);
-
-              if (i === FEATURES.length - 1) {
-                setTimeout(() => setAllDone(true), 400);
-              }
             }, i * 400);
           });
         }
@@ -105,57 +90,16 @@ export default function FeatureReveal() {
     return () => observer.disconnect();
   }, []);
 
-  async function handleSubmit(e: React.FormEvent) {
-    e.preventDefault();
-    setFormError("");
-    if (honeypot) return;
-
-    const now = Date.now();
-    if (now - lastSubmit.current < RATE_LIMIT_MS) {
-      setFormError("Please wait before submitting again.");
-      return;
-    }
-
-    const clean = email.trim().toLowerCase();
-    if (!EMAIL_RE.test(clean)) {
-      setFormError("Please enter a valid email address.");
-      return;
-    }
-
-    setLoading(true);
-    lastSubmit.current = now;
-
-    try {
-      await fetch("https://formspree.io/f/xvzvolzk", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        body: JSON.stringify({ email: clean }),
-      });
-      setSubmitted(true);
-    } catch {
-      setSubmitted(true);
-    } finally {
-      setLoading(false);
-    }
-  }
-
   return (
-    <section ref={sectionRef} style={{ backgroundColor: "#080F0A" }}>
+    <section ref={sectionRef} style={{ backgroundColor: "#FFFFFF" }}>
       <div
         className="mx-auto px-6"
-        style={{
-          maxWidth: "1100px",
-          paddingTop: "100px",
-          paddingBottom: "100px",
-        }}
+        style={{ maxWidth: "1100px", paddingTop: "100px", paddingBottom: "100px" }}
       >
         {/* Label */}
         <p
           style={{
-            color: "#4ADE80",
+            color: "#1D9E75",
             fontSize: "11px",
             fontWeight: 600,
             textTransform: "uppercase",
@@ -172,7 +116,7 @@ export default function FeatureReveal() {
           style={{
             fontSize: "clamp(28px, 3.5vw, 40px)",
             fontWeight: 700,
-            color: "#FFFFFF",
+            color: "#111827",
             margin: "16px 0 0",
             letterSpacing: "-0.02em",
             textAlign: "center",
@@ -200,15 +144,15 @@ export default function FeatureReveal() {
               <div
                 key={feat.title}
                 style={{
-                  background: "#0D2B1F",
-                  border: `1px solid ${isPulsing ? "#4ADE80" : "#1A3A28"}`,
+                  background: "#FFFFFF",
+                  border: `1px solid ${isPulsing ? "#1D9E75" : "#E5E7EB"}`,
                   borderRadius: "12px",
                   padding: "20px 24px",
                   position: "relative",
                   opacity: isUnlocked ? 1 : 0.4,
                   filter: isUnlocked ? "blur(0px)" : "blur(6px)",
-                  transition:
-                    "opacity 0.5s ease, filter 0.5s ease, border-color 0.3s ease",
+                  boxShadow: "0 1px 3px rgba(0,0,0,0.06)",
+                  transition: "opacity 0.5s ease, filter 0.5s ease, border-color 0.3s ease",
                   overflow: "hidden",
                 }}
               >
@@ -233,13 +177,13 @@ export default function FeatureReveal() {
                   style={{
                     width: 40,
                     height: 40,
-                    background: "#0D2B1F",
-                    border: "1px solid #1A3A28",
+                    background: "#F0FDF4",
+                    border: "1px solid #D1FAE5",
                     borderRadius: 8,
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
-                    color: "#4ADE80",
+                    color: "#1D9E75",
                     marginBottom: 14,
                     opacity: isUnlocked ? 1 : 0,
                     transition: "opacity 0.4s ease",
@@ -249,109 +193,17 @@ export default function FeatureReveal() {
                 </div>
 
                 {/* Title */}
-                <p
-                  style={{
-                    fontSize: "14px",
-                    fontWeight: 600,
-                    color: "#FFFFFF",
-                    margin: 0,
-                  }}
-                >
+                <p style={{ fontSize: "14px", fontWeight: 600, color: "#111827", margin: 0 }}>
                   {feat.title}
                 </p>
 
                 {/* Description */}
-                <p
-                  style={{
-                    fontSize: "13px",
-                    color: "#9CA3AF",
-                    margin: "6px 0 0",
-                    lineHeight: 1.6,
-                  }}
-                >
+                <p style={{ fontSize: "13px", color: "#6B7280", margin: "6px 0 0", lineHeight: 1.6 }}>
                   {feat.desc}
                 </p>
               </div>
             );
           })}
-        </div>
-
-        {/* Post-unlock CTA */}
-        <div
-          style={{
-            marginTop: "48px",
-            textAlign: "center",
-            opacity: allDone ? 1 : 0,
-            transform: allDone ? "translateY(0)" : "translateY(16px)",
-            transition: "opacity 0.6s ease, transform 0.6s ease",
-          }}
-        >
-          <p
-            style={{
-              fontSize: "24px",
-              fontWeight: 600,
-              color: "#FFFFFF",
-              margin: "0 0 24px",
-            }}
-          >
-            All of this. Early access.
-          </p>
-
-          {submitted ? (
-            <p style={{ fontSize: 15, color: "#4ADE80", fontWeight: 500 }}>
-              You&apos;re on the list. We&apos;ll be in touch!
-            </p>
-          ) : (
-            <form
-              onSubmit={handleSubmit}
-              className="flex flex-col sm:flex-row gap-3 max-w-sm mx-auto"
-            >
-              {/* Honeypot */}
-              <input
-                type="text"
-                name="website"
-                value={honeypot}
-                onChange={(e) => setHoneypot(e.target.value)}
-                tabIndex={-1}
-                autoComplete="off"
-                aria-hidden="true"
-                style={{ display: "none" }}
-              />
-              <input
-                type="email"
-                placeholder="your@email.com"
-                value={email}
-                onChange={(e) => {
-                  setEmail(e.target.value);
-                  setFormError("");
-                }}
-                required
-                style={{
-                  flex: 1,
-                  background: "#1A1D27",
-                  border: `1px solid ${formError ? "#E11D48" : "#2D3748"}`,
-                  borderRadius: 8,
-                  padding: "10px 16px",
-                  fontSize: 14,
-                  color: "#fff",
-                  outline: "none",
-                  transition: "border-color 0.2s ease",
-                }}
-              />
-              <button
-                type="submit"
-                disabled={loading}
-                className="btn-primary-dark"
-              >
-                {loading ? "Joining…" : "Join the waitlist →"}
-              </button>
-            </form>
-          )}
-          {formError && (
-            <p style={{ fontSize: 12, color: "#E11D48", marginTop: 8 }}>
-              {formError}
-            </p>
-          )}
         </div>
       </div>
     </section>
