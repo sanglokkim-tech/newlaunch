@@ -142,7 +142,7 @@ export default function Hero() {
         scrollTrigger: {
           trigger: containerRef.current,
           start: "top top",
-          end: "+=5000",
+          end: "+=3000",
           pin: true,
           scrub: 1,
           anticipatePin: 1,
@@ -171,10 +171,10 @@ export default function Hero() {
         )
         .fromTo(".lo-card-left", { x: -50, autoAlpha: 0 }, { x: 0, autoAlpha: 1, ease: "power4.out", duration: 1.5 }, "-=1.5")
         .fromTo(".lo-card-right", { x: 50, autoAlpha: 0, scale: 0.8 }, { x: 0, autoAlpha: 1, scale: 1, ease: "expo.out", duration: 1.5 }, "<")
-        .to({}, { duration: 2.5 })
+        .to({}, { duration: 1.0 })
         .set(".lo-hero-text", { autoAlpha: 0 })
         .set(".lo-cta-wrap", { autoAlpha: 1 })
-        .to({}, { duration: 1.5 })
+        .to({}, { duration: 0.6 })
         .to([".lo-mockup-wrap", ".lo-badge", ".lo-card-left", ".lo-card-right"], {
           scale: 0.9, y: -40, z: -200, autoAlpha: 0, ease: "power3.in", duration: 1.2, stagger: 0.05,
         })
@@ -262,7 +262,7 @@ export default function Hero() {
           Get early access.
         </h2>
         <p style={{ fontSize: 18, color: "#6B7280", marginBottom: 40, maxWidth: 480, lineHeight: 1.7 }}>
-          Join the waitlist. Be among the first 200 to shape what lifeOS becomes.
+          Join the waitlist. Be among the first 200 to shape what life<span style={{ color: "#4DB8B0" }}>OS</span> becomes.
         </p>
 
         {submitted ? (
@@ -310,7 +310,7 @@ export default function Hero() {
         <div
           ref={mainCardRef}
           className="lo-main-card lo-depth-card relative overflow-hidden flex items-center justify-center pointer-events-auto"
-          style={{ width: "92vw", height: "92vh", borderRadius: 32 }}
+          style={{ width: "92vw", height: "92vh", borderRadius: 32, transform: "translateY(calc(100vh + 200px))" }}
         >
           <div className="lo-card-sheen" aria-hidden="true" />
 
@@ -320,7 +320,7 @@ export default function Hero() {
             {/* Right: wordmark */}
             <div className="lo-card-right order-1 lg:order-3 flex justify-center lg:justify-end z-20 w-full">
               <h2 className="text-6xl md:text-[6rem] lg:text-[7rem] font-black uppercase tracking-tighter lo-text-card-dark leading-none">
-                LifeOS
+                Life<span style={{ color: "#4DB8B0" }}>OS</span>
               </h2>
             </div>
 
@@ -431,7 +431,7 @@ export default function Hero() {
                 Your priorities,<br />finally clear.
               </h3>
               <p className="hidden md:block" style={{ fontSize: 14, color: "#6B7280", lineHeight: 1.7, margin: "0 0 24px", maxWidth: 340 }}>
-                <span style={{ color: "#111827", fontWeight: 600 }}>lifeOS</span> gives you a universal system to balance and prioritise every area of your life — Physical, Mental, Capital, and Social — so you always know exactly what to focus on next.
+                <span style={{ color: "#111827", fontWeight: 600 }}>life<span style={{ color: "#4DB8B0" }}>OS</span></span> gives you a universal system to balance and prioritise every area of your life — Physical, Mental, Capital, and Social — so you always know exactly what to focus on next.
               </p>
               <div className="hidden md:flex gap-6">
                 {["4 Pillars", "AI Insights", "Deep Focus"].map((tag) => (

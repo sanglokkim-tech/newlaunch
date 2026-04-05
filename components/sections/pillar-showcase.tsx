@@ -97,7 +97,7 @@ export default function PillarShowcase() {
           style={{
             fontSize: "clamp(28px, 3.5vw, 40px)",
             fontWeight: 700,
-            color: "#FFFFFF",
+            color: "#111827",
             margin: "16px 0 0",
             letterSpacing: "-0.02em",
           }}

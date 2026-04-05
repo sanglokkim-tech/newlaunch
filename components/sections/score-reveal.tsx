@@ -106,7 +106,7 @@ export default function ScoreReveal() {
         >
           Most people score between 55–70%.
           <br />
-          lifeOS shows you exactly why — and what to fix first.
+          life<span style={{ color: "#4DB8B0" }}>OS</span> shows you exactly why — and what to fix first.
         </p>
       </div>
     </section>
