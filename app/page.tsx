@@ -1,4 +1,3 @@
-import Nav from "@/components/sections/nav";
 import Hero from "@/components/sections/hero";
 import ProblemScroll from "@/components/sections/problem-scroll";
 import ScoreReveal from "@/components/sections/score-reveal";
@@ -11,7 +10,6 @@ import Footer from "@/components/sections/footer";
 export default function Home() {
   return (
     <main>
-      <Nav />
       <Hero />
       <ProblemScroll />
       <ScoreReveal />
