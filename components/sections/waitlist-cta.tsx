@@ -74,7 +74,7 @@ export default function WaitlistCTA() {
         style={{ maxWidth: "1100px", paddingTop: "100px", paddingBottom: "100px" }}
       >
         {/* Label */}
-        <p style={{ color: "#1D9E75", fontSize: "11px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.12em", margin: 0 }}>
+        <p style={{ color: "#4DB8B0", fontSize: "11px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.12em", margin: 0 }}>
           EARLY ACCESS
         </p>
 
@@ -84,7 +84,7 @@ export default function WaitlistCTA() {
         </h2>
 
         {/* Spot count */}
-        <p style={{ color: "#1D9E75", fontSize: "13px", fontWeight: 500, margin: "12px 0 0" }}>
+        <p style={{ color: "#4DB8B0", fontSize: "13px", fontWeight: 500, margin: "12px 0 0" }}>
           47 of 200 spots claimed
         </p>
 
@@ -97,7 +97,7 @@ export default function WaitlistCTA() {
             style={{
               height: "100%",
               borderRadius: "999px",
-              backgroundColor: "#1D9E75",
+              backgroundColor: "#4DB8B0",
               width: barTriggered ? "23.5%" : "0%",
               transition: "width 1s ease",
             }}
@@ -106,7 +106,7 @@ export default function WaitlistCTA() {
 
         {/* Form */}
         {submitted ? (
-          <p style={{ marginTop: "32px", fontSize: "15px", color: "#1D9E75", fontWeight: 500 }}>
+          <p style={{ marginTop: "32px", fontSize: "15px", color: "#4DB8B0", fontWeight: 500 }}>
             You&apos;re on the list. We&apos;ll be in touch!
           </p>
         ) : (
@@ -140,7 +140,7 @@ export default function WaitlistCTA() {
                 type="submit"
                 disabled={loading}
                 style={{
-                  background: "#1D9E75",
+                  background: "#4DB8B0",
                   color: "#FFFFFF",
                   borderRadius: "8px",
                   padding: "10px 24px",

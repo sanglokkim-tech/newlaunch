@@ -61,7 +61,7 @@ export default function ScoreReveal() {
       {/* Label */}
       <p
         style={{
-          color: "#1D9E75",
+          color: "#4DB8B0",
           fontSize: "11px",
           fontWeight: 600,
           textTransform: "uppercase",

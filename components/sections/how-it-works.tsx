@@ -51,7 +51,7 @@ export default function HowItWorks() {
         {/* Label */}
         <p
           style={{
-            color: "#1D9E75",
+            color: "#4DB8B0",
             fontSize: "11px",
             fontWeight: 600,
             textTransform: "uppercase",
@@ -102,7 +102,7 @@ export default function HowItWorks() {
                 transition: `opacity 0.6s ease ${200 + i * 150}ms, transform 0.6s ease ${200 + i * 150}ms`,
               }}
             >
-              <p style={{ color: "#1D9E75", fontSize: "30px", fontWeight: 700, margin: "0 0 16px" }}>
+              <p style={{ color: "#4DB8B0", fontSize: "30px", fontWeight: 700, margin: "0 0 16px" }}>
                 {step.num}
               </p>
               <p style={{ fontSize: "18px", fontWeight: 600, color: "#111827", margin: "0 0 8px" }}>

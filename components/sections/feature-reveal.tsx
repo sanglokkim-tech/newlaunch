@@ -46,7 +46,7 @@ const FEATURES = [
 ];
 
 const LOCK_ICON = (
-  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1D9E75" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#4DB8B0" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
     <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
     <path d="M7 11V7a5 5 0 0 1 10 0v4" />
   </svg>
@@ -99,7 +99,7 @@ export default function FeatureReveal() {
         {/* Label */}
         <p
           style={{
-            color: "#1D9E75",
+            color: "#4DB8B0",
             fontSize: "11px",
             fontWeight: 600,
             textTransform: "uppercase",
@@ -145,7 +145,7 @@ export default function FeatureReveal() {
                 key={feat.title}
                 style={{
                   background: "#FFFFFF",
-                  border: `1px solid ${isPulsing ? "#1D9E75" : "#E5E7EB"}`,
+                  border: `1px solid ${isPulsing ? "#4DB8B0" : "#E5E7EB"}`,
                   borderRadius: "12px",
                   padding: "20px 24px",
                   position: "relative",
@@ -183,7 +183,7 @@ export default function FeatureReveal() {
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
-                    color: "#1D9E75",
+                    color: "#4DB8B0",
                     marginBottom: 14,
                     opacity: isUnlocked ? 1 : 0,
                     transition: "opacity 0.4s ease",

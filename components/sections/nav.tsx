@@ -9,7 +9,7 @@ export default function Nav() {
         style={{ maxWidth: "1100px" }}
       >
         <span className="text-white font-bold text-lg">
-          Life<span style={{ color: "#1D9E75" }}>OS</span>
+          Life<span style={{ color: "#4DB8B0" }}>OS</span>
         </span>
         <a
           href="#waitlist"
@@ -20,7 +20,7 @@ export default function Nav() {
 
         <style>{`
           .nav-cta {
-            background-color: #1D9E75;
+            background-color: #4DB8B0;
             color: #fff;
             border-radius: 8px;
             padding: 8px 20px;

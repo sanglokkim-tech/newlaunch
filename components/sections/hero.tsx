@@ -32,7 +32,7 @@ const INJECTED_STYLES = `
     text-shadow: 0 2px 8px rgba(0,0,0,0.08);
   }
   .lo-text-accent {
-    color: #1D9E75;
+    color: #111827;
   }
   .lo-text-card-dark {
     color: #111827;
@@ -46,7 +46,7 @@ const INJECTED_STYLES = `
   }
   .lo-card-sheen {
     position: absolute; inset: 0; border-radius: inherit; pointer-events: none; z-index: 50;
-    background: radial-gradient(800px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(29,158,117,0.04) 0%, transparent 40%);
+    background: radial-gradient(800px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(77,184,176,0.04) 0%, transparent 40%);
   }
   .lo-iphone {
     background-color: #111;
@@ -83,9 +83,9 @@ const INJECTED_STYLES = `
     stroke-dasharray: 251; stroke-dashoffset: 251; stroke-linecap: round;
   }
   .lo-btn-primary {
-    background: #1D9E75;
+    background: #4DB8B0;
     color: #FFFFFF;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.1), 0 8px 24px -4px rgba(29,158,117,0.3);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1), 0 8px 24px -4px rgba(77,184,176,0.3);
     transition: all 0.3s cubic-bezier(0.25,1,0.5,1);
     border: none; cursor: pointer;
   }
@@ -244,7 +244,7 @@ export default function Hero() {
         </h1>
         <h1
           className="lo-text-clip text-5xl md:text-7xl lg:text-[6rem] font-extrabold tracking-tighter"
-          style={{ color: "#1D9E75" }}
+          style={{ color: "#4DB8B0" }}
         >
           Start using it.
         </h1>
@@ -252,7 +252,7 @@ export default function Hero() {
 
       {/* ── CTA (shown after card pullback) ── */}
       <div className="lo-cta-wrap absolute z-10 flex flex-col items-center justify-center text-center w-screen px-4 pointer-events-auto">
-        <p style={{ fontSize: 11, fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "#1D9E75", marginBottom: 16 }}>
+        <p style={{ fontSize: 11, fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "#4DB8B0", marginBottom: 16 }}>
           Early Access · 200 spots
         </p>
         <h2
@@ -266,7 +266,7 @@ export default function Hero() {
         </p>
 
         {submitted ? (
-          <p style={{ fontSize: 15, color: "#1D9E75", fontWeight: 500 }}>
+          <p style={{ fontSize: 15, color: "#4DB8B0", fontWeight: 500 }}>
             You&apos;re on the list. We&apos;ll be in touch!
           </p>
         ) : (
@@ -320,7 +320,7 @@ export default function Hero() {
             {/* Right: wordmark */}
             <div className="lo-card-right order-1 lg:order-3 flex justify-center lg:justify-end z-20 w-full">
               <h2 className="text-6xl md:text-[6rem] lg:text-[7rem] font-black uppercase tracking-tighter lo-text-card-dark leading-none">
-                Life<span style={{ color: "#1D9E75" }}>OS</span>
+                LifeOS
               </h2>
             </div>
 
@@ -346,26 +346,26 @@ export default function Hero() {
                       aria-hidden="true" />
                     <div className="absolute z-50 flex items-center justify-end"
                       style={{ top: 5, left: "50%", transform: "translateX(-50%)", width: 100, height: 28, background: "#000", borderRadius: 999, paddingRight: 10 }}>
-                      <div className="animate-pulse" style={{ width: 6, height: 6, borderRadius: "50%", background: "#1D9E75", boxShadow: "0 0 8px rgba(29,158,117,0.8)" }} />
+                      <div className="animate-pulse" style={{ width: 6, height: 6, borderRadius: "50%", background: "#4DB8B0", boxShadow: "0 0 8px rgba(77,184,176,0.8)" }} />
                     </div>
 
                     <div className="relative w-full h-full flex flex-col gap-3" style={{ paddingTop: 48, paddingLeft: 14, paddingRight: 14, paddingBottom: 24 }}>
                       <div className="lo-phone-widget flex justify-between items-center">
                         <div>
-                          <span style={{ fontSize: 9, color: "rgba(29,158,117,0.7)", textTransform: "uppercase", letterSpacing: "0.15em", fontWeight: 700 }}>Today&apos;s Focus</span>
+                          <span style={{ fontSize: 9, color: "rgba(77,184,176,0.7)", textTransform: "uppercase", letterSpacing: "0.15em", fontWeight: 700 }}>Today&apos;s Focus</span>
                           <p style={{ fontSize: 15, fontWeight: 700, color: "#fff", margin: "2px 0 0", letterSpacing: "-0.02em" }}>Life Check-in</p>
                         </div>
-                        <div style={{ width: 30, height: 30, borderRadius: "50%", background: "rgba(29,158,117,0.1)", border: "1px solid rgba(29,158,117,0.2)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 11, fontWeight: 700, color: "#1D9E75" }}>S</div>
+                        <div style={{ width: 30, height: 30, borderRadius: "50%", background: "rgba(77,184,176,0.1)", border: "1px solid rgba(77,184,176,0.2)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 11, fontWeight: 700, color: "#4DB8B0" }}>S</div>
                       </div>
 
                       <div className="lo-phone-widget relative mx-auto flex items-center justify-center" style={{ width: 130, height: 130 }}>
                         <svg className="absolute inset-0 w-full h-full" viewBox="0 0 144 144" aria-hidden="true">
                           <circle cx="72" cy="72" r="60" fill="none" stroke="rgba(255,255,255,0.04)" strokeWidth="10" />
-                          <circle className="lo-score-ring" cx="72" cy="72" r="60" fill="none" stroke="#1D9E75" strokeWidth="10" />
+                          <circle className="lo-score-ring" cx="72" cy="72" r="60" fill="none" stroke="#4DB8B0" strokeWidth="10" />
                         </svg>
                         <div className="z-10 flex flex-col items-center">
                           <span style={{ fontSize: 30, fontWeight: 800, color: "#fff", letterSpacing: "-0.03em", lineHeight: 1 }}>2.5</span>
-                          <span style={{ fontSize: 8, color: "rgba(29,158,117,0.5)", textTransform: "uppercase", letterSpacing: "0.15em", fontWeight: 700, marginTop: 2 }}>Life Score</span>
+                          <span style={{ fontSize: 8, color: "rgba(77,184,176,0.5)", textTransform: "uppercase", letterSpacing: "0.15em", fontWeight: 700, marginTop: 2 }}>Life Score</span>
                         </div>
                       </div>
 
@@ -384,13 +384,13 @@ export default function Hero() {
                       </div>
 
                       <div className="lo-phone-widget lo-widget flex items-start gap-2.5" style={{ borderRadius: 16, padding: "10px 12px" }}>
-                        <div style={{ width: 28, height: 28, borderRadius: 10, background: "rgba(29,158,117,0.1)", border: "1px solid rgba(29,158,117,0.2)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, marginTop: 2 }}>
-                          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#1D9E75" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                        <div style={{ width: 28, height: 28, borderRadius: 10, background: "rgba(77,184,176,0.1)", border: "1px solid rgba(77,184,176,0.2)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, marginTop: 2 }}>
+                          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#4DB8B0" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                             <path d="M13 10V3L4 14h7v7l9-11h-7z" />
                           </svg>
                         </div>
                         <div>
-                          <p style={{ fontSize: 9, color: "rgba(29,158,117,0.7)", textTransform: "uppercase", letterSpacing: "0.12em", fontWeight: 700, margin: "0 0 3px" }}>AI Conductor</p>
+                          <p style={{ fontSize: 9, color: "rgba(77,184,176,0.7)", textTransform: "uppercase", letterSpacing: "0.12em", fontWeight: 700, margin: "0 0 3px" }}>AI Conductor</p>
                           <p style={{ fontSize: 10, color: "rgba(255,255,255,0.7)", lineHeight: 1.5, margin: 0 }}>
                             Relationships neglected 5 days. One intentional action today balances your week.
                           </p>
@@ -404,7 +404,7 @@ export default function Hero() {
 
                 {/* Badge: Deep Focus */}
                 <div className="lo-badge absolute z-30 flex items-center gap-3" style={{ top: 16, left: -15, borderRadius: 14, padding: "10px 14px" }}>
-                  <div style={{ width: 30, height: 30, borderRadius: "50%", background: "rgba(29,158,117,0.1)", border: "1px solid rgba(29,158,117,0.15)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 15 }}>🎯</div>
+                  <div style={{ width: 30, height: 30, borderRadius: "50%", background: "rgba(77,184,176,0.1)", border: "1px solid rgba(77,184,176,0.15)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 15 }}>🎯</div>
                   <div>
                     <p style={{ fontSize: 12, fontWeight: 700, color: "#111827", margin: 0 }}>Deep Focus</p>
                     <p style={{ fontSize: 10, color: "#6B7280", margin: 0 }}>Mode active</p>
@@ -424,7 +424,7 @@ export default function Hero() {
 
             {/* Left: copy */}
             <div className="lo-card-left order-3 lg:order-1 flex flex-col justify-center text-center lg:text-left z-20 w-full px-4 lg:px-0">
-              <p className="hidden md:block" style={{ fontSize: 10, color: "#1D9E75", textTransform: "uppercase", letterSpacing: "0.2em", fontWeight: 700, margin: "0 0 12px" }}>
+              <p className="hidden md:block" style={{ fontSize: 10, color: "#4DB8B0", textTransform: "uppercase", letterSpacing: "0.2em", fontWeight: 700, margin: "0 0 12px" }}>
                 The operating system for your life
               </p>
               <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight" style={{ color: "#111827", margin: "0 0 16px", letterSpacing: "-0.02em", lineHeight: 1.2 }}>
@@ -436,7 +436,7 @@ export default function Hero() {
               <div className="hidden md:flex gap-6">
                 {["4 Pillars", "AI Insights", "Deep Focus"].map((tag) => (
                   <div key={tag} className="flex items-center gap-1.5">
-                    <div style={{ width: 6, height: 6, borderRadius: "50%", background: "#1D9E75", flexShrink: 0 }} />
+                    <div style={{ width: 6, height: 6, borderRadius: "50%", background: "#4DB8B0", flexShrink: 0 }} />
                     <span style={{ fontSize: 12, color: "#6B7280", fontWeight: 500 }}>{tag}</span>
                   </div>
                 ))}
