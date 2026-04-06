@@ -8,7 +8,7 @@ export default function Waitlist() {
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (!email.trim()) return;
-    await fetch("https://formspree.io/f/xvzvolzk", {
+    await fetch("https://formspree.io/f/mykbwkza", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email }),

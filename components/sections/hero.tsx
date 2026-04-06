@@ -213,7 +213,7 @@ export default function Hero() {
     lastSubmit.current = now;
 
     try {
-      await fetch("https://formspree.io/f/xvzvolzk", {
+      await fetch("https://formspree.io/f/mykbwkza", {
         method: "POST",
         headers: { "Content-Type": "application/json", Accept: "application/json" },
         body: JSON.stringify({ email: clean }),
