@@ -13,6 +13,7 @@ export default function Footer() {
         </span>
 
         <div className="flex items-center gap-6">
+          <a href="/quiz.html" className="footer-link">Take the Quiz</a>
           <a href="/privacy" className="footer-link">Privacy Policy</a>
           <a href="/terms" className="footer-link">Terms of Use</a>
         </div>
