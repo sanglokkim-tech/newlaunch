@@ -333,9 +333,26 @@ export default function Hero() {
                     <div style={{ position: "absolute", top: 6, left: "50%", transform: "translateX(-50%)", width: 90, height: 24, background: "#000", borderRadius: 999, zIndex: 20 }} />
 
                     {/* No scroll — all sections fit */}
-                    <div style={{ position: "absolute", inset: 0, display: "flex", flexDirection: "column", gap: 9, padding: "36px 11px 12px" }}>
+                    <div style={{ position: "absolute", inset: 0, display: "flex", flexDirection: "column", gap: 7, padding: "34px 0 10px" }}>
 
-                      {/* ── 1. GREETING (no card, no border) ── */}
+                      {/* ── 1. NAV BAR ── */}
+                      <div style={{ display: "flex", alignItems: "center", gap: 4, padding: "0 10px", flexShrink: 0 }}>
+                        <span style={{ fontSize: 12, color: "rgba(255,255,255,0.5)", lineHeight: 1 }}>≡</span>
+                        <span style={{ fontSize: 9, color: "rgba(255,255,255,0.3)", marginLeft: 3 }}>↩</span>
+                        <span style={{ fontSize: 9, color: "rgba(255,255,255,0.3)" }}>↪</span>
+                        <div style={{ flex: 1, textAlign: "center" }}>
+                          <span style={{ fontSize: 11, fontWeight: 800, color: "#fff", letterSpacing: "-0.02em" }}>Life<span style={{ color: "#4DB8B0" }}>OS</span></span>
+                        </div>
+                        <span style={{ fontSize: 10, color: "rgba(255,255,255,0.4)" }}>🔔</span>
+                        <div style={{ display: "flex", alignItems: "center", gap: 2, background: "#4DB8B0", borderRadius: 8, padding: "3px 8px", marginLeft: 2 }}>
+                          <span style={{ fontSize: 8, color: "#fff" }}>✦</span>
+                          <span style={{ fontSize: 8, fontWeight: 700, color: "#fff" }}>AI</span>
+                        </div>
+                      </div>
+
+                      <div style={{ display: "flex", flexDirection: "column", gap: 7, flex: 1, padding: "0 11px" }}>
+
+                      {/* ── 2. GREETING (no card, no border) ── */}
                       <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: 8 }}>
                         <div style={{ flex: 1 }}>
                           <p style={{ margin: "0 0 3px", fontSize: 7.5, fontWeight: 500, color: "rgba(255,255,255,0.3)", letterSpacing: "0.04em" }}>Tuesday, April 7</p>
@@ -487,6 +504,7 @@ export default function Hero() {
 
                       {/* Home bar */}
                       <div style={{ marginTop: 6, marginLeft: "auto", marginRight: "auto", width: 70, height: 3, background: "rgba(255,255,255,0.1)", borderRadius: 999 }} />
+                      </div>{/* end padded inner */}
                     </div>
                   </div>
                 </div>
