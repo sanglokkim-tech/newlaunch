@@ -329,71 +329,72 @@ export default function Hero() {
 
                   {/* Screen */}
                   <div style={{ position: "absolute", inset: 7, background: "#0a0f1e", borderRadius: "2.5rem", overflow: "hidden", color: "#fff" }}>
-                    <div aria-hidden="true" style={{ position: "absolute", inset: 0, borderRadius: "2.5rem", background: "linear-gradient(135deg,rgba(255,255,255,0.03) 0%,transparent 50%)", pointerEvents: "none", zIndex: 10 }} />
+                    <div aria-hidden="true" style={{ position: "absolute", inset: 0, borderRadius: "2.5rem", background: "linear-gradient(135deg,rgba(255,255,255,0.025) 0%,transparent 50%)", pointerEvents: "none", zIndex: 10 }} />
                     <div style={{ position: "absolute", top: 6, left: "50%", transform: "translateX(-50%)", width: 90, height: 24, background: "#000", borderRadius: 999, zIndex: 20 }} />
 
-                    <div style={{ position: "absolute", inset: 0, overflowY: "auto", display: "flex", flexDirection: "column", gap: 8, padding: "38px 11px 14px" }}>
+                    {/* No scroll — all sections fit */}
+                    <div style={{ position: "absolute", inset: 0, display: "flex", flexDirection: "column", gap: 9, padding: "36px 11px 12px" }}>
 
-                      {/* ── 1. PRIORITY CARD ── */}
-                      <div style={{ background: "#130a0a", borderRadius: 16, border: "1px solid rgba(180,20,20,0.45)", boxShadow: "0 0 22px rgba(180,20,20,0.12)", padding: "10px 11px" }}>
+                      {/* ── 1. GREETING (no card, no border) ── */}
+                      <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: 8 }}>
+                        <div style={{ flex: 1 }}>
+                          <p style={{ margin: "0 0 3px", fontSize: 7.5, fontWeight: 500, color: "rgba(255,255,255,0.3)", letterSpacing: "0.04em" }}>Tuesday, April 7</p>
+                          <p style={{ margin: "0 0 4px", fontSize: 17, fontWeight: 800, color: "#fff", letterSpacing: "-0.03em", lineHeight: 1.15 }}>Hey, Alex.</p>
+                          <p style={{ margin: 0, fontSize: 7.5, color: "rgba(255,255,255,0.36)", lineHeight: 1.5, maxWidth: 158 }}>Close the loop on what still matters and let the rest wait.</p>
+                        </div>
+                        <div style={{ display: "flex", alignItems: "center", gap: 3, background: "rgba(255,255,255,0.06)", borderRadius: 8, padding: "3px 8px", border: "1px solid rgba(255,255,255,0.08)", flexShrink: 0, marginTop: 1 }}>
+                          <span style={{ fontSize: 8, color: "rgba(255,255,255,0.4)" }}>✎</span>
+                          <span style={{ fontSize: 7, fontWeight: 600, color: "rgba(255,255,255,0.36)" }}>Edit</span>
+                        </div>
+                      </div>
+
+                      {/* ── 2. PRIORITY CARD (crimson glow only) ── */}
+                      <div style={{ borderRadius: 14, border: "1px solid rgba(180,20,20,0.5)", boxShadow: "0 0 18px rgba(180,20,20,0.13)", padding: "9px 10px" }}>
                         {/* Header */}
-                        <div style={{ display: "flex", alignItems: "center", gap: 5, marginBottom: 8 }}>
-                          <span style={{ fontSize: 7.5, fontWeight: 700, color: "rgba(255,255,255,0.28)", textTransform: "uppercase", letterSpacing: "0.17em", flex: 1 }}>Priority</span>
-                          <span style={{ fontSize: 8, fontWeight: 700, color: "#f87171", background: "rgba(220,38,38,0.15)", borderRadius: 6, padding: "2px 7px" }}>Critical · 1/4</span>
-                          <div style={{ display: "flex", alignItems: "center", gap: 3, background: "rgba(255,255,255,0.06)", borderRadius: 7, padding: "3px 7px", border: "1px solid rgba(255,255,255,0.07)" }}>
-                            <span style={{ fontSize: 7, color: "rgba(255,255,255,0.45)" }}>↗</span>
-                            <span style={{ fontSize: 7, fontWeight: 600, color: "rgba(255,255,255,0.4)" }}>Expand Card</span>
+                        <div style={{ display: "flex", alignItems: "center", gap: 4, marginBottom: 7 }}>
+                          <span style={{ fontSize: 7, fontWeight: 700, color: "rgba(255,255,255,0.27)", textTransform: "uppercase", letterSpacing: "0.17em", flex: 1 }}>Priority</span>
+                          <span style={{ fontSize: 7.5, fontWeight: 700, color: "#f87171", background: "rgba(220,38,38,0.14)", borderRadius: 5, padding: "1.5px 6px" }}>Critical · 1/4</span>
+                          <div style={{ display: "flex", alignItems: "center", gap: 2.5, background: "rgba(255,255,255,0.06)", borderRadius: 6, padding: "2.5px 6px", border: "1px solid rgba(255,255,255,0.07)" }}>
+                            <span style={{ fontSize: 6.5, color: "rgba(255,255,255,0.4)" }}>↗</span>
+                            <span style={{ fontSize: 6.5, fontWeight: 600, color: "rgba(255,255,255,0.38)" }}>Expand Card</span>
                           </div>
                         </div>
                         {/* Teal pill */}
-                        <div style={{ display: "inline-flex", alignItems: "center", gap: 3, background: "rgba(16,185,129,0.12)", borderRadius: 6, padding: "2px 8px", marginBottom: 6, border: "1px solid rgba(16,185,129,0.2)" }}>
-                          <span style={{ fontSize: 7.5, fontWeight: 700, color: "#10b981" }}>Physical</span>
-                          <span style={{ fontSize: 7.5, color: "#10b981", opacity: 0.7 }}>›</span>
+                        <div style={{ display: "inline-flex", alignItems: "center", gap: 3, background: "rgba(16,185,129,0.1)", borderRadius: 5, padding: "1.5px 7px", marginBottom: 5, border: "1px solid rgba(16,185,129,0.18)" }}>
+                          <span style={{ fontSize: 7, fontWeight: 700, color: "#10b981" }}>Physical</span>
+                          <span style={{ fontSize: 7, color: "#10b981", opacity: 0.6 }}>›</span>
                         </div>
                         {/* Heading */}
-                        <p style={{ margin: "0 0 8px", fontSize: 15, fontWeight: 800, color: "#fff", letterSpacing: "-0.03em", lineHeight: 1.2 }}>Sleep</p>
+                        <p style={{ margin: "0 0 7px", fontSize: 14, fontWeight: 800, color: "#fff", letterSpacing: "-0.03em", lineHeight: 1.2 }}>Sleep</p>
                         {/* Why this matters */}
-                        <div style={{ background: "rgba(255,255,255,0.04)", borderRadius: 10, padding: "7px 9px", marginBottom: 6, border: "1px solid rgba(255,255,255,0.06)" }}>
-                          <div style={{ display: "flex", alignItems: "center", gap: 5, marginBottom: 4 }}>
-                            <span style={{ fontSize: 9, color: "#4DB8B0" }}>✦</span>
-                            <span style={{ fontSize: 8, fontWeight: 700, color: "#fff" }}>Why this matters</span>
+                        <div style={{ background: "rgba(255,255,255,0.04)", borderRadius: 9, padding: "6px 8px", marginBottom: 5 }}>
+                          <div style={{ display: "flex", alignItems: "center", gap: 4, marginBottom: 3 }}>
+                            <span style={{ fontSize: 8, color: "#4DB8B0" }}>✦</span>
+                            <span style={{ fontSize: 7.5, fontWeight: 700, color: "#fff" }}>Why this matters</span>
                           </div>
-                          <p style={{ margin: 0, fontSize: 7.5, color: "rgba(255,255,255,0.42)", lineHeight: 1.6 }}>Sleep is the foundation of physical and mental recovery. Poor sleep cascades into every other area of performance and health.</p>
+                          <p style={{ margin: 0, fontSize: 7, color: "rgba(255,255,255,0.4)", lineHeight: 1.6 }}>Sleep is the foundation of physical and mental recovery. Poor sleep cascades into every other area of performance and health.</p>
                         </div>
-                        {/* Suggested tasks */}
-                        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", background: "rgba(255,255,255,0.04)", borderRadius: 10, padding: "7px 9px", border: "1px solid rgba(255,255,255,0.06)" }}>
-                          <div style={{ display: "flex", alignItems: "center", gap: 5 }}>
-                            <span style={{ fontSize: 9, color: "#4DB8B0" }}>✦</span>
-                            <span style={{ fontSize: 8, fontWeight: 700, color: "#fff" }}>Suggested Tasks</span>
+                        {/* Suggested tasks inside priority */}
+                        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", background: "rgba(255,255,255,0.04)", borderRadius: 9, padding: "6px 8px" }}>
+                          <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
+                            <span style={{ fontSize: 8, color: "#4DB8B0" }}>✦</span>
+                            <span style={{ fontSize: 7.5, fontWeight: 700, color: "#fff" }}>Suggested Tasks</span>
                           </div>
-                          <span style={{ fontSize: 10, color: "rgba(255,255,255,0.28)" }}>›</span>
+                          <span style={{ fontSize: 9, color: "rgba(255,255,255,0.26)" }}>›</span>
                         </div>
                       </div>
 
-                      {/* ── 2. GREETING (no card) ── */}
-                      <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: 8 }}>
-                        <div style={{ flex: 1 }}>
-                          <p style={{ margin: "0 0 4px", fontSize: 8, fontWeight: 500, color: "rgba(255,255,255,0.32)", letterSpacing: "0.04em" }}>Tuesday, April 7</p>
-                          <p style={{ margin: "0 0 6px", fontSize: 18, fontWeight: 800, color: "#fff", letterSpacing: "-0.03em", lineHeight: 1.15 }}>Hey, Alex.</p>
-                          <p style={{ margin: 0, fontSize: 7.5, color: "rgba(255,255,255,0.38)", lineHeight: 1.55, maxWidth: 160 }}>Close the loop on what still matters and let the rest wait.</p>
-                        </div>
-                        <div style={{ display: "flex", alignItems: "center", gap: 3, background: "rgba(255,255,255,0.06)", borderRadius: 8, padding: "3px 8px", border: "1px solid rgba(255,255,255,0.08)", flexShrink: 0, marginTop: 2 }}>
-                          <span style={{ fontSize: 8, color: "rgba(255,255,255,0.45)" }}>✎</span>
-                          <span style={{ fontSize: 7, fontWeight: 600, color: "rgba(255,255,255,0.38)" }}>Edit</span>
-                        </div>
-                      </div>
-
-                      {/* ── 3. SUGGESTED TASKS ROW ── */}
-                      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", background: "rgba(255,255,255,0.05)", borderRadius: 12, padding: "8px 11px", border: "1px solid rgba(255,255,255,0.07)" }}>
-                        <div style={{ display: "flex", alignItems: "center", gap: 7 }}>
-                          <span style={{ fontSize: 10, color: "#4DB8B0" }}>✦</span>
+                      {/* ── 3. SUGGESTED TASKS ROW (standalone) ── */}
+                      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", background: "rgba(255,255,255,0.05)", borderRadius: 11, padding: "8px 10px" }}>
+                        <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
+                          <span style={{ fontSize: 9.5, color: "#4DB8B0" }}>✦</span>
                           <span style={{ fontSize: 8.5, fontWeight: 700, color: "#fff" }}>Suggested Tasks</span>
                         </div>
-                        <span style={{ fontSize: 11, color: "rgba(255,255,255,0.28)" }}>›</span>
+                        <span style={{ fontSize: 10, color: "rgba(255,255,255,0.26)" }}>›</span>
                       </div>
 
-                      {/* ── 4. LIFE SCORE CARD ── */}
-                      <div style={{ background: "rgba(255,255,255,0.04)", borderRadius: 16, border: "1px solid rgba(255,255,255,0.07)", padding: "10px 11px" }}>
+                      {/* ── 4. LIFE SCORE (no card bg, no border) ── */}
+                      <div style={{ flex: 1, display: "flex", flexDirection: "column" }}>
 
                         {/* Header */}
                         <div style={{ display: "flex", alignItems: "center", gap: 5, marginBottom: 9 }}>
@@ -422,7 +423,7 @@ export default function Hero() {
                             </div>
                           </div>
                           {/* Expand */}
-                          <div style={{ display: "flex", alignItems: "center", gap: 3, background: "#1e1e1e", borderRadius: 7, padding: "3px 7px", border: "1px solid rgba(255,255,255,0.07)" }}>
+                          <div style={{ display: "flex", alignItems: "center", gap: 3, background: "rgba(255,255,255,0.06)", borderRadius: 7, padding: "3px 7px", border: "1px solid rgba(255,255,255,0.08)" }}>
                             <span style={{ fontSize: 7.5, color: "#fbbf24" }}>✦</span>
                             <span style={{ fontSize: 7.5, fontWeight: 600, color: "rgba(255,255,255,0.45)" }}>Expand</span>
                           </div>
@@ -438,7 +439,7 @@ export default function Hero() {
                         {/* 2×2 grid */}
                         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 6 }}>
                           {/* Physical */}
-                          <div style={{ background: "#1c1c1c", borderRadius: 12, padding: "9px 9px 8px", display: "flex", flexDirection: "column" }}>
+                          <div style={{ background: "rgba(255,255,255,0.05)", borderRadius: 12, padding: "9px 9px 8px", display: "flex", flexDirection: "column" }}>
                             <div style={{ width: 20, height: 20, borderRadius: 7, background: "rgba(16,185,129,0.15)", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 6 }}>
                               <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#10b981" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
                             </div>
@@ -449,7 +450,7 @@ export default function Hero() {
                             <p style={{ margin: 0, fontSize: 13, fontWeight: 700, color: "#10b981", letterSpacing: "-0.02em" }}>60%</p>
                           </div>
                           {/* Mental */}
-                          <div style={{ background: "#1c1c1c", borderRadius: 12, padding: "9px 9px 8px", display: "flex", flexDirection: "column" }}>
+                          <div style={{ background: "rgba(255,255,255,0.05)", borderRadius: 12, padding: "9px 9px 8px", display: "flex", flexDirection: "column" }}>
                             <div style={{ width: 20, height: 20, borderRadius: 7, background: "rgba(167,139,250,0.15)", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 6 }}>
                               <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#a78bfa" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96-.46 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 1.98-3A2.5 2.5 0 0 1 9.5 2Z"/><path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96-.46 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-1.98-3A2.5 2.5 0 0 0 14.5 2Z"/></svg>
                             </div>
@@ -460,7 +461,7 @@ export default function Hero() {
                             <p style={{ margin: 0, fontSize: 13, fontWeight: 700, color: "#a78bfa", letterSpacing: "-0.02em" }}>55%</p>
                           </div>
                           {/* Financial */}
-                          <div style={{ background: "#1c1c1c", borderRadius: 12, padding: "9px 9px 8px", display: "flex", flexDirection: "column" }}>
+                          <div style={{ background: "rgba(255,255,255,0.05)", borderRadius: 12, padding: "9px 9px 8px", display: "flex", flexDirection: "column" }}>
                             <div style={{ width: 20, height: 20, borderRadius: 7, background: "rgba(96,165,250,0.15)", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 6 }}>
                               <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
                             </div>
@@ -471,7 +472,7 @@ export default function Hero() {
                             <p style={{ margin: 0, fontSize: 13, fontWeight: 700, color: "#60a5fa", letterSpacing: "-0.02em" }}>58%</p>
                           </div>
                           {/* Social */}
-                          <div style={{ background: "#1c1c1c", borderRadius: 12, padding: "9px 9px 8px", display: "flex", flexDirection: "column" }}>
+                          <div style={{ background: "rgba(255,255,255,0.05)", borderRadius: 12, padding: "9px 9px 8px", display: "flex", flexDirection: "column" }}>
                             <div style={{ width: 20, height: 20, borderRadius: 7, background: "rgba(248,113,113,0.15)", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 6 }}>
                               <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#f87171" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
                             </div>
@@ -485,7 +486,7 @@ export default function Hero() {
                       </div>
 
                       {/* Home bar */}
-                      <div style={{ margin: "2px auto 0", width: 70, height: 3, background: "rgba(255,255,255,0.1)", borderRadius: 999, flexShrink: 0 }} />
+                      <div style={{ marginTop: 6, marginLeft: "auto", marginRight: "auto", width: 70, height: 3, background: "rgba(255,255,255,0.1)", borderRadius: 999 }} />
                     </div>
                   </div>
                 </div>
