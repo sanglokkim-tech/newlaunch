@@ -91,9 +91,7 @@
     }
 
     /* ── Title screen ── */
-    #screen-start {
-      overflow: hidden;
-    }
+    #screen-start { overflow: hidden; }
     .blob-container {
       position: absolute;
       inset: 0;
@@ -107,31 +105,15 @@
       opacity: 0;
       animation: blobFloat 12s ease-in-out infinite;
     }
-    .blob-1 {
-      width: 300px; height: 300px;
-      background: rgba(0,181,166,0.12);
-      top: -80px; left: -60px;
-      animation-delay: 0s;
-    }
-    .blob-2 {
-      width: 220px; height: 220px;
-      background: rgba(0,181,166,0.08);
-      bottom: 20px; right: -40px;
-      animation-delay: -4s;
-    }
-    .blob-3 {
-      width: 180px; height: 180px;
-      background: rgba(200,240,238,0.3);
-      top: 40%; left: 50%;
-      transform: translateX(-50%);
-      animation-delay: -8s;
-    }
+    .blob-1 { width: 300px; height: 300px; background: rgba(0,181,166,0.12); top: -80px; left: -60px; animation-delay: 0s; }
+    .blob-2 { width: 220px; height: 220px; background: rgba(0,181,166,0.08); bottom: 20px; right: -40px; animation-delay: -4s; }
+    .blob-3 { width: 180px; height: 180px; background: rgba(200,240,238,0.3); top: 40%; left: 50%; transform: translateX(-50%); animation-delay: -8s; }
     @keyframes blobFloat {
-      0%   { opacity: 0;    transform: translate(0, 0) scale(1); }
+      0%   { opacity: 0; transform: translate(0,0) scale(1); }
       20%  { opacity: 1; }
-      50%  { transform: translate(20px, -30px) scale(1.08); }
+      50%  { transform: translate(20px,-30px) scale(1.08); }
       80%  { opacity: 1; }
-      100% { opacity: 0;    transform: translate(0, 0) scale(1); }
+      100% { opacity: 0; transform: translate(0,0) scale(1); }
     }
 
     .start-inner {
@@ -202,12 +184,14 @@
     .options {
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 12px;
     }
     .option {
-      display: block;
+      display: flex;
+      align-items: center;
+      gap: 14px;
       width: 100%;
-      padding: 17px 20px;
+      padding: 20px 22px;
       background: #FFFFFF;
       border: 1.5px solid #E5E7EB;
       border-radius: 16px;
@@ -218,21 +202,43 @@
       text-align: left;
       cursor: pointer;
       line-height: 1.45;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.05);
-      transition: border-color 0.15s ease, background 0.18s ease, transform 0.15s ease, box-shadow 0.15s ease, color 0.18s ease;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      transition:
+        border-color 0.18s ease,
+        background 0.2s ease,
+        color 0.2s ease,
+        box-shadow 0.18s ease,
+        transform 0.18s ease;
       -webkit-tap-highlight-color: transparent;
     }
     .option:hover {
       border-color: #00B5A6;
-      box-shadow: 0 4px 14px rgba(0,181,166,0.12);
-      transform: translateY(-1px);
+      box-shadow: 0 8px 24px rgba(0,181,166,0.16);
+      transform: translateY(-2px);
+    }
+    .option-emoji {
+      font-size: 22px;
+      line-height: 1;
+      flex-shrink: 0;
+      transition: transform 0.2s ease;
+    }
+    .option-label { flex: 1; }
+
+    /* Pop keyframe */
+    @keyframes popPulse {
+      0%   { transform: scale(1); }
+      40%  { transform: scale(1.06); }
+      70%  { transform: scale(0.98); }
+      100% { transform: scale(1); }
+    }
+    .option.popping {
+      animation: popPulse 250ms cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
     }
     .option.selected {
       background: #00B5A6;
       border-color: #00B5A6;
       color: #FFFFFF;
-      transform: scale(1.02);
-      box-shadow: 0 6px 20px rgba(0,181,166,0.28);
+      box-shadow: 0 8px 24px rgba(0,181,166,0.32);
     }
 
     /* ── Acknowledgement overlay ── */
@@ -270,8 +276,7 @@
       z-index: 2;
     }
     .end-icon {
-      width: 60px;
-      height: 60px;
+      width: 60px; height: 60px;
       background: rgba(0,181,166,0.1);
       border-radius: 50%;
       display: flex;
@@ -315,11 +320,7 @@
       transition: opacity 0.2s ease, transform 0.15s ease;
     }
     .cta-btn:hover { opacity: 0.9; transform: translateY(-1px); }
-    .cta-note {
-      margin-top: 14px;
-      font-size: 12px;
-      color: #9CA3AF;
-    }
+    .cta-note { margin-top: 14px; font-size: 12px; color: #9CA3AF; }
 
     /* ── Confetti canvas ── */
     #confetti-canvas {
@@ -332,25 +333,18 @@
 </head>
 <body>
 
-  <!-- Progress -->
   <div class="progress-track">
     <div class="progress-fill" id="progressFill" style="width:0%"></div>
   </div>
 
-  <!-- Logo -->
   <div class="logo-bar">
     <div class="logo">life<span>OS</span></div>
   </div>
 
-  <!-- Progress label -->
   <div class="progress-label hidden" id="progressLabel">1 of 5</div>
 
-  <!-- Acknowledgement overlay -->
-  <div id="ack-overlay">
-    <p id="ack-text"></p>
-  </div>
+  <div id="ack-overlay"><p id="ack-text"></p></div>
 
-  <!-- Confetti canvas (end screen) -->
   <canvas id="confetti-canvas"></canvas>
 
   <!-- ── Title screen ── -->
@@ -374,10 +368,10 @@
       <p class="q-number">Question 1 of 5</p>
       <h2 class="q-text">Which of these sounds most like you right now?</h2>
       <div class="options">
-        <button class="option" onclick="choose(0,this)">I work hard but can't tell if I'm making real progress</button>
-        <button class="option" onclick="choose(0,this)">I know what I want but keep putting it off</button>
-        <button class="option" onclick="choose(0,this)">I feel like I'm neglecting something important but don't know what</button>
-        <button class="option" onclick="choose(0,this)">I'm doing okay, but something feels off</button>
+        <button class="option" onclick="choose(0,this)"><span class="option-emoji">😤</span><span class="option-label">Busy but no real progress</span></button>
+        <button class="option" onclick="choose(0,this)"><span class="option-emoji">😶</span><span class="option-label">I know what I want — I just don't do it</span></button>
+        <button class="option" onclick="choose(0,this)"><span class="option-emoji">🔍</span><span class="option-label">Something's being neglected, I don't know what</span></button>
+        <button class="option" onclick="choose(0,this)"><span class="option-emoji">🤔</span><span class="option-label">Things are fine, but something feels off</span></button>
       </div>
     </div>
   </div>
@@ -388,10 +382,10 @@
       <p class="q-number">Question 2 of 5</p>
       <h2 class="q-text">If you had one extra hour today, you'd probably:</h2>
       <div class="options">
-        <button class="option" onclick="choose(1,this)">Scroll (you're exhausted)</button>
-        <button class="option" onclick="choose(1,this)">Work more — there's always more to do</button>
-        <button class="option" onclick="choose(1,this)">Exercise or do something for yourself (but you rarely do)</button>
-        <button class="option" onclick="choose(1,this)">Spend time with people you care about (but life gets in the way)</button>
+        <button class="option" onclick="choose(1,this)"><span class="option-emoji">📱</span><span class="option-label">Scroll. I'm exhausted.</span></button>
+        <button class="option" onclick="choose(1,this)"><span class="option-emoji">💼</span><span class="option-label">Work more — there's always more</span></button>
+        <button class="option" onclick="choose(1,this)"><span class="option-emoji">🏃</span><span class="option-label">Something for myself — but I rarely do</span></button>
+        <button class="option" onclick="choose(1,this)"><span class="option-emoji">❤️</span><span class="option-label">People I care about — but life gets in the way</span></button>
       </div>
     </div>
   </div>
@@ -402,10 +396,10 @@
       <p class="q-number">Question 3 of 5</p>
       <h2 class="q-text">Which area of your life feels most neglected right now?</h2>
       <div class="options">
-        <button class="option" onclick="choose(2,this)">Health &amp; energy</button>
-        <button class="option" onclick="choose(2,this)">Relationships &amp; family</button>
-        <button class="option" onclick="choose(2,this)">Money &amp; career</button>
-        <button class="option" onclick="choose(2,this)">Personal growth / sense of purpose</button>
+        <button class="option" onclick="choose(2,this)"><span class="option-emoji">💪</span><span class="option-label">Health &amp; energy</span></button>
+        <button class="option" onclick="choose(2,this)"><span class="option-emoji">👨‍👩‍👧</span><span class="option-label">Relationships &amp; family</span></button>
+        <button class="option" onclick="choose(2,this)"><span class="option-emoji">💰</span><span class="option-label">Money &amp; career</span></button>
+        <button class="option" onclick="choose(2,this)"><span class="option-emoji">🌱</span><span class="option-label">Purpose &amp; growth</span></button>
       </div>
     </div>
   </div>
@@ -416,10 +410,10 @@
       <p class="q-number">Question 4 of 5</p>
       <h2 class="q-text">How often do you feel like you're making real progress on what actually matters?</h2>
       <div class="options">
-        <button class="option" onclick="choose(3,this)">Almost never</button>
-        <button class="option" onclick="choose(3,this)">Sometimes, but it doesn't last</button>
-        <button class="option" onclick="choose(3,this)">Often, but only in one area — everything else suffers</button>
-        <button class="option" onclick="choose(3,this)">Honestly not sure</button>
+        <button class="option" onclick="choose(3,this)"><span class="option-emoji">😔</span><span class="option-label">Almost never</span></button>
+        <button class="option" onclick="choose(3,this)"><span class="option-emoji">🌊</span><span class="option-label">Sometimes, but it doesn't last</span></button>
+        <button class="option" onclick="choose(3,this)"><span class="option-emoji">⚡</span><span class="option-label">Yes — but everything else suffers</span></button>
+        <button class="option" onclick="choose(3,this)"><span class="option-emoji">🤷</span><span class="option-label">Honestly not sure</span></button>
       </div>
     </div>
   </div>
@@ -430,10 +424,10 @@
       <p class="q-number">Question 5 of 5</p>
       <h2 class="q-text">What would "winning at life" actually look like for you?</h2>
       <div class="options">
-        <button class="option" onclick="choose(4,this)">Feeling in control of my time</button>
-        <button class="option" onclick="choose(4,this)">Knowing I'm building toward something</button>
-        <button class="option" onclick="choose(4,this)">Not feeling guilty about how I spend my days</button>
-        <button class="option" onclick="choose(4,this)">Having balance — not sacrificing one thing for another</button>
+        <button class="option" onclick="choose(4,this)"><span class="option-emoji">🕐</span><span class="option-label">Feeling in control of my time</span></button>
+        <button class="option" onclick="choose(4,this)"><span class="option-emoji">🎯</span><span class="option-label">Building toward something real</span></button>
+        <button class="option" onclick="choose(4,this)"><span class="option-emoji">😌</span><span class="option-label">No more guilt about how I spend my days</span></button>
+        <button class="option" onclick="choose(4,this)"><span class="option-emoji">⚖️</span><span class="option-label">Balance — without sacrificing everything</span></button>
       </div>
     </div>
   </div>
@@ -465,7 +459,6 @@
       "That's what we're building for."
     ];
 
-    let current = "start";
     let busy = false;
 
     const progressFill  = document.getElementById("progressFill");
@@ -474,7 +467,6 @@
     const ackText       = document.getElementById("ack-text");
 
     function setProgress(qIndex) {
-      // qIndex: 0–5 (0 = none, 5 = done)
       const pct = qIndex === 0 ? 0 : (qIndex / TOTAL) * 100;
       progressFill.style.width = pct + "%";
       if (qIndex >= 1 && qIndex <= 5) {
@@ -495,7 +487,7 @@
     function fadeIn(id) {
       const el = document.getElementById(id);
       el.classList.add("active");
-      el.getBoundingClientRect(); // reflow
+      el.getBoundingClientRect();
       el.style.opacity = "1";
       el.style.pointerEvents = "auto";
     }
@@ -506,7 +498,6 @@
       fadeOut("screen-start");
       setTimeout(() => {
         fadeIn("screen-0");
-        current = 0;
         setProgress(0);
         busy = false;
       }, 380);
@@ -516,39 +507,41 @@
       if (busy) return;
       busy = true;
 
-      // Disable all options in this screen
+      // Disable all options
       btn.closest(".options").querySelectorAll(".option").forEach(b => b.disabled = true);
 
-      // Teal fill + scale
-      btn.classList.add("selected");
+      // Pop animation first
+      btn.classList.add("popping");
 
-      // Show acknowledgement after 300ms
+      // After pop completes (250ms), fill teal
       setTimeout(() => {
-        ackText.textContent = ACKS[qIndex];
-        ackOverlay.classList.add("visible");
+        btn.classList.remove("popping");
+        btn.classList.add("selected");
 
-        // Fade out current question behind overlay
-        fadeOut("screen-" + qIndex);
-
-        // After 600ms acknowledgement visible → fade it out, show next
+        // Show acknowledgement after brief pause
         setTimeout(() => {
-          ackOverlay.classList.remove("visible");
+          ackText.textContent = ACKS[qIndex];
+          ackOverlay.classList.add("visible");
+          fadeOut("screen-" + qIndex);
 
           setTimeout(() => {
-            const nextId = qIndex === TOTAL - 1 ? "screen-end" : "screen-" + (qIndex + 1);
-            fadeIn(nextId);
+            ackOverlay.classList.remove("visible");
 
-            if (qIndex === TOTAL - 1) {
-              setProgress(5);
-              launchConfetti();
-            } else {
-              current = qIndex + 1;
-              setProgress(qIndex + 1);
-            }
-            busy = false;
-          }, 260);
-        }, 700);
-      }, 300);
+            setTimeout(() => {
+              const nextId = qIndex === TOTAL - 1 ? "screen-end" : "screen-" + (qIndex + 1);
+              fadeIn(nextId);
+
+              if (qIndex === TOTAL - 1) {
+                setProgress(5);
+                launchConfetti();
+              } else {
+                setProgress(qIndex + 1);
+              }
+              busy = false;
+            }, 260);
+          }, 700);
+        }, 120);
+      }, 260);
     }
 
     /* ── Confetti ── */
@@ -585,7 +578,7 @@
           p.x  += p.vx;
           p.y  += p.vy;
           p.r  += p.rd;
-          p.vy += 0.04; // gravity
+          p.vy += 0.04;
           if (elapsed > 80) p.alpha = Math.max(0, p.alpha - 0.012);
 
           ctx.save();
