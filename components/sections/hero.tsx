@@ -338,66 +338,95 @@ export default function Hero() {
                   <div className="lo-hw-btn absolute" style={{ top: 220, left: -3, width: 3, height: 45, borderRadius: "3px 0 0 3px" }} aria-hidden="true" />
                   <div className="lo-hw-btn absolute" style={{ top: 170, right: -3, width: 3, height: 70, borderRadius: "0 3px 3px 0", transform: "scaleX(-1)" }} aria-hidden="true" />
 
-                  {/* Screen — stays dark, it's a phone */}
+                  {/* Screen — Life Score Dashboard */}
                   <div className="absolute text-white overflow-hidden z-10"
-                    style={{ inset: 7, background: "#030A06", borderRadius: "2.5rem", boxShadow: "inset 0 0 15px rgba(0,0,0,1)" }}>
+                    style={{ inset: 7, background: "#1a1a2e", borderRadius: "2.5rem", boxShadow: "inset 0 0 15px rgba(0,0,0,0.8)" }}>
+                    {/* Screen glare */}
                     <div className="absolute inset-0 z-40 pointer-events-none"
-                      style={{ background: "linear-gradient(110deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0) 45%)", borderRadius: "2.5rem" }}
+                      style={{ background: "linear-gradient(110deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0) 45%)", borderRadius: "2.5rem" }}
                       aria-hidden="true" />
+                    {/* Dynamic island */}
                     <div className="absolute z-50 flex items-center justify-end"
                       style={{ top: 5, left: "50%", transform: "translateX(-50%)", width: 100, height: 28, background: "#000", borderRadius: 999, paddingRight: 10 }}>
-                      <div className="animate-pulse" style={{ width: 6, height: 6, borderRadius: "50%", background: "#4DB8B0", boxShadow: "0 0 8px rgba(77,184,176,0.8)" }} />
+                      <div className="animate-pulse" style={{ width: 6, height: 6, borderRadius: "50%", background: "#a78bfa", boxShadow: "0 0 8px rgba(167,139,250,0.8)" }} />
                     </div>
 
-                    <div className="relative w-full h-full flex flex-col gap-3" style={{ paddingTop: 48, paddingLeft: 14, paddingRight: 14, paddingBottom: 24 }}>
-                      <div className="lo-phone-widget flex justify-between items-center">
+                    <div className="relative w-full h-full flex flex-col" style={{ paddingTop: 44, paddingLeft: 12, paddingRight: 12, paddingBottom: 20 }}>
+
+                      {/* Header */}
+                      <div className="lo-phone-widget flex justify-between items-center" style={{ marginBottom: 10 }}>
                         <div>
-                          <span style={{ fontSize: 9, color: "rgba(77,184,176,0.7)", textTransform: "uppercase", letterSpacing: "0.15em", fontWeight: 700 }}>Today&apos;s Focus</span>
-                          <p style={{ fontSize: 15, fontWeight: 700, color: "#fff", margin: "2px 0 0", letterSpacing: "-0.02em" }}>Life Check-in</p>
-                        </div>
-                        <div style={{ width: 30, height: 30, borderRadius: "50%", background: "rgba(77,184,176,0.1)", border: "1px solid rgba(77,184,176,0.2)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 11, fontWeight: 700, color: "#4DB8B0" }}>S</div>
-                      </div>
-
-                      <div className="lo-phone-widget relative mx-auto flex items-center justify-center" style={{ width: 130, height: 130 }}>
-                        <svg className="absolute inset-0 w-full h-full" viewBox="0 0 144 144" aria-hidden="true">
-                          <circle cx="72" cy="72" r="60" fill="none" stroke="rgba(255,255,255,0.04)" strokeWidth="10" />
-                          <circle className="lo-score-ring" cx="72" cy="72" r="60" fill="none" stroke="#4DB8B0" strokeWidth="10" />
-                        </svg>
-                        <div className="z-10 flex flex-col items-center">
-                          <span style={{ fontSize: 30, fontWeight: 800, color: "#fff", letterSpacing: "-0.03em", lineHeight: 1 }}>2.5</span>
-                          <span style={{ fontSize: 8, color: "rgba(77,184,176,0.5)", textTransform: "uppercase", letterSpacing: "0.15em", fontWeight: 700, marginTop: 2 }}>Life Score</span>
-                        </div>
-                      </div>
-
-                      <div className="lo-phone-widget lo-widget flex flex-col gap-2.5" style={{ borderRadius: 16, padding: "10px 12px" }}>
-                        {PILLARS.map((p) => (
-                          <div key={p.label}>
-                            <div className="flex justify-between items-center" style={{ marginBottom: 3 }}>
-                              <span style={{ fontSize: 9, color: "rgba(255,255,255,0.5)", textTransform: "uppercase", letterSpacing: "0.12em", fontWeight: 700 }}>{p.label}</span>
-                              <span style={{ fontSize: 9, fontWeight: 700, color: p.color }}>{p.score}/4</span>
-                            </div>
-                            <div className="lo-pillar-bar">
-                              <div className="lo-pillar-fill" style={{ width: p.pct, backgroundColor: p.color }} />
-                            </div>
+                          <p style={{ fontSize: 8, color: "rgba(255,255,255,0.4)", textTransform: "uppercase", letterSpacing: "0.15em", fontWeight: 600, margin: 0 }}>Life Score</p>
+                          <div style={{ display: "flex", alignItems: "baseline", gap: 4, marginTop: 1 }}>
+                            <span style={{ fontSize: 32, fontWeight: 800, color: "#fbbf24", letterSpacing: "-0.04em", lineHeight: 1 }}>61</span>
+                            <span style={{ fontSize: 14, fontWeight: 700, color: "#fbbf24" }}>%</span>
+                            <span style={{ fontSize: 10, fontWeight: 700, color: "#a78bfa", background: "rgba(167,139,250,0.15)", borderRadius: 6, padding: "1px 6px", marginLeft: 2 }}>Building</span>
                           </div>
-                        ))}
+                        </div>
+                        <div style={{ width: 28, height: 28, borderRadius: "50%", background: "rgba(167,139,250,0.15)", border: "1px solid rgba(167,139,250,0.25)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 10, fontWeight: 700, color: "#a78bfa" }}>S</div>
                       </div>
 
-                      <div className="lo-phone-widget lo-widget flex items-start gap-2.5" style={{ borderRadius: 16, padding: "10px 12px" }}>
-                        <div style={{ width: 28, height: 28, borderRadius: 10, background: "rgba(77,184,176,0.1)", border: "1px solid rgba(77,184,176,0.2)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, marginTop: 2 }}>
-                          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#4DB8B0" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                            <path d="M13 10V3L4 14h7v7l9-11h-7z" />
-                          </svg>
+                      {/* 2×2 pillar grid */}
+                      <div className="lo-phone-widget" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 7, flex: 1 }}>
+                        {/* Physical */}
+                        <div style={{ background: "#1e1e32", borderRadius: 14, padding: "10px 10px 10px" }}>
+                          <div style={{ width: 22, height: 22, borderRadius: 7, background: "rgba(16,185,129,0.15)", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 7 }}>
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#10b981" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                            </svg>
+                          </div>
+                          <p style={{ fontSize: 9, fontWeight: 600, color: "rgba(255,255,255,0.5)", margin: "0 0 5px", textTransform: "uppercase", letterSpacing: "0.08em" }}>Physical</p>
+                          <div style={{ height: 3, borderRadius: 999, background: "rgba(255,255,255,0.08)", overflow: "hidden", marginBottom: 5 }}>
+                            <div style={{ width: "60%", height: "100%", background: "#10b981", borderRadius: 999 }} />
+                          </div>
+                          <p style={{ fontSize: 14, fontWeight: 700, color: "#10b981", margin: 0, letterSpacing: "-0.02em" }}>60%</p>
                         </div>
-                        <div>
-                          <p style={{ fontSize: 9, color: "rgba(77,184,176,0.7)", textTransform: "uppercase", letterSpacing: "0.12em", fontWeight: 700, margin: "0 0 3px" }}>AI Conductor</p>
-                          <p style={{ fontSize: 10, color: "rgba(255,255,255,0.7)", lineHeight: 1.5, margin: 0 }}>
-                            Relationships neglected 5 days. One intentional action today balances your week.
-                          </p>
+
+                        {/* Mental */}
+                        <div style={{ background: "#1e1e32", borderRadius: 14, padding: "10px 10px 10px" }}>
+                          <div style={{ width: 22, height: 22, borderRadius: 7, background: "rgba(167,139,250,0.15)", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 7 }}>
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#a78bfa" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                              <circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/>
+                            </svg>
+                          </div>
+                          <p style={{ fontSize: 9, fontWeight: 600, color: "rgba(255,255,255,0.5)", margin: "0 0 5px", textTransform: "uppercase", letterSpacing: "0.08em" }}>Mental</p>
+                          <div style={{ height: 3, borderRadius: 999, background: "rgba(255,255,255,0.08)", overflow: "hidden", marginBottom: 5 }}>
+                            <div style={{ width: "55%", height: "100%", background: "#a78bfa", borderRadius: 999 }} />
+                          </div>
+                          <p style={{ fontSize: 14, fontWeight: 700, color: "#a78bfa", margin: 0, letterSpacing: "-0.02em" }}>55%</p>
+                        </div>
+
+                        {/* Financial */}
+                        <div style={{ background: "#1e1e32", borderRadius: 14, padding: "10px 10px 10px" }}>
+                          <div style={{ width: 22, height: 22, borderRadius: 7, background: "rgba(96,165,250,0.15)", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 7 }}>
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                              <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/>
+                            </svg>
+                          </div>
+                          <p style={{ fontSize: 9, fontWeight: 600, color: "rgba(255,255,255,0.5)", margin: "0 0 5px", textTransform: "uppercase", letterSpacing: "0.08em" }}>Financial</p>
+                          <div style={{ height: 3, borderRadius: 999, background: "rgba(255,255,255,0.08)", overflow: "hidden", marginBottom: 5 }}>
+                            <div style={{ width: "58%", height: "100%", background: "#60a5fa", borderRadius: 999 }} />
+                          </div>
+                          <p style={{ fontSize: 14, fontWeight: 700, color: "#60a5fa", margin: 0, letterSpacing: "-0.02em" }}>58%</p>
+                        </div>
+
+                        {/* Social */}
+                        <div style={{ background: "#1e1e32", borderRadius: 14, padding: "10px 10px 10px" }}>
+                          <div style={{ width: 22, height: 22, borderRadius: 7, background: "rgba(248,113,113,0.15)", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 7 }}>
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#f87171" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                            </svg>
+                          </div>
+                          <p style={{ fontSize: 9, fontWeight: 600, color: "rgba(255,255,255,0.5)", margin: "0 0 5px", textTransform: "uppercase", letterSpacing: "0.08em" }}>Social</p>
+                          <div style={{ height: 3, borderRadius: 999, background: "rgba(255,255,255,0.08)", overflow: "hidden", marginBottom: 5 }}>
+                            <div style={{ width: "70%", height: "100%", background: "#f87171", borderRadius: 999 }} />
+                          </div>
+                          <p style={{ fontSize: 14, fontWeight: 700, color: "#f87171", margin: 0, letterSpacing: "-0.02em" }}>70%</p>
                         </div>
                       </div>
 
-                      <div className="absolute" style={{ bottom: 8, left: "50%", transform: "translateX(-50%)", width: 100, height: 4, background: "rgba(255,255,255,0.15)", borderRadius: 999 }} />
+                      {/* Home indicator */}
+                      <div className="absolute" style={{ bottom: 8, left: "50%", transform: "translateX(-50%)", width: 80, height: 3, background: "rgba(255,255,255,0.12)", borderRadius: 999 }} />
                     </div>
                   </div>
                 </div>
