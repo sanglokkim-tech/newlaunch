@@ -269,59 +269,6 @@
       padding: 0 32px;
     }
 
-    /* ── End screen ── */
-    #screen-end .screen-inner {
-      text-align: center;
-      position: relative;
-      z-index: 2;
-    }
-    .end-icon {
-      width: 60px; height: 60px;
-      background: rgba(0,181,166,0.1);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 28px;
-    }
-    .end-headline {
-      font-size: clamp(26px, 6vw, 34px);
-      font-weight: 800;
-      letter-spacing: -0.03em;
-      line-height: 1.2;
-      color: #000000;
-      margin-bottom: 16px;
-    }
-    .end-sub {
-      font-size: 16px;
-      color: #555555;
-      line-height: 1.65;
-      margin-bottom: 36px;
-      max-width: 300px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    .cta-btn {
-      display: block;
-      width: 100%;
-      padding: 18px 24px;
-      background: #00B5A6;
-      color: #FFFFFF;
-      font-family: inherit;
-      font-size: 16px;
-      font-weight: 700;
-      border: none;
-      border-radius: 16px;
-      text-align: center;
-      text-decoration: none;
-      cursor: pointer;
-      letter-spacing: -0.01em;
-      box-shadow: 0 8px 28px rgba(0,181,166,0.3);
-      transition: opacity 0.2s ease, transform 0.15s ease;
-    }
-    .cta-btn:hover { opacity: 0.9; transform: translateY(-1px); }
-    .cta-note { margin-top: 14px; font-size: 12px; color: #9CA3AF; }
-
     /* ── Calculating screen ── */
     #screen-calc .screen-inner {
       text-align: center;
@@ -395,13 +342,6 @@
     }
     .result-btn:hover { opacity: 0.9; transform: translateY(-1px); }
 
-    /* ── Confetti canvas ── */
-    #confetti-canvas {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 1;
-    }
   </style>
 </head>
 <body>
@@ -417,8 +357,6 @@
   <div class="progress-label hidden" id="progressLabel">1 of 5</div>
 
   <div id="ack-overlay"><p id="ack-text"></p></div>
-
-  <canvas id="confetti-canvas"></canvas>
 
   <!-- ── Title screen ── -->
   <div class="screen active" id="screen-start">
@@ -521,24 +459,7 @@
       <p class="result-label">Your biggest gap right now</p>
       <h2 class="result-area" id="result-area-name"></h2>
       <p class="result-desc" id="result-area-desc"></p>
-      <button class="result-btn" onclick="showEnd()">See how lifeOS fixes this →</button>
-    </div>
-  </div>
-
-  <!-- ── End screen ── -->
-  <div class="screen" id="screen-end">
-    <div class="screen-inner">
-      <div class="end-icon">
-        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#00B5A6" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/>
-        </svg>
-      </div>
-      <h2 class="end-headline">You're not lazy.<br>You just don't have a system.</h2>
-      <p class="end-sub">life<strong style="color:#00B5A6">OS</strong> is being built for exactly this.</p>
-      <a class="cta-btn" href="https://newlaunch-nu.vercel.app/#early-access" target="_blank" rel="noopener noreferrer">
-        Claim your spot →
-      </a>
-      <p class="cta-note">No spam. Just early access.</p>
+      <button class="result-btn" onclick="goToSite()">Claim your spot →</button>
     </div>
   </div>
 
@@ -666,16 +587,13 @@
         setTimeout(() => {
           fadeIn("screen-result");
           busy = false;
+          setTimeout(goToSite, 4000);
         }, 380);
       }, 1100);
     }
 
-    function showEnd() {
-      fadeOut("screen-result");
-      setTimeout(() => {
-        fadeIn("screen-end");
-        launchConfetti();
-      }, 380);
+    function goToSite() {
+      window.location.href = "https://newlaunch-nu.vercel.app/#early-access";
     }
 
     function choose(qIndex, btn) {
@@ -719,60 +637,6 @@
       }, 260);
     }
 
-    /* ── Confetti ── */
-    function launchConfetti() {
-      const canvas = document.getElementById("confetti-canvas");
-      const ctx = canvas.getContext("2d");
-      canvas.width  = window.innerWidth;
-      canvas.height = window.innerHeight;
-
-      const COLORS = ["#00B5A6","#34D399","#A7F3D0","#6EE7B7","#FFFFFF","#D1FAE5"];
-      const pieces = Array.from({ length: 110 }, () => ({
-        x: Math.random() * canvas.width,
-        y: -10 - Math.random() * 200,
-        w: 6 + Math.random() * 8,
-        h: 3 + Math.random() * 5,
-        r: Math.random() * Math.PI * 2,
-        rd: (Math.random() - 0.5) * 0.18,
-        vx: (Math.random() - 0.5) * 2,
-        vy: 2.5 + Math.random() * 3,
-        color: COLORS[Math.floor(Math.random() * COLORS.length)],
-        alpha: 1,
-      }));
-
-      let frame;
-      let elapsed = 0;
-
-      function draw() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        let alive = false;
-
-        pieces.forEach(p => {
-          if (p.y > canvas.height + 20) return;
-          alive = true;
-          p.x  += p.vx;
-          p.y  += p.vy;
-          p.r  += p.rd;
-          p.vy += 0.04;
-          if (elapsed > 80) p.alpha = Math.max(0, p.alpha - 0.012);
-
-          ctx.save();
-          ctx.globalAlpha = p.alpha;
-          ctx.translate(p.x, p.y);
-          ctx.rotate(p.r);
-          ctx.fillStyle = p.color;
-          ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
-          ctx.restore();
-        });
-
-        elapsed++;
-        if (alive) frame = requestAnimationFrame(draw);
-        else ctx.clearRect(0, 0, canvas.width, canvas.height);
-      }
-
-      cancelAnimationFrame(frame);
-      draw();
-    }
   </script>
 </body>
 </html>
