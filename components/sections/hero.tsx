@@ -354,7 +354,7 @@ export default function Hero() {
                     <div className="relative w-full h-full flex flex-col" style={{ paddingTop: 44, paddingLeft: 12, paddingRight: 12, paddingBottom: 20 }}>
 
                       {/* Header */}
-                      <div className="lo-phone-widget flex justify-between items-center" style={{ marginBottom: 10 }}>
+                      <div className="flex justify-between items-center" style={{ marginBottom: 10 }}>
                         <div>
                           <p style={{ fontSize: 8, color: "rgba(255,255,255,0.4)", textTransform: "uppercase", letterSpacing: "0.15em", fontWeight: 600, margin: 0 }}>Life Score</p>
                           <div style={{ display: "flex", alignItems: "baseline", gap: 4, marginTop: 1 }}>
@@ -367,7 +367,7 @@ export default function Hero() {
                       </div>
 
                       {/* 2×2 pillar grid */}
-                      <div className="lo-phone-widget" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 7, flex: 1 }}>
+                      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 7, flex: 1 }}>
                         {/* Physical */}
                         <div style={{ background: "#1e1e32", borderRadius: 14, padding: "10px 10px 10px" }}>
                           <div style={{ width: 22, height: 22, borderRadius: 7, background: "rgba(16,185,129,0.15)", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 7 }}>
