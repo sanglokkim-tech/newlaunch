@@ -334,29 +334,65 @@ export default function Hero() {
 
                     <div style={{ position: "absolute", inset: 0, overflowY: "auto", display: "flex", flexDirection: "column", gap: 8, padding: "38px 11px 14px" }}>
 
-                      {/* ── GREETING (no card) ── */}
-                      <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: 8 }}>
-                        <div style={{ flex: 1 }}>
-                          <p style={{ margin: "0 0 4px", fontSize: 8, fontWeight: 500, color: "rgba(255,255,255,0.32)", letterSpacing: "0.04em" }}>Tuesday, April 7</p>
-                          <p style={{ margin: "0 0 6px", fontSize: 20, fontWeight: 800, color: "#fff", letterSpacing: "-0.03em", lineHeight: 1.15 }}>Hey, Alex.</p>
-                          <p style={{ margin: 0, fontSize: 8, color: "rgba(255,255,255,0.38)", lineHeight: 1.55, maxWidth: 165 }}>Close the loop on what still matters and let the rest wait.</p>
+                      {/* ── 1. PRIORITY CARD ── */}
+                      <div style={{ background: "#130a0a", borderRadius: 16, border: "1px solid rgba(180,20,20,0.45)", boxShadow: "0 0 22px rgba(180,20,20,0.12)", padding: "10px 11px" }}>
+                        {/* Header */}
+                        <div style={{ display: "flex", alignItems: "center", gap: 5, marginBottom: 8 }}>
+                          <span style={{ fontSize: 7.5, fontWeight: 700, color: "rgba(255,255,255,0.28)", textTransform: "uppercase", letterSpacing: "0.17em", flex: 1 }}>Priority</span>
+                          <span style={{ fontSize: 8, fontWeight: 700, color: "#f87171", background: "rgba(220,38,38,0.15)", borderRadius: 6, padding: "2px 7px" }}>Critical · 1/4</span>
+                          <div style={{ display: "flex", alignItems: "center", gap: 3, background: "rgba(255,255,255,0.06)", borderRadius: 7, padding: "3px 7px", border: "1px solid rgba(255,255,255,0.07)" }}>
+                            <span style={{ fontSize: 7, color: "rgba(255,255,255,0.45)" }}>↗</span>
+                            <span style={{ fontSize: 7, fontWeight: 600, color: "rgba(255,255,255,0.4)" }}>Expand Card</span>
+                          </div>
                         </div>
-                        <div style={{ display: "flex", alignItems: "center", gap: 3, background: "rgba(255,255,255,0.06)", borderRadius: 8, padding: "4px 9px", border: "1px solid rgba(255,255,255,0.08)", flexShrink: 0, marginTop: 2 }}>
-                          <span style={{ fontSize: 9, color: "rgba(255,255,255,0.45)" }}>✎</span>
-                          <span style={{ fontSize: 7.5, fontWeight: 600, color: "rgba(255,255,255,0.38)" }}>Edit</span>
+                        {/* Teal pill */}
+                        <div style={{ display: "inline-flex", alignItems: "center", gap: 3, background: "rgba(16,185,129,0.12)", borderRadius: 6, padding: "2px 8px", marginBottom: 6, border: "1px solid rgba(16,185,129,0.2)" }}>
+                          <span style={{ fontSize: 7.5, fontWeight: 700, color: "#10b981" }}>Physical</span>
+                          <span style={{ fontSize: 7.5, color: "#10b981", opacity: 0.7 }}>›</span>
+                        </div>
+                        {/* Heading */}
+                        <p style={{ margin: "0 0 8px", fontSize: 15, fontWeight: 800, color: "#fff", letterSpacing: "-0.03em", lineHeight: 1.2 }}>Sleep</p>
+                        {/* Why this matters */}
+                        <div style={{ background: "rgba(255,255,255,0.04)", borderRadius: 10, padding: "7px 9px", marginBottom: 6, border: "1px solid rgba(255,255,255,0.06)" }}>
+                          <div style={{ display: "flex", alignItems: "center", gap: 5, marginBottom: 4 }}>
+                            <span style={{ fontSize: 9, color: "#4DB8B0" }}>✦</span>
+                            <span style={{ fontSize: 8, fontWeight: 700, color: "#fff" }}>Why this matters</span>
+                          </div>
+                          <p style={{ margin: 0, fontSize: 7.5, color: "rgba(255,255,255,0.42)", lineHeight: 1.6 }}>Sleep is the foundation of physical and mental recovery. Poor sleep cascades into every other area of performance and health.</p>
+                        </div>
+                        {/* Suggested tasks */}
+                        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", background: "rgba(255,255,255,0.04)", borderRadius: 10, padding: "7px 9px", border: "1px solid rgba(255,255,255,0.06)" }}>
+                          <div style={{ display: "flex", alignItems: "center", gap: 5 }}>
+                            <span style={{ fontSize: 9, color: "#4DB8B0" }}>✦</span>
+                            <span style={{ fontSize: 8, fontWeight: 700, color: "#fff" }}>Suggested Tasks</span>
+                          </div>
+                          <span style={{ fontSize: 10, color: "rgba(255,255,255,0.28)" }}>›</span>
                         </div>
                       </div>
 
-                      {/* ── SUGGESTED TASKS ROW ── */}
-                      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", background: "rgba(255,255,255,0.05)", borderRadius: 12, padding: "9px 12px", border: "1px solid rgba(255,255,255,0.07)" }}>
+                      {/* ── 2. GREETING (no card) ── */}
+                      <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: 8 }}>
+                        <div style={{ flex: 1 }}>
+                          <p style={{ margin: "0 0 4px", fontSize: 8, fontWeight: 500, color: "rgba(255,255,255,0.32)", letterSpacing: "0.04em" }}>Tuesday, April 7</p>
+                          <p style={{ margin: "0 0 6px", fontSize: 18, fontWeight: 800, color: "#fff", letterSpacing: "-0.03em", lineHeight: 1.15 }}>Hey, Alex.</p>
+                          <p style={{ margin: 0, fontSize: 7.5, color: "rgba(255,255,255,0.38)", lineHeight: 1.55, maxWidth: 160 }}>Close the loop on what still matters and let the rest wait.</p>
+                        </div>
+                        <div style={{ display: "flex", alignItems: "center", gap: 3, background: "rgba(255,255,255,0.06)", borderRadius: 8, padding: "3px 8px", border: "1px solid rgba(255,255,255,0.08)", flexShrink: 0, marginTop: 2 }}>
+                          <span style={{ fontSize: 8, color: "rgba(255,255,255,0.45)" }}>✎</span>
+                          <span style={{ fontSize: 7, fontWeight: 600, color: "rgba(255,255,255,0.38)" }}>Edit</span>
+                        </div>
+                      </div>
+
+                      {/* ── 3. SUGGESTED TASKS ROW ── */}
+                      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", background: "rgba(255,255,255,0.05)", borderRadius: 12, padding: "8px 11px", border: "1px solid rgba(255,255,255,0.07)" }}>
                         <div style={{ display: "flex", alignItems: "center", gap: 7 }}>
-                          <span style={{ fontSize: 11, color: "#4DB8B0" }}>✦</span>
-                          <span style={{ fontSize: 9, fontWeight: 700, color: "#fff" }}>Suggested Tasks</span>
+                          <span style={{ fontSize: 10, color: "#4DB8B0" }}>✦</span>
+                          <span style={{ fontSize: 8.5, fontWeight: 700, color: "#fff" }}>Suggested Tasks</span>
                         </div>
                         <span style={{ fontSize: 11, color: "rgba(255,255,255,0.28)" }}>›</span>
                       </div>
 
-                      {/* ── LIFE SCORE CARD ── */}
+                      {/* ── 4. LIFE SCORE CARD ── */}
                       <div style={{ background: "rgba(255,255,255,0.04)", borderRadius: 16, border: "1px solid rgba(255,255,255,0.07)", padding: "10px 11px" }}>
 
                         {/* Header */}
