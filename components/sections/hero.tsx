@@ -328,55 +328,27 @@ export default function Hero() {
                   <div className="lo-hw-btn absolute" style={{ top: 170, right: -3, width: 3, height: 70, borderRadius: "0 3px 3px 0", transform: "scaleX(-1)" }} aria-hidden="true" />
 
                   {/* Screen */}
-                  <div style={{ position: "absolute", inset: 7, background: "#0d0d0d", borderRadius: "2.5rem", overflow: "hidden", color: "#fff" }}>
-                    <div aria-hidden="true" style={{ position: "absolute", inset: 0, borderRadius: "2.5rem", background: "linear-gradient(120deg,rgba(255,255,255,0.04) 0%,transparent 40%)", pointerEvents: "none", zIndex: 10 }} />
+                  <div style={{ position: "absolute", inset: 7, background: "#0d1f1f", borderRadius: "2.5rem", overflow: "hidden", color: "#fff" }}>
+                    <div aria-hidden="true" style={{ position: "absolute", inset: 0, borderRadius: "2.5rem", background: "linear-gradient(135deg,rgba(255,255,255,0.03) 0%,transparent 50%)", pointerEvents: "none", zIndex: 10 }} />
                     <div style={{ position: "absolute", top: 6, left: "50%", transform: "translateX(-50%)", width: 90, height: 24, background: "#000", borderRadius: 999, zIndex: 20 }} />
 
-                    <div style={{ position: "absolute", inset: 0, overflowY: "auto", display: "flex", flexDirection: "column", gap: 7, padding: "38px 9px 14px" }}>
+                    <div style={{ position: "absolute", inset: 0, overflowY: "auto", display: "flex", flexDirection: "column", gap: 10, padding: "38px 12px 14px" }}>
 
-                      {/* ── PRIORITY CARD ── */}
-                      <div style={{ background: "#141414", borderRadius: 16, border: "1px solid rgba(220,38,38,0.4)", boxShadow: "0 0 20px rgba(220,38,38,0.1)", padding: "10px 11px" }}>
-
-                        {/* Header */}
-                        <div style={{ display: "flex", alignItems: "center", gap: 5, marginBottom: 9 }}>
-                          <span style={{ fontSize: 7.5, fontWeight: 700, color: "rgba(255,255,255,0.28)", textTransform: "uppercase", letterSpacing: "0.17em", flex: 1 }}>Priority</span>
-                          <span style={{ fontSize: 8.5, fontWeight: 700, color: "#f87171", background: "rgba(220,38,38,0.14)", borderRadius: 6, padding: "2px 7px" }}>Critical · 1/4</span>
-                          <div style={{ display: "flex", alignItems: "center", gap: 3, background: "#1e1e1e", borderRadius: 7, padding: "3px 7px", border: "1px solid rgba(255,255,255,0.07)" }}>
-                            <span style={{ fontSize: 7.5, color: "rgba(255,255,255,0.5)" }}>↗</span>
-                            <span style={{ fontSize: 7.5, fontWeight: 600, color: "rgba(255,255,255,0.45)" }}>Expand Card</span>
-                          </div>
+                      {/* ── GREETING SECTION (no card) ── */}
+                      <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: 8 }}>
+                        <div style={{ flex: 1 }}>
+                          <p style={{ margin: "0 0 5px", fontSize: 8, fontWeight: 500, color: "rgba(255,255,255,0.35)", letterSpacing: "0.04em" }}>Tuesday, April 7</p>
+                          <p style={{ margin: "0 0 7px", fontSize: 20, fontWeight: 800, color: "#fff", letterSpacing: "-0.03em", lineHeight: 1.15 }}>Hey, Alex.</p>
+                          <p style={{ margin: 0, fontSize: 8.5, color: "rgba(255,255,255,0.4)", lineHeight: 1.55, maxWidth: 170 }}>Close the loop on what still matters and let the rest wait.</p>
                         </div>
-
-                        {/* Pillar pill */}
-                        <div style={{ display: "inline-flex", alignItems: "center", gap: 3, background: "rgba(167,139,250,0.13)", borderRadius: 6, padding: "2px 8px", marginBottom: 7, border: "1px solid rgba(167,139,250,0.2)" }}>
-                          <span style={{ fontSize: 8, fontWeight: 700, color: "#a78bfa" }}>Mental</span>
-                          <span style={{ fontSize: 8, color: "#a78bfa", opacity: 0.7 }}>›</span>
-                        </div>
-
-                        {/* Heading */}
-                        <p style={{ margin: "0 0 10px", fontSize: 16, fontWeight: 800, color: "#fff", letterSpacing: "-0.03em", lineHeight: 1.2 }}>Composure</p>
-
-                        {/* Why this matters */}
-                        <div style={{ background: "#1c1c1c", borderRadius: 11, padding: "8px 10px", marginBottom: 7, border: "1px solid rgba(255,255,255,0.05)" }}>
-                          <div style={{ display: "flex", alignItems: "center", gap: 5, marginBottom: 5 }}>
-                            <svg width="9" height="9" viewBox="0 0 24 24" fill="#a78bfa"><path d="M12 2l1.8 5.4H20l-4.8 3.5 1.8 5.5L12 13l-4.8 3.4 1.8-5.5L4.2 7.4H10.2z"/></svg>
-                            <span style={{ fontSize: 8.5, fontWeight: 700, color: "#fff" }}>Why this matters</span>
-                          </div>
-                          <p style={{ margin: 0, fontSize: 8, color: "rgba(255,255,255,0.45)", lineHeight: 1.6 }}>Composure protects decisions, relationships, and execution when stress hits.</p>
-                        </div>
-
-                        {/* Suggested tasks row */}
-                        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", background: "#1c1c1c", borderRadius: 11, padding: "8px 10px", border: "1px solid rgba(255,255,255,0.05)" }}>
-                          <div style={{ display: "flex", alignItems: "center", gap: 5 }}>
-                            <svg width="9" height="9" viewBox="0 0 24 24" fill="#a78bfa"><path d="M12 2l1.8 5.4H20l-4.8 3.5 1.8 5.5L12 13l-4.8 3.4 1.8-5.5L4.2 7.4H10.2z"/></svg>
-                            <span style={{ fontSize: 8.5, fontWeight: 600, color: "#fff" }}>Suggested Tasks</span>
-                          </div>
-                          <span style={{ fontSize: 10, color: "rgba(255,255,255,0.3)" }}>›</span>
+                        <div style={{ display: "flex", alignItems: "center", gap: 3, background: "rgba(255,255,255,0.07)", borderRadius: 8, padding: "4px 9px", border: "1px solid rgba(255,255,255,0.08)", flexShrink: 0, marginTop: 2 }}>
+                          <span style={{ fontSize: 9, color: "rgba(255,255,255,0.5)" }}>✎</span>
+                          <span style={{ fontSize: 8, fontWeight: 600, color: "rgba(255,255,255,0.4)" }}>Edit</span>
                         </div>
                       </div>
 
                       {/* ── LIFE SCORE CARD ── */}
-                      <div style={{ background: "#141414", borderRadius: 16, border: "1px solid rgba(255,255,255,0.07)", padding: "10px 11px" }}>
+                      <div style={{ background: "#111e1e", borderRadius: 16, border: "1px solid rgba(255,255,255,0.07)", padding: "10px 11px" }}>
 
                         {/* Header */}
                         <div style={{ display: "flex", alignItems: "center", gap: 5, marginBottom: 9 }}>
