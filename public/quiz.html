@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>lifeOS Quiz</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      background: #FFFFFF;
+      color: #000000;
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    /* ── Header ── */
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: #FFFFFF;
+      padding: 18px 24px 14px;
+      text-align: center;
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+    }
+
+    .logo {
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: #00B5A6;
+    }
+
+    /* ── Progress bar ── */
+    .progress-track {
+      position: fixed;
+      top: 57px; left: 0; right: 0;
+      z-index: 99;
+      height: 3px;
+      background: rgba(0,0,0,0.07);
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: #00B5A6;
+      border-radius: 0 999px 999px 0;
+      transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* ── Screens ── */
+    .screen {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      padding: 90px 24px 32px;
+      overflow-y: auto;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.35s ease;
+    }
+
+    .screen.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .screen-inner {
+      max-width: 480px;
+      width: 100%;
+      margin: 0 auto;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding-bottom: 24px;
+    }
+
+    /* ── Question ── */
+    .q-number {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #00B5A6;
+      margin-bottom: 14px;
+    }
+
+    .q-text {
+      font-size: clamp(20px, 5vw, 26px);
+      font-weight: 700;
+      line-height: 1.3;
+      letter-spacing: -0.02em;
+      color: #000000;
+      margin-bottom: 32px;
+    }
+
+    /* ── Answer options ── */
+    .options {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .option {
+      display: block;
+      width: 100%;
+      padding: 16px 20px;
+      background: #FFFFFF;
+      border: 1.5px solid #E5E7EB;
+      border-radius: 14px;
+      font-size: 15px;
+      font-weight: 500;
+      color: #111111;
+      text-align: left;
+      cursor: pointer;
+      line-height: 1.4;
+      transition: border-color 0.15s ease, background 0.15s ease, transform 0.12s ease;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .option:hover {
+      border-color: #00B5A6;
+      background: rgba(0, 181, 166, 0.04);
+    }
+
+    .option.selected {
+      border-color: #00B5A6;
+      background: rgba(0, 181, 166, 0.08);
+      transform: scale(0.985);
+    }
+
+    /* ── End screen ── */
+    .end-screen .screen-inner {
+      justify-content: center;
+      text-align: center;
+    }
+
+    .end-icon {
+      width: 56px;
+      height: 56px;
+      background: rgba(0, 181, 166, 0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 28px;
+    }
+
+    .end-icon svg { display: block; }
+
+    .end-headline {
+      font-size: clamp(26px, 6vw, 34px);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.2;
+      color: #000000;
+      margin-bottom: 16px;
+    }
+
+    .end-sub {
+      font-size: 16px;
+      color: #555555;
+      line-height: 1.6;
+      margin-bottom: 40px;
+      max-width: 320px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .cta-btn {
+      display: block;
+      width: 100%;
+      max-width: 360px;
+      margin: 0 auto;
+      padding: 18px 24px;
+      background: #00B5A6;
+      color: #FFFFFF;
+      font-size: 16px;
+      font-weight: 700;
+      border: none;
+      border-radius: 14px;
+      text-align: center;
+      text-decoration: none;
+      cursor: pointer;
+      letter-spacing: -0.01em;
+      box-shadow: 0 8px 24px rgba(0, 181, 166, 0.3);
+      transition: opacity 0.2s ease, transform 0.15s ease;
+    }
+
+    .cta-btn:hover {
+      opacity: 0.9;
+      transform: translateY(-1px);
+    }
+
+    .cta-note {
+      margin-top: 14px;
+      font-size: 12px;
+      color: #9CA3AF;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">life<span style="color:#00B5A6">OS</span></div>
+  </header>
+
+  <div class="progress-track">
+    <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+  </div>
+
+  <!-- Q1 -->
+  <div class="screen active" id="screen-0">
+    <div class="screen-inner">
+      <p class="q-number">Question 1 of 5</p>
+      <h2 class="q-text">Which of these sounds most like you right now?</h2>
+      <div class="options">
+        <button class="option" onclick="select(0,this)">I work hard but can't tell if I'm making real progress</button>
+        <button class="option" onclick="select(0,this)">I know what I want but keep putting it off</button>
+        <button class="option" onclick="select(0,this)">I feel like I'm neglecting something important but don't know what</button>
+        <button class="option" onclick="select(0,this)">I'm doing okay, but something feels off</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q2 -->
+  <div class="screen" id="screen-1">
+    <div class="screen-inner">
+      <p class="q-number">Question 2 of 5</p>
+      <h2 class="q-text">If you had one extra hour today, you'd probably:</h2>
+      <div class="options">
+        <button class="option" onclick="select(1,this)">Scroll (you're exhausted)</button>
+        <button class="option" onclick="select(1,this)">Work more — there's always more to do</button>
+        <button class="option" onclick="select(1,this)">Exercise or do something for yourself (but you rarely do)</button>
+        <button class="option" onclick="select(1,this)">Spend time with people you care about (but life gets in the way)</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q3 -->
+  <div class="screen" id="screen-2">
+    <div class="screen-inner">
+      <p class="q-number">Question 3 of 5</p>
+      <h2 class="q-text">Which area of your life feels most neglected right now?</h2>
+      <div class="options">
+        <button class="option" onclick="select(2,this)">Health &amp; energy</button>
+        <button class="option" onclick="select(2,this)">Relationships &amp; family</button>
+        <button class="option" onclick="select(2,this)">Money &amp; career</button>
+        <button class="option" onclick="select(2,this)">Personal growth / sense of purpose</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q4 -->
+  <div class="screen" id="screen-3">
+    <div class="screen-inner">
+      <p class="q-number">Question 4 of 5</p>
+      <h2 class="q-text">How often do you feel like you're making real progress on what actually matters?</h2>
+      <div class="options">
+        <button class="option" onclick="select(3,this)">Almost never</button>
+        <button class="option" onclick="select(3,this)">Sometimes, but it doesn't last</button>
+        <button class="option" onclick="select(3,this)">Often, but only in one area — everything else suffers</button>
+        <button class="option" onclick="select(3,this)">Honestly not sure</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q5 -->
+  <div class="screen" id="screen-4">
+    <div class="screen-inner">
+      <p class="q-number">Question 5 of 5</p>
+      <h2 class="q-text">What would "winning at life" actually look like for you?</h2>
+      <div class="options">
+        <button class="option" onclick="select(4,this)">Feeling in control of my time</button>
+        <button class="option" onclick="select(4,this)">Knowing I'm building toward something</button>
+        <button class="option" onclick="select(4,this)">Not feeling guilty about how I spend my days</button>
+        <button class="option" onclick="select(4,this)">Having balance — not sacrificing one thing for another</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- End screen -->
+  <div class="screen end-screen" id="screen-5">
+    <div class="screen-inner">
+      <div class="end-icon">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#00B5A6" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/>
+        </svg>
+      </div>
+      <h2 class="end-headline">You're not lazy.<br>You just don't have a system.</h2>
+      <p class="end-sub">life<strong style="color:#00B5A6">OS</strong> is being built for exactly this.</p>
+      <a class="cta-btn" href="https://newlaunch-nu.vercel.app/" target="_blank" rel="noopener noreferrer">
+        Join the waitlist →
+      </a>
+      <p class="cta-note">No spam. Launch notification only.</p>
+    </div>
+  </div>
+
+  <script>
+    const TOTAL = 5;
+    let current = 0;
+    let transitioning = false;
+
+    function updateProgress(step) {
+      const pct = step === 0 ? 0 : (step / TOTAL) * 100;
+      document.getElementById("progressFill").style.width = pct + "%";
+    }
+
+    function goTo(index) {
+      if (transitioning) return;
+      transitioning = true;
+
+      const from = document.getElementById("screen-" + current);
+      const to   = document.getElementById("screen-" + index);
+
+      from.style.opacity = "0";
+      from.style.pointerEvents = "none";
+
+      setTimeout(() => {
+        from.classList.remove("active");
+        to.classList.add("active");
+        // force reflow
+        to.getBoundingClientRect();
+        to.style.opacity = "1";
+        to.style.pointerEvents = "auto";
+        current = index;
+        updateProgress(index);
+        transitioning = false;
+      }, 350);
+    }
+
+    function select(qIndex, btn) {
+      if (transitioning) return;
+
+      // Visual feedback
+      btn.classList.add("selected");
+
+      setTimeout(() => {
+        goTo(qIndex + 1);
+      }, 280);
+    }
+
+    // Init progress
+    updateProgress(0);
+  </script>
+</body>
+</html>
