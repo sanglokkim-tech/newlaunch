@@ -11,12 +11,6 @@ if (typeof window !== "undefined") {
 const RATE_LIMIT_MS = 60_000;
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
-const PILLARS = [
-  { label: "Physical",  score: 3, color: "#1D9E75", pct: "75%" },
-  { label: "Mental",    score: 2, color: "#7C3AED", pct: "50%" },
-  { label: "Financial", score: 2, color: "#2563EB", pct: "50%" },
-  { label: "Social",    score: 4, color: "#E11D48", pct: "100%" },
-];
 
 const INJECTED_STYLES = `
   .lo-bg-grid {
@@ -335,117 +329,136 @@ export default function Hero() {
 
                   {/* Screen */}
                   <div style={{ position: "absolute", inset: 7, background: "#0d0d0d", borderRadius: "2.5rem", overflow: "hidden", color: "#fff" }}>
-                    {/* Glare */}
-                    <div aria-hidden="true" style={{ position: "absolute", inset: 0, borderRadius: "2.5rem", background: "linear-gradient(120deg,rgba(255,255,255,0.05) 0%,transparent 45%)", pointerEvents: "none", zIndex: 10 }} />
-                    {/* Dynamic island */}
+                    <div aria-hidden="true" style={{ position: "absolute", inset: 0, borderRadius: "2.5rem", background: "linear-gradient(120deg,rgba(255,255,255,0.04) 0%,transparent 40%)", pointerEvents: "none", zIndex: 10 }} />
                     <div style={{ position: "absolute", top: 6, left: "50%", transform: "translateX(-50%)", width: 90, height: 24, background: "#000", borderRadius: 999, zIndex: 20 }} />
 
-                    {/* Scrollable content */}
-                    <div style={{ position: "absolute", inset: 0, overflowY: "auto", display: "flex", flexDirection: "column", gap: 8, padding: "38px 10px 16px" }}>
+                    <div style={{ position: "absolute", inset: 0, overflowY: "auto", display: "flex", flexDirection: "column", gap: 7, padding: "38px 9px 14px" }}>
 
                       {/* ── PRIORITY CARD ── */}
-                      <div style={{ background: "#161616", borderRadius: 16, border: "1px solid rgba(220,38,38,0.35)", boxShadow: "0 0 18px rgba(220,38,38,0.12)", padding: "10px 11px 10px" }}>
-                        {/* Header row */}
-                        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 8 }}>
-                          <span style={{ fontSize: 8, fontWeight: 700, color: "rgba(255,255,255,0.3)", textTransform: "uppercase", letterSpacing: "0.16em" }}>Priority</span>
-                          <span style={{ fontSize: 9, fontWeight: 700, color: "#f87171", background: "rgba(220,38,38,0.12)", borderRadius: 6, padding: "2px 7px" }}>Critical · 1/4</span>
-                          <div style={{ display: "flex", alignItems: "center", gap: 3, background: "#222", borderRadius: 6, padding: "3px 7px" }}>
-                            <span style={{ fontSize: 8, fontWeight: 600, color: "rgba(255,255,255,0.45)" }}>Expand</span>
-                            <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.35)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+                      <div style={{ background: "#141414", borderRadius: 16, border: "1px solid rgba(220,38,38,0.4)", boxShadow: "0 0 20px rgba(220,38,38,0.1)", padding: "10px 11px" }}>
+
+                        {/* Header */}
+                        <div style={{ display: "flex", alignItems: "center", gap: 5, marginBottom: 9 }}>
+                          <span style={{ fontSize: 7.5, fontWeight: 700, color: "rgba(255,255,255,0.28)", textTransform: "uppercase", letterSpacing: "0.17em", flex: 1 }}>Priority</span>
+                          <span style={{ fontSize: 8.5, fontWeight: 700, color: "#f87171", background: "rgba(220,38,38,0.14)", borderRadius: 6, padding: "2px 7px" }}>Critical · 1/4</span>
+                          <div style={{ display: "flex", alignItems: "center", gap: 3, background: "#1e1e1e", borderRadius: 7, padding: "3px 7px", border: "1px solid rgba(255,255,255,0.07)" }}>
+                            <span style={{ fontSize: 7.5, color: "rgba(255,255,255,0.5)" }}>↗</span>
+                            <span style={{ fontSize: 7.5, fontWeight: 600, color: "rgba(255,255,255,0.45)" }}>Expand Card</span>
                           </div>
                         </div>
-                        {/* Pillar tag */}
-                        <div style={{ display: "inline-flex", alignItems: "center", gap: 4, background: "rgba(167,139,250,0.12)", borderRadius: 6, padding: "2px 7px", marginBottom: 6 }}>
-                          <span style={{ fontSize: 8, fontWeight: 700, color: "#a78bfa" }}>Mental Health</span>
-                          <svg width="7" height="7" viewBox="0 0 24 24" fill="none" stroke="#a78bfa" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+
+                        {/* Pillar pill */}
+                        <div style={{ display: "inline-flex", alignItems: "center", gap: 3, background: "rgba(167,139,250,0.13)", borderRadius: 6, padding: "2px 8px", marginBottom: 7, border: "1px solid rgba(167,139,250,0.2)" }}>
+                          <span style={{ fontSize: 8, fontWeight: 700, color: "#a78bfa" }}>Mental</span>
+                          <span style={{ fontSize: 8, color: "#a78bfa", opacity: 0.7 }}>›</span>
                         </div>
-                        {/* Focus item */}
-                        <p style={{ margin: "0 0 9px", fontSize: 13, fontWeight: 800, color: "#fff", letterSpacing: "-0.02em", lineHeight: 1.25 }}>Reduce daily screen time to 2h</p>
+
+                        {/* Heading */}
+                        <p style={{ margin: "0 0 10px", fontSize: 16, fontWeight: 800, color: "#fff", letterSpacing: "-0.03em", lineHeight: 1.2 }}>Composure</p>
+
                         {/* Why this matters */}
-                        <div style={{ background: "#1e1e1e", borderRadius: 10, padding: "8px 9px", marginBottom: 8 }}>
+                        <div style={{ background: "#1c1c1c", borderRadius: 11, padding: "8px 10px", marginBottom: 7, border: "1px solid rgba(255,255,255,0.05)" }}>
                           <div style={{ display: "flex", alignItems: "center", gap: 5, marginBottom: 5 }}>
-                            <svg width="10" height="10" viewBox="0 0 24 24" fill="#a78bfa" stroke="none"><path d="M12 2l1.5 4.5H18l-3.75 2.75 1.5 4.5L12 11l-3.75 2.75 1.5-4.5L6 6.5h4.5z"/></svg>
-                            <span style={{ fontSize: 9, fontWeight: 700, color: "#fff" }}>Why this matters</span>
+                            <svg width="9" height="9" viewBox="0 0 24 24" fill="#a78bfa"><path d="M12 2l1.8 5.4H20l-4.8 3.5 1.8 5.5L12 13l-4.8 3.4 1.8-5.5L4.2 7.4H10.2z"/></svg>
+                            <span style={{ fontSize: 8.5, fontWeight: 700, color: "#fff" }}>Why this matters</span>
                           </div>
-                          <p style={{ margin: 0, fontSize: 8.5, color: "rgba(255,255,255,0.5)", lineHeight: 1.55 }}>High screen time directly suppresses dopamine and disrupts sleep architecture — both critical for your mental score recovery.</p>
+                          <p style={{ margin: 0, fontSize: 8, color: "rgba(255,255,255,0.45)", lineHeight: 1.6 }}>Composure protects decisions, relationships, and execution when stress hits.</p>
                         </div>
+
                         {/* Suggested tasks row */}
-                        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", background: "#1e1e1e", borderRadius: 10, padding: "7px 9px" }}>
+                        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", background: "#1c1c1c", borderRadius: 11, padding: "8px 10px", border: "1px solid rgba(255,255,255,0.05)" }}>
                           <div style={{ display: "flex", alignItems: "center", gap: 5 }}>
-                            <svg width="10" height="10" viewBox="0 0 24 24" fill="#a78bfa" stroke="none"><path d="M12 2l1.5 4.5H18l-3.75 2.75 1.5 4.5L12 11l-3.75 2.75 1.5-4.5L6 6.5h4.5z"/></svg>
-                            <span style={{ fontSize: 9, fontWeight: 600, color: "rgba(255,255,255,0.7)" }}>Suggested Tasks</span>
+                            <svg width="9" height="9" viewBox="0 0 24 24" fill="#a78bfa"><path d="M12 2l1.8 5.4H20l-4.8 3.5 1.8 5.5L12 13l-4.8 3.4 1.8-5.5L4.2 7.4H10.2z"/></svg>
+                            <span style={{ fontSize: 8.5, fontWeight: 600, color: "#fff" }}>Suggested Tasks</span>
                           </div>
-                          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.3)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+                          <span style={{ fontSize: 10, color: "rgba(255,255,255,0.3)" }}>›</span>
                         </div>
                       </div>
 
                       {/* ── LIFE SCORE CARD ── */}
-                      <div style={{ background: "#161616", borderRadius: 16, border: "1px solid rgba(255,255,255,0.07)", padding: "10px 11px 10px" }}>
-                        {/* Header row */}
-                        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 8 }}>
-                          <span style={{ fontSize: 8, fontWeight: 700, color: "rgba(255,255,255,0.3)", textTransform: "uppercase", letterSpacing: "0.16em" }}>Life Score</span>
-                          <div style={{ display: "flex", alignItems: "center", gap: 5 }}>
-                            {/* Grid toggle */}
-                            <div style={{ display: "flex", gap: 2 }}>
-                              <div style={{ width: 16, height: 16, background: "rgba(255,255,255,0.08)", borderRadius: 4, display: "grid", gridTemplateColumns: "1fr 1fr", gap: 1.5, padding: 3 }}>
-                                {[0,1,2,3].map(i => <div key={i} style={{ background: "rgba(255,255,255,0.4)", borderRadius: 1 }} />)}
-                              </div>
-                              <div style={{ width: 16, height: 16, background: "rgba(255,255,255,0.05)", borderRadius: 4, display: "flex", flexDirection: "column", gap: 1.5, padding: "3px 3px", justifyContent: "center" }}>
-                                {[0,1,2].map(i => <div key={i} style={{ height: 1.5, background: "rgba(255,255,255,0.25)", borderRadius: 1 }} />)}
-                              </div>
+                      <div style={{ background: "#141414", borderRadius: 16, border: "1px solid rgba(255,255,255,0.07)", padding: "10px 11px" }}>
+
+                        {/* Header */}
+                        <div style={{ display: "flex", alignItems: "center", gap: 5, marginBottom: 9 }}>
+                          <span style={{ fontSize: 7.5, fontWeight: 700, color: "rgba(255,255,255,0.28)", textTransform: "uppercase", letterSpacing: "0.17em", flex: 1 }}>Life Score</span>
+                          {/* View toggles */}
+                          <div style={{ display: "flex", gap: 3, alignItems: "center" }}>
+                            {/* list */}
+                            <div style={{ width: 15, height: 15, background: "rgba(255,255,255,0.06)", borderRadius: 4, display: "flex", flexDirection: "column", gap: 2, padding: "3px 3px", justifyContent: "center" }}>
+                              {[0,1,2].map(i => <div key={i} style={{ height: 1.5, background: "rgba(255,255,255,0.3)", borderRadius: 1 }} />)}
                             </div>
-                            <div style={{ background: "#222", borderRadius: 6, padding: "3px 7px" }}>
-                              <span style={{ fontSize: 8, fontWeight: 600, color: "rgba(255,255,255,0.45)" }}>Expand</span>
+                            {/* grid */}
+                            <div style={{ width: 15, height: 15, background: "rgba(255,255,255,0.06)", borderRadius: 4, display: "grid", gridTemplateColumns: "1fr 1fr", gap: 1.5, padding: 3 }}>
+                              {[0,1,2,3].map(i => <div key={i} style={{ background: "rgba(255,255,255,0.35)", borderRadius: 1 }} />)}
+                            </div>
+                            {/* circle */}
+                            <div style={{ width: 15, height: 15, background: "rgba(255,255,255,0.06)", borderRadius: 4, display: "flex", alignItems: "center", justifyContent: "center" }}>
+                              <div style={{ width: 7, height: 7, borderRadius: "50%", border: "1.5px solid rgba(255,255,255,0.3)" }} />
+                            </div>
+                            {/* hexagon (polygon approx) */}
+                            <div style={{ width: 15, height: 15, background: "rgba(255,255,255,0.06)", borderRadius: 4, display: "flex", alignItems: "center", justifyContent: "center" }}>
+                              <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.3)" strokeWidth="2"><polygon points="12 2 22 8 22 16 12 22 2 16 2 8"/></svg>
+                            </div>
+                            {/* lines */}
+                            <div style={{ width: 15, height: 15, background: "rgba(255,255,255,0.06)", borderRadius: 4, display: "flex", alignItems: "center", justifyContent: "center" }}>
+                              <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.3)" strokeWidth="2.5" strokeLinecap="round"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
                             </div>
                           </div>
+                          {/* Expand */}
+                          <div style={{ display: "flex", alignItems: "center", gap: 3, background: "#1e1e1e", borderRadius: 7, padding: "3px 7px", border: "1px solid rgba(255,255,255,0.07)" }}>
+                            <span style={{ fontSize: 7.5, color: "#fbbf24" }}>✦</span>
+                            <span style={{ fontSize: 7.5, fontWeight: 600, color: "rgba(255,255,255,0.45)" }}>Expand</span>
+                          </div>
                         </div>
-                        {/* Score */}
+
+                        {/* Score row */}
                         <div style={{ display: "flex", alignItems: "baseline", gap: 4, marginBottom: 10 }}>
-                          <span style={{ fontSize: 28, fontWeight: 800, color: "#fbbf24", letterSpacing: "-0.04em", lineHeight: 1 }}>61</span>
-                          <span style={{ fontSize: 13, fontWeight: 700, color: "#fbbf24" }}>%</span>
-                          <span style={{ fontSize: 9, fontWeight: 700, color: "#fbbf24", background: "rgba(251,191,36,0.12)", borderRadius: 6, padding: "2px 6px", marginLeft: 2 }}>Building</span>
+                          <span style={{ fontSize: 30, fontWeight: 800, color: "#fbbf24", letterSpacing: "-0.04em", lineHeight: 1 }}>61</span>
+                          <span style={{ fontSize: 12, fontWeight: 700, color: "#fbbf24" }}>%</span>
+                          <span style={{ fontSize: 9, fontWeight: 700, color: "#fbbf24", marginLeft: 3 }}>Building</span>
                         </div>
+
                         {/* 2×2 grid */}
                         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 6 }}>
                           {/* Physical */}
-                          <div style={{ background: "#1e1e1e", borderRadius: 12, padding: "9px 9px 8px", display: "flex", flexDirection: "column" }}>
+                          <div style={{ background: "#1c1c1c", borderRadius: 12, padding: "9px 9px 8px", display: "flex", flexDirection: "column" }}>
                             <div style={{ width: 20, height: 20, borderRadius: 7, background: "rgba(16,185,129,0.15)", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 6 }}>
                               <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#10b981" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
                             </div>
-                            <p style={{ margin: "0 0 5px", fontSize: 8, fontWeight: 600, color: "rgba(255,255,255,0.4)", textTransform: "uppercase", letterSpacing: "0.07em" }}>Physical</p>
+                            <p style={{ margin: "0 0 5px", fontSize: 7.5, fontWeight: 600, color: "rgba(255,255,255,0.38)", textTransform: "uppercase", letterSpacing: "0.07em" }}>Physical</p>
                             <div style={{ height: 2.5, borderRadius: 999, background: "rgba(255,255,255,0.07)", overflow: "hidden", marginBottom: 5 }}>
                               <div style={{ width: "60%", height: "100%", background: "#10b981", borderRadius: 999 }} />
                             </div>
                             <p style={{ margin: 0, fontSize: 13, fontWeight: 700, color: "#10b981", letterSpacing: "-0.02em" }}>60%</p>
                           </div>
                           {/* Mental */}
-                          <div style={{ background: "#1e1e1e", borderRadius: 12, padding: "9px 9px 8px", display: "flex", flexDirection: "column" }}>
+                          <div style={{ background: "#1c1c1c", borderRadius: 12, padding: "9px 9px 8px", display: "flex", flexDirection: "column" }}>
                             <div style={{ width: 20, height: 20, borderRadius: 7, background: "rgba(167,139,250,0.15)", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 6 }}>
-                              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#a78bfa" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96-.46 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 1.98-3A2.5 2.5 0 0 1 9.5 2Z"/><path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96-.46 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-1.98-3A2.5 2.5 0 0 0 14.5 2Z"/></svg>
+                              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#a78bfa" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96-.46 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 1.98-3A2.5 2.5 0 0 1 9.5 2Z"/><path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96-.46 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-1.98-3A2.5 2.5 0 0 0 14.5 2Z"/></svg>
                             </div>
-                            <p style={{ margin: "0 0 5px", fontSize: 8, fontWeight: 600, color: "rgba(255,255,255,0.4)", textTransform: "uppercase", letterSpacing: "0.07em" }}>Mental</p>
+                            <p style={{ margin: "0 0 5px", fontSize: 7.5, fontWeight: 600, color: "rgba(255,255,255,0.38)", textTransform: "uppercase", letterSpacing: "0.07em" }}>Mental</p>
                             <div style={{ height: 2.5, borderRadius: 999, background: "rgba(255,255,255,0.07)", overflow: "hidden", marginBottom: 5 }}>
                               <div style={{ width: "55%", height: "100%", background: "#a78bfa", borderRadius: 999 }} />
                             </div>
                             <p style={{ margin: 0, fontSize: 13, fontWeight: 700, color: "#a78bfa", letterSpacing: "-0.02em" }}>55%</p>
                           </div>
                           {/* Financial */}
-                          <div style={{ background: "#1e1e1e", borderRadius: 12, padding: "9px 9px 8px", display: "flex", flexDirection: "column" }}>
+                          <div style={{ background: "#1c1c1c", borderRadius: 12, padding: "9px 9px 8px", display: "flex", flexDirection: "column" }}>
                             <div style={{ width: 20, height: 20, borderRadius: 7, background: "rgba(96,165,250,0.15)", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 6 }}>
                               <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
                             </div>
-                            <p style={{ margin: "0 0 5px", fontSize: 8, fontWeight: 600, color: "rgba(255,255,255,0.4)", textTransform: "uppercase", letterSpacing: "0.07em" }}>Financial</p>
+                            <p style={{ margin: "0 0 5px", fontSize: 7.5, fontWeight: 600, color: "rgba(255,255,255,0.38)", textTransform: "uppercase", letterSpacing: "0.07em" }}>Financial</p>
                             <div style={{ height: 2.5, borderRadius: 999, background: "rgba(255,255,255,0.07)", overflow: "hidden", marginBottom: 5 }}>
                               <div style={{ width: "58%", height: "100%", background: "#60a5fa", borderRadius: 999 }} />
                             </div>
                             <p style={{ margin: 0, fontSize: 13, fontWeight: 700, color: "#60a5fa", letterSpacing: "-0.02em" }}>58%</p>
                           </div>
                           {/* Social */}
-                          <div style={{ background: "#1e1e1e", borderRadius: 12, padding: "9px 9px 8px", display: "flex", flexDirection: "column" }}>
+                          <div style={{ background: "#1c1c1c", borderRadius: 12, padding: "9px 9px 8px", display: "flex", flexDirection: "column" }}>
                             <div style={{ width: 20, height: 20, borderRadius: 7, background: "rgba(248,113,113,0.15)", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 6 }}>
                               <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#f87171" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
                             </div>
-                            <p style={{ margin: "0 0 5px", fontSize: 8, fontWeight: 600, color: "rgba(255,255,255,0.4)", textTransform: "uppercase", letterSpacing: "0.07em" }}>Social</p>
+                            <p style={{ margin: "0 0 5px", fontSize: 7.5, fontWeight: 600, color: "rgba(255,255,255,0.38)", textTransform: "uppercase", letterSpacing: "0.07em" }}>Social</p>
                             <div style={{ height: 2.5, borderRadius: 999, background: "rgba(255,255,255,0.07)", overflow: "hidden", marginBottom: 5 }}>
                               <div style={{ width: "70%", height: "100%", background: "#f87171", borderRadius: 999 }} />
                             </div>
@@ -455,7 +468,7 @@ export default function Hero() {
                       </div>
 
                       {/* Home bar */}
-                      <div style={{ margin: "4px auto 0", width: 70, height: 3, background: "rgba(255,255,255,0.1)", borderRadius: 999, flexShrink: 0 }} />
+                      <div style={{ margin: "2px auto 0", width: 70, height: 3, background: "rgba(255,255,255,0.1)", borderRadius: 999, flexShrink: 0 }} />
                     </div>
                   </div>
                 </div>
