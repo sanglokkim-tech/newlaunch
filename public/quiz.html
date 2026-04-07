@@ -4,52 +4,66 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>lifeOS Quiz</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
       background: #FFFFFF;
       color: #000000;
       min-height: 100dvh;
-      display: flex;
-      flex-direction: column;
       overflow: hidden;
-    }
-
-    /* ── Header ── */
-    header {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      background: #FFFFFF;
-      padding: 18px 24px 14px;
-      text-align: center;
-      border-bottom: 1px solid rgba(0,0,0,0.06);
-    }
-
-    .logo {
-      font-size: 20px;
-      font-weight: 800;
-      letter-spacing: -0.03em;
-      color: #00B5A6;
     }
 
     /* ── Progress bar ── */
     .progress-track {
       position: fixed;
-      top: 57px; left: 0; right: 0;
-      z-index: 99;
+      top: 0; left: 0; right: 0;
+      z-index: 200;
       height: 3px;
       background: rgba(0,0,0,0.07);
     }
-
     .progress-fill {
       height: 100%;
       background: #00B5A6;
       border-radius: 0 999px 999px 0;
-      transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     }
+
+    /* ── Logo ── */
+    .logo-bar {
+      position: fixed;
+      top: 3px; left: 0; right: 0;
+      z-index: 199;
+      padding: 16px 24px 12px;
+      text-align: center;
+      background: #FFFFFF;
+    }
+    .logo {
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: #111111;
+    }
+    .logo span { color: #00B5A6; }
+
+    /* ── Progress label ── */
+    .progress-label {
+      position: fixed;
+      top: 55px; left: 0; right: 0;
+      z-index: 198;
+      text-align: center;
+      font-size: 11px;
+      font-weight: 600;
+      color: #9CA3AF;
+      letter-spacing: 0.06em;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+    .progress-label.hidden { opacity: 0; }
 
     /* ── Screens ── */
     .screen {
@@ -57,13 +71,15 @@
       inset: 0;
       display: flex;
       flex-direction: column;
-      padding: 90px 24px 32px;
+      align-items: center;
+      justify-content: center;
+      padding: 80px 24px 32px;
       overflow-y: auto;
       opacity: 0;
       pointer-events: none;
-      transition: opacity 0.35s ease;
+      transition: opacity 0.38s ease;
+      will-change: opacity;
     }
-
     .screen.active {
       opacity: 1;
       pointer-events: auto;
@@ -72,87 +88,197 @@
     .screen-inner {
       max-width: 480px;
       width: 100%;
-      margin: 0 auto;
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding-bottom: 24px;
     }
 
-    /* ── Question ── */
-    .q-number {
+    /* ── Title screen ── */
+    #screen-start {
+      overflow: hidden;
+    }
+    .blob-container {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+    .blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(60px);
+      opacity: 0;
+      animation: blobFloat 12s ease-in-out infinite;
+    }
+    .blob-1 {
+      width: 300px; height: 300px;
+      background: rgba(0,181,166,0.12);
+      top: -80px; left: -60px;
+      animation-delay: 0s;
+    }
+    .blob-2 {
+      width: 220px; height: 220px;
+      background: rgba(0,181,166,0.08);
+      bottom: 20px; right: -40px;
+      animation-delay: -4s;
+    }
+    .blob-3 {
+      width: 180px; height: 180px;
+      background: rgba(200,240,238,0.3);
+      top: 40%; left: 50%;
+      transform: translateX(-50%);
+      animation-delay: -8s;
+    }
+    @keyframes blobFloat {
+      0%   { opacity: 0;    transform: translate(0, 0) scale(1); }
+      20%  { opacity: 1; }
+      50%  { transform: translate(20px, -30px) scale(1.08); }
+      80%  { opacity: 1; }
+      100% { opacity: 0;    transform: translate(0, 0) scale(1); }
+    }
+
+    .start-inner {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+    }
+    .start-eyebrow {
       font-size: 11px;
       font-weight: 600;
       letter-spacing: 0.18em;
       text-transform: uppercase;
       color: #00B5A6;
+      margin-bottom: 20px;
+    }
+    .start-title {
+      font-size: clamp(24px, 6vw, 34px);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.2;
+      color: #000000;
+      margin-bottom: 20px;
+    }
+    .start-sub {
+      font-size: 15px;
+      color: #6B7280;
+      margin-bottom: 40px;
+      letter-spacing: 0.01em;
+    }
+    .start-btn {
+      display: block;
+      width: 100%;
+      padding: 17px 24px;
+      background: #00B5A6;
+      color: #FFFFFF;
+      font-family: inherit;
+      font-size: 16px;
+      font-weight: 700;
+      border: none;
+      border-radius: 16px;
+      cursor: pointer;
+      letter-spacing: -0.01em;
+      box-shadow: 0 8px 28px rgba(0,181,166,0.28);
+      transition: opacity 0.2s ease, transform 0.15s ease;
+    }
+    .start-btn:hover { opacity: 0.9; transform: translateY(-1px); }
+    .start-btn:active { transform: scale(0.98); }
+
+    /* ── Questions ── */
+    .q-number {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #00B5A6;
       margin-bottom: 14px;
     }
-
     .q-text {
       font-size: clamp(20px, 5vw, 26px);
       font-weight: 700;
       line-height: 1.3;
-      letter-spacing: -0.02em;
+      letter-spacing: -0.025em;
       color: #000000;
-      margin-bottom: 32px;
+      margin-bottom: 28px;
     }
 
-    /* ── Answer options ── */
+    /* ── Answer cards ── */
     .options {
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: 10px;
     }
-
     .option {
       display: block;
       width: 100%;
-      padding: 16px 20px;
+      padding: 17px 20px;
       background: #FFFFFF;
       border: 1.5px solid #E5E7EB;
-      border-radius: 14px;
+      border-radius: 16px;
+      font-family: inherit;
       font-size: 15px;
       font-weight: 500;
       color: #111111;
       text-align: left;
       cursor: pointer;
-      line-height: 1.4;
-      transition: border-color 0.15s ease, background 0.15s ease, transform 0.12s ease;
+      line-height: 1.45;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+      transition: border-color 0.15s ease, background 0.18s ease, transform 0.15s ease, box-shadow 0.15s ease, color 0.18s ease;
       -webkit-tap-highlight-color: transparent;
     }
-
     .option:hover {
       border-color: #00B5A6;
-      background: rgba(0, 181, 166, 0.04);
+      box-shadow: 0 4px 14px rgba(0,181,166,0.12);
+      transform: translateY(-1px);
+    }
+    .option.selected {
+      background: #00B5A6;
+      border-color: #00B5A6;
+      color: #FFFFFF;
+      transform: scale(1.02);
+      box-shadow: 0 6px 20px rgba(0,181,166,0.28);
     }
 
-    .option.selected {
-      border-color: #00B5A6;
-      background: rgba(0, 181, 166, 0.08);
-      transform: scale(0.985);
+    /* ── Acknowledgement overlay ── */
+    #ack-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 300;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
+    }
+    #ack-overlay.visible {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    #ack-text {
+      font-size: clamp(24px, 6vw, 36px);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: #00B5A6;
+      text-align: center;
+      padding: 0 32px;
     }
 
     /* ── End screen ── */
-    .end-screen .screen-inner {
-      justify-content: center;
+    #screen-end .screen-inner {
       text-align: center;
+      position: relative;
+      z-index: 2;
     }
-
     .end-icon {
-      width: 56px;
-      height: 56px;
-      background: rgba(0, 181, 166, 0.1);
+      width: 60px;
+      height: 60px;
+      background: rgba(0,181,166,0.1);
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
       margin: 0 auto 28px;
     }
-
-    .end-icon svg { display: block; }
-
     .end-headline {
       font-size: clamp(26px, 6vw, 34px);
       font-weight: 800;
@@ -161,134 +287,162 @@
       color: #000000;
       margin-bottom: 16px;
     }
-
     .end-sub {
       font-size: 16px;
       color: #555555;
-      line-height: 1.6;
-      margin-bottom: 40px;
-      max-width: 320px;
+      line-height: 1.65;
+      margin-bottom: 36px;
+      max-width: 300px;
       margin-left: auto;
       margin-right: auto;
     }
-
     .cta-btn {
       display: block;
       width: 100%;
-      max-width: 360px;
-      margin: 0 auto;
       padding: 18px 24px;
       background: #00B5A6;
       color: #FFFFFF;
+      font-family: inherit;
       font-size: 16px;
       font-weight: 700;
       border: none;
-      border-radius: 14px;
+      border-radius: 16px;
       text-align: center;
       text-decoration: none;
       cursor: pointer;
       letter-spacing: -0.01em;
-      box-shadow: 0 8px 24px rgba(0, 181, 166, 0.3);
+      box-shadow: 0 8px 28px rgba(0,181,166,0.3);
       transition: opacity 0.2s ease, transform 0.15s ease;
     }
-
-    .cta-btn:hover {
-      opacity: 0.9;
-      transform: translateY(-1px);
-    }
-
+    .cta-btn:hover { opacity: 0.9; transform: translateY(-1px); }
     .cta-note {
       margin-top: 14px;
       font-size: 12px;
       color: #9CA3AF;
     }
+
+    /* ── Confetti canvas ── */
+    #confetti-canvas {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 1;
+    }
   </style>
 </head>
 <body>
 
-  <header>
-    <div class="logo">life<span style="color:#00B5A6">OS</span></div>
-  </header>
-
+  <!-- Progress -->
   <div class="progress-track">
-    <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+    <div class="progress-fill" id="progressFill" style="width:0%"></div>
   </div>
 
-  <!-- Q1 -->
-  <div class="screen active" id="screen-0">
+  <!-- Logo -->
+  <div class="logo-bar">
+    <div class="logo">life<span>OS</span></div>
+  </div>
+
+  <!-- Progress label -->
+  <div class="progress-label hidden" id="progressLabel">1 of 5</div>
+
+  <!-- Acknowledgement overlay -->
+  <div id="ack-overlay">
+    <p id="ack-text"></p>
+  </div>
+
+  <!-- Confetti canvas (end screen) -->
+  <canvas id="confetti-canvas"></canvas>
+
+  <!-- ── Title screen ── -->
+  <div class="screen active" id="screen-start">
+    <div class="blob-container" aria-hidden="true">
+      <div class="blob blob-1"></div>
+      <div class="blob blob-2"></div>
+      <div class="blob blob-3"></div>
+    </div>
+    <div class="screen-inner start-inner">
+      <p class="start-eyebrow">lifeOS · Self-assessment</p>
+      <h1 class="start-title">Why does it feel like you're busy but going nowhere?</h1>
+      <p class="start-sub">5 questions. 60 seconds. Find out.</p>
+      <button class="start-btn" onclick="startQuiz()">Start →</button>
+    </div>
+  </div>
+
+  <!-- ── Q1 ── -->
+  <div class="screen" id="screen-0">
     <div class="screen-inner">
       <p class="q-number">Question 1 of 5</p>
       <h2 class="q-text">Which of these sounds most like you right now?</h2>
       <div class="options">
-        <button class="option" onclick="select(0,this)">I work hard but can't tell if I'm making real progress</button>
-        <button class="option" onclick="select(0,this)">I know what I want but keep putting it off</button>
-        <button class="option" onclick="select(0,this)">I feel like I'm neglecting something important but don't know what</button>
-        <button class="option" onclick="select(0,this)">I'm doing okay, but something feels off</button>
+        <button class="option" onclick="choose(0,this)">I work hard but can't tell if I'm making real progress</button>
+        <button class="option" onclick="choose(0,this)">I know what I want but keep putting it off</button>
+        <button class="option" onclick="choose(0,this)">I feel like I'm neglecting something important but don't know what</button>
+        <button class="option" onclick="choose(0,this)">I'm doing okay, but something feels off</button>
       </div>
     </div>
   </div>
 
-  <!-- Q2 -->
+  <!-- ── Q2 ── -->
   <div class="screen" id="screen-1">
     <div class="screen-inner">
       <p class="q-number">Question 2 of 5</p>
       <h2 class="q-text">If you had one extra hour today, you'd probably:</h2>
       <div class="options">
-        <button class="option" onclick="select(1,this)">Scroll (you're exhausted)</button>
-        <button class="option" onclick="select(1,this)">Work more — there's always more to do</button>
-        <button class="option" onclick="select(1,this)">Exercise or do something for yourself (but you rarely do)</button>
-        <button class="option" onclick="select(1,this)">Spend time with people you care about (but life gets in the way)</button>
+        <button class="option" onclick="choose(1,this)">Scroll (you're exhausted)</button>
+        <button class="option" onclick="choose(1,this)">Work more — there's always more to do</button>
+        <button class="option" onclick="choose(1,this)">Exercise or do something for yourself (but you rarely do)</button>
+        <button class="option" onclick="choose(1,this)">Spend time with people you care about (but life gets in the way)</button>
       </div>
     </div>
   </div>
 
-  <!-- Q3 -->
+  <!-- ── Q3 ── -->
   <div class="screen" id="screen-2">
     <div class="screen-inner">
       <p class="q-number">Question 3 of 5</p>
       <h2 class="q-text">Which area of your life feels most neglected right now?</h2>
       <div class="options">
-        <button class="option" onclick="select(2,this)">Health &amp; energy</button>
-        <button class="option" onclick="select(2,this)">Relationships &amp; family</button>
-        <button class="option" onclick="select(2,this)">Money &amp; career</button>
-        <button class="option" onclick="select(2,this)">Personal growth / sense of purpose</button>
+        <button class="option" onclick="choose(2,this)">Health &amp; energy</button>
+        <button class="option" onclick="choose(2,this)">Relationships &amp; family</button>
+        <button class="option" onclick="choose(2,this)">Money &amp; career</button>
+        <button class="option" onclick="choose(2,this)">Personal growth / sense of purpose</button>
       </div>
     </div>
   </div>
 
-  <!-- Q4 -->
+  <!-- ── Q4 ── -->
   <div class="screen" id="screen-3">
     <div class="screen-inner">
       <p class="q-number">Question 4 of 5</p>
       <h2 class="q-text">How often do you feel like you're making real progress on what actually matters?</h2>
       <div class="options">
-        <button class="option" onclick="select(3,this)">Almost never</button>
-        <button class="option" onclick="select(3,this)">Sometimes, but it doesn't last</button>
-        <button class="option" onclick="select(3,this)">Often, but only in one area — everything else suffers</button>
-        <button class="option" onclick="select(3,this)">Honestly not sure</button>
+        <button class="option" onclick="choose(3,this)">Almost never</button>
+        <button class="option" onclick="choose(3,this)">Sometimes, but it doesn't last</button>
+        <button class="option" onclick="choose(3,this)">Often, but only in one area — everything else suffers</button>
+        <button class="option" onclick="choose(3,this)">Honestly not sure</button>
       </div>
     </div>
   </div>
 
-  <!-- Q5 -->
+  <!-- ── Q5 ── -->
   <div class="screen" id="screen-4">
     <div class="screen-inner">
       <p class="q-number">Question 5 of 5</p>
       <h2 class="q-text">What would "winning at life" actually look like for you?</h2>
       <div class="options">
-        <button class="option" onclick="select(4,this)">Feeling in control of my time</button>
-        <button class="option" onclick="select(4,this)">Knowing I'm building toward something</button>
-        <button class="option" onclick="select(4,this)">Not feeling guilty about how I spend my days</button>
-        <button class="option" onclick="select(4,this)">Having balance — not sacrificing one thing for another</button>
+        <button class="option" onclick="choose(4,this)">Feeling in control of my time</button>
+        <button class="option" onclick="choose(4,this)">Knowing I'm building toward something</button>
+        <button class="option" onclick="choose(4,this)">Not feeling guilty about how I spend my days</button>
+        <button class="option" onclick="choose(4,this)">Having balance — not sacrificing one thing for another</button>
       </div>
     </div>
   </div>
 
-  <!-- End screen -->
-  <div class="screen end-screen" id="screen-5">
+  <!-- ── End screen ── -->
+  <div class="screen" id="screen-end">
     <div class="screen-inner">
       <div class="end-icon">
-        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#00B5A6" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#00B5A6" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/>
         </svg>
       </div>
@@ -297,56 +451,160 @@
       <a class="cta-btn" href="https://newlaunch-nu.vercel.app/" target="_blank" rel="noopener noreferrer">
         Join the waitlist →
       </a>
-      <p class="cta-note">No spam. Launch notification only.</p>
+      <p class="cta-note">No spam. Just early access.</p>
     </div>
   </div>
 
   <script>
     const TOTAL = 5;
-    let current = 0;
-    let transitioning = false;
+    const ACKS = [
+      "You're not alone.",
+      "That tracks.",
+      "Noted.",
+      "Same for most people.",
+      "That's what we're building for."
+    ];
 
-    function updateProgress(step) {
-      const pct = step === 0 ? 0 : (step / TOTAL) * 100;
-      document.getElementById("progressFill").style.width = pct + "%";
+    let current = "start";
+    let busy = false;
+
+    const progressFill  = document.getElementById("progressFill");
+    const progressLabel = document.getElementById("progressLabel");
+    const ackOverlay    = document.getElementById("ack-overlay");
+    const ackText       = document.getElementById("ack-text");
+
+    function setProgress(qIndex) {
+      // qIndex: 0–5 (0 = none, 5 = done)
+      const pct = qIndex === 0 ? 0 : (qIndex / TOTAL) * 100;
+      progressFill.style.width = pct + "%";
+      if (qIndex >= 1 && qIndex <= 5) {
+        progressLabel.textContent = qIndex + " of 5";
+        progressLabel.classList.remove("hidden");
+      } else {
+        progressLabel.classList.add("hidden");
+      }
     }
 
-    function goTo(index) {
-      if (transitioning) return;
-      transitioning = true;
+    function fadeOut(id) {
+      const el = document.getElementById(id);
+      el.style.opacity = "0";
+      el.style.pointerEvents = "none";
+      setTimeout(() => el.classList.remove("active"), 380);
+    }
 
-      const from = document.getElementById("screen-" + current);
-      const to   = document.getElementById("screen-" + index);
+    function fadeIn(id) {
+      const el = document.getElementById(id);
+      el.classList.add("active");
+      el.getBoundingClientRect(); // reflow
+      el.style.opacity = "1";
+      el.style.pointerEvents = "auto";
+    }
 
-      from.style.opacity = "0";
-      from.style.pointerEvents = "none";
-
+    function startQuiz() {
+      if (busy) return;
+      busy = true;
+      fadeOut("screen-start");
       setTimeout(() => {
-        from.classList.remove("active");
-        to.classList.add("active");
-        // force reflow
-        to.getBoundingClientRect();
-        to.style.opacity = "1";
-        to.style.pointerEvents = "auto";
-        current = index;
-        updateProgress(index);
-        transitioning = false;
-      }, 350);
+        fadeIn("screen-0");
+        current = 0;
+        setProgress(0);
+        busy = false;
+      }, 380);
     }
 
-    function select(qIndex, btn) {
-      if (transitioning) return;
+    function choose(qIndex, btn) {
+      if (busy) return;
+      busy = true;
 
-      // Visual feedback
+      // Disable all options in this screen
+      btn.closest(".options").querySelectorAll(".option").forEach(b => b.disabled = true);
+
+      // Teal fill + scale
       btn.classList.add("selected");
 
+      // Show acknowledgement after 300ms
       setTimeout(() => {
-        goTo(qIndex + 1);
-      }, 280);
+        ackText.textContent = ACKS[qIndex];
+        ackOverlay.classList.add("visible");
+
+        // Fade out current question behind overlay
+        fadeOut("screen-" + qIndex);
+
+        // After 600ms acknowledgement visible → fade it out, show next
+        setTimeout(() => {
+          ackOverlay.classList.remove("visible");
+
+          setTimeout(() => {
+            const nextId = qIndex === TOTAL - 1 ? "screen-end" : "screen-" + (qIndex + 1);
+            fadeIn(nextId);
+
+            if (qIndex === TOTAL - 1) {
+              setProgress(5);
+              launchConfetti();
+            } else {
+              current = qIndex + 1;
+              setProgress(qIndex + 1);
+            }
+            busy = false;
+          }, 260);
+        }, 700);
+      }, 300);
     }
 
-    // Init progress
-    updateProgress(0);
+    /* ── Confetti ── */
+    function launchConfetti() {
+      const canvas = document.getElementById("confetti-canvas");
+      const ctx = canvas.getContext("2d");
+      canvas.width  = window.innerWidth;
+      canvas.height = window.innerHeight;
+
+      const COLORS = ["#00B5A6","#34D399","#A7F3D0","#6EE7B7","#FFFFFF","#D1FAE5"];
+      const pieces = Array.from({ length: 110 }, () => ({
+        x: Math.random() * canvas.width,
+        y: -10 - Math.random() * 200,
+        w: 6 + Math.random() * 8,
+        h: 3 + Math.random() * 5,
+        r: Math.random() * Math.PI * 2,
+        rd: (Math.random() - 0.5) * 0.18,
+        vx: (Math.random() - 0.5) * 2,
+        vy: 2.5 + Math.random() * 3,
+        color: COLORS[Math.floor(Math.random() * COLORS.length)],
+        alpha: 1,
+      }));
+
+      let frame;
+      let elapsed = 0;
+
+      function draw() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        let alive = false;
+
+        pieces.forEach(p => {
+          if (p.y > canvas.height + 20) return;
+          alive = true;
+          p.x  += p.vx;
+          p.y  += p.vy;
+          p.r  += p.rd;
+          p.vy += 0.04; // gravity
+          if (elapsed > 80) p.alpha = Math.max(0, p.alpha - 0.012);
+
+          ctx.save();
+          ctx.globalAlpha = p.alpha;
+          ctx.translate(p.x, p.y);
+          ctx.rotate(p.r);
+          ctx.fillStyle = p.color;
+          ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+          ctx.restore();
+        });
+
+        elapsed++;
+        if (alive) frame = requestAnimationFrame(draw);
+        else ctx.clearRect(0, 0, canvas.width, canvas.height);
+      }
+
+      cancelAnimationFrame(frame);
+      draw();
+    }
   </script>
 </body>
 </html>
