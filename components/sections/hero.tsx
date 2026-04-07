@@ -333,79 +333,129 @@ export default function Hero() {
                   <div className="lo-hw-btn absolute" style={{ top: 220, left: -3, width: 3, height: 45, borderRadius: "3px 0 0 3px" }} aria-hidden="true" />
                   <div className="lo-hw-btn absolute" style={{ top: 170, right: -3, width: 3, height: 70, borderRadius: "0 3px 3px 0", transform: "scaleX(-1)" }} aria-hidden="true" />
 
-                  {/* Screen — Life Score Dashboard */}
-                  <div style={{ position: "absolute", inset: 7, background: "#1a1a2e", borderRadius: "2.5rem", overflow: "hidden", color: "#fff" }}>
+                  {/* Screen */}
+                  <div style={{ position: "absolute", inset: 7, background: "#0d0d0d", borderRadius: "2.5rem", overflow: "hidden", color: "#fff" }}>
                     {/* Glare */}
-                    <div aria-hidden="true" style={{ position: "absolute", inset: 0, borderRadius: "2.5rem", background: "linear-gradient(120deg,rgba(255,255,255,0.07) 0%,transparent 50%)", pointerEvents: "none", zIndex: 10 }} />
+                    <div aria-hidden="true" style={{ position: "absolute", inset: 0, borderRadius: "2.5rem", background: "linear-gradient(120deg,rgba(255,255,255,0.05) 0%,transparent 45%)", pointerEvents: "none", zIndex: 10 }} />
                     {/* Dynamic island */}
                     <div style={{ position: "absolute", top: 6, left: "50%", transform: "translateX(-50%)", width: 90, height: 24, background: "#000", borderRadius: 999, zIndex: 20 }} />
 
-                    {/* Content */}
-                    <div style={{ position: "absolute", inset: 0, display: "flex", flexDirection: "column", padding: "40px 12px 16px" }}>
+                    {/* Scrollable content */}
+                    <div style={{ position: "absolute", inset: 0, overflowY: "auto", display: "flex", flexDirection: "column", gap: 8, padding: "38px 10px 16px" }}>
 
-                      {/* LIFE SCORE label */}
-                      <p style={{ margin: "0 0 4px", fontSize: 8, fontWeight: 700, color: "rgba(255,255,255,0.35)", textTransform: "uppercase", letterSpacing: "0.18em" }}>Life Score</p>
-
-                      {/* Score row */}
-                      <div style={{ display: "flex", alignItems: "baseline", gap: 5, marginBottom: 14 }}>
-                        <span style={{ fontSize: 36, fontWeight: 800, color: "#fbbf24", letterSpacing: "-0.04em", lineHeight: 1 }}>61</span>
-                        <span style={{ fontSize: 16, fontWeight: 700, color: "#fbbf24" }}>%</span>
-                        <span style={{ fontSize: 10, fontWeight: 700, color: "#a78bfa", background: "rgba(167,139,250,0.18)", borderRadius: 6, padding: "2px 7px", marginLeft: 2 }}>Building</span>
+                      {/* ── PRIORITY CARD ── */}
+                      <div style={{ background: "#161616", borderRadius: 16, border: "1px solid rgba(220,38,38,0.35)", boxShadow: "0 0 18px rgba(220,38,38,0.12)", padding: "10px 11px 10px" }}>
+                        {/* Header row */}
+                        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 8 }}>
+                          <span style={{ fontSize: 8, fontWeight: 700, color: "rgba(255,255,255,0.3)", textTransform: "uppercase", letterSpacing: "0.16em" }}>Priority</span>
+                          <span style={{ fontSize: 9, fontWeight: 700, color: "#f87171", background: "rgba(220,38,38,0.12)", borderRadius: 6, padding: "2px 7px" }}>Critical · 1/4</span>
+                          <div style={{ display: "flex", alignItems: "center", gap: 3, background: "#222", borderRadius: 6, padding: "3px 7px" }}>
+                            <span style={{ fontSize: 8, fontWeight: 600, color: "rgba(255,255,255,0.45)" }}>Expand</span>
+                            <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.35)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+                          </div>
+                        </div>
+                        {/* Pillar tag */}
+                        <div style={{ display: "inline-flex", alignItems: "center", gap: 4, background: "rgba(167,139,250,0.12)", borderRadius: 6, padding: "2px 7px", marginBottom: 6 }}>
+                          <span style={{ fontSize: 8, fontWeight: 700, color: "#a78bfa" }}>Mental Health</span>
+                          <svg width="7" height="7" viewBox="0 0 24 24" fill="none" stroke="#a78bfa" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+                        </div>
+                        {/* Focus item */}
+                        <p style={{ margin: "0 0 9px", fontSize: 13, fontWeight: 800, color: "#fff", letterSpacing: "-0.02em", lineHeight: 1.25 }}>Reduce daily screen time to 2h</p>
+                        {/* Why this matters */}
+                        <div style={{ background: "#1e1e1e", borderRadius: 10, padding: "8px 9px", marginBottom: 8 }}>
+                          <div style={{ display: "flex", alignItems: "center", gap: 5, marginBottom: 5 }}>
+                            <svg width="10" height="10" viewBox="0 0 24 24" fill="#a78bfa" stroke="none"><path d="M12 2l1.5 4.5H18l-3.75 2.75 1.5 4.5L12 11l-3.75 2.75 1.5-4.5L6 6.5h4.5z"/></svg>
+                            <span style={{ fontSize: 9, fontWeight: 700, color: "#fff" }}>Why this matters</span>
+                          </div>
+                          <p style={{ margin: 0, fontSize: 8.5, color: "rgba(255,255,255,0.5)", lineHeight: 1.55 }}>High screen time directly suppresses dopamine and disrupts sleep architecture — both critical for your mental score recovery.</p>
+                        </div>
+                        {/* Suggested tasks row */}
+                        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", background: "#1e1e1e", borderRadius: 10, padding: "7px 9px" }}>
+                          <div style={{ display: "flex", alignItems: "center", gap: 5 }}>
+                            <svg width="10" height="10" viewBox="0 0 24 24" fill="#a78bfa" stroke="none"><path d="M12 2l1.5 4.5H18l-3.75 2.75 1.5 4.5L12 11l-3.75 2.75 1.5-4.5L6 6.5h4.5z"/></svg>
+                            <span style={{ fontSize: 9, fontWeight: 600, color: "rgba(255,255,255,0.7)" }}>Suggested Tasks</span>
+                          </div>
+                          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.3)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+                        </div>
                       </div>
 
-                      {/* 2×2 grid */}
-                      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8, flex: 1 }}>
-                        {/* Physical */}
-                        <div style={{ background: "#1e1e32", borderRadius: 14, padding: "11px 11px 10px", display: "flex", flexDirection: "column" }}>
-                          <div style={{ width: 24, height: 24, borderRadius: 8, background: "rgba(16,185,129,0.15)", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 8 }}>
-                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#10b981" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                      {/* ── LIFE SCORE CARD ── */}
+                      <div style={{ background: "#161616", borderRadius: 16, border: "1px solid rgba(255,255,255,0.07)", padding: "10px 11px 10px" }}>
+                        {/* Header row */}
+                        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 8 }}>
+                          <span style={{ fontSize: 8, fontWeight: 700, color: "rgba(255,255,255,0.3)", textTransform: "uppercase", letterSpacing: "0.16em" }}>Life Score</span>
+                          <div style={{ display: "flex", alignItems: "center", gap: 5 }}>
+                            {/* Grid toggle */}
+                            <div style={{ display: "flex", gap: 2 }}>
+                              <div style={{ width: 16, height: 16, background: "rgba(255,255,255,0.08)", borderRadius: 4, display: "grid", gridTemplateColumns: "1fr 1fr", gap: 1.5, padding: 3 }}>
+                                {[0,1,2,3].map(i => <div key={i} style={{ background: "rgba(255,255,255,0.4)", borderRadius: 1 }} />)}
+                              </div>
+                              <div style={{ width: 16, height: 16, background: "rgba(255,255,255,0.05)", borderRadius: 4, display: "flex", flexDirection: "column", gap: 1.5, padding: "3px 3px", justifyContent: "center" }}>
+                                {[0,1,2].map(i => <div key={i} style={{ height: 1.5, background: "rgba(255,255,255,0.25)", borderRadius: 1 }} />)}
+                              </div>
+                            </div>
+                            <div style={{ background: "#222", borderRadius: 6, padding: "3px 7px" }}>
+                              <span style={{ fontSize: 8, fontWeight: 600, color: "rgba(255,255,255,0.45)" }}>Expand</span>
+                            </div>
                           </div>
-                          <p style={{ margin: "0 0 6px", fontSize: 9, fontWeight: 600, color: "rgba(255,255,255,0.45)", textTransform: "uppercase", letterSpacing: "0.08em" }}>Physical</p>
-                          <div style={{ height: 3, borderRadius: 999, background: "rgba(255,255,255,0.08)", overflow: "hidden", marginBottom: 6 }}>
-                            <div style={{ width: "60%", height: "100%", background: "#10b981", borderRadius: 999 }} />
-                          </div>
-                          <p style={{ margin: 0, fontSize: 15, fontWeight: 700, color: "#10b981", letterSpacing: "-0.02em" }}>60%</p>
                         </div>
-
-                        {/* Mental */}
-                        <div style={{ background: "#1e1e32", borderRadius: 14, padding: "11px 11px 10px", display: "flex", flexDirection: "column" }}>
-                          <div style={{ width: 24, height: 24, borderRadius: 8, background: "rgba(167,139,250,0.15)", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 8 }}>
-                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#a78bfa" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
-                          </div>
-                          <p style={{ margin: "0 0 6px", fontSize: 9, fontWeight: 600, color: "rgba(255,255,255,0.45)", textTransform: "uppercase", letterSpacing: "0.08em" }}>Mental</p>
-                          <div style={{ height: 3, borderRadius: 999, background: "rgba(255,255,255,0.08)", overflow: "hidden", marginBottom: 6 }}>
-                            <div style={{ width: "55%", height: "100%", background: "#a78bfa", borderRadius: 999 }} />
-                          </div>
-                          <p style={{ margin: 0, fontSize: 15, fontWeight: 700, color: "#a78bfa", letterSpacing: "-0.02em" }}>55%</p>
+                        {/* Score */}
+                        <div style={{ display: "flex", alignItems: "baseline", gap: 4, marginBottom: 10 }}>
+                          <span style={{ fontSize: 28, fontWeight: 800, color: "#fbbf24", letterSpacing: "-0.04em", lineHeight: 1 }}>61</span>
+                          <span style={{ fontSize: 13, fontWeight: 700, color: "#fbbf24" }}>%</span>
+                          <span style={{ fontSize: 9, fontWeight: 700, color: "#fbbf24", background: "rgba(251,191,36,0.12)", borderRadius: 6, padding: "2px 6px", marginLeft: 2 }}>Building</span>
                         </div>
-
-                        {/* Financial */}
-                        <div style={{ background: "#1e1e32", borderRadius: 14, padding: "11px 11px 10px", display: "flex", flexDirection: "column" }}>
-                          <div style={{ width: 24, height: 24, borderRadius: 8, background: "rgba(96,165,250,0.15)", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 8 }}>
-                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+                        {/* 2×2 grid */}
+                        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 6 }}>
+                          {/* Physical */}
+                          <div style={{ background: "#1e1e1e", borderRadius: 12, padding: "9px 9px 8px", display: "flex", flexDirection: "column" }}>
+                            <div style={{ width: 20, height: 20, borderRadius: 7, background: "rgba(16,185,129,0.15)", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 6 }}>
+                              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#10b981" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                            </div>
+                            <p style={{ margin: "0 0 5px", fontSize: 8, fontWeight: 600, color: "rgba(255,255,255,0.4)", textTransform: "uppercase", letterSpacing: "0.07em" }}>Physical</p>
+                            <div style={{ height: 2.5, borderRadius: 999, background: "rgba(255,255,255,0.07)", overflow: "hidden", marginBottom: 5 }}>
+                              <div style={{ width: "60%", height: "100%", background: "#10b981", borderRadius: 999 }} />
+                            </div>
+                            <p style={{ margin: 0, fontSize: 13, fontWeight: 700, color: "#10b981", letterSpacing: "-0.02em" }}>60%</p>
                           </div>
-                          <p style={{ margin: "0 0 6px", fontSize: 9, fontWeight: 600, color: "rgba(255,255,255,0.45)", textTransform: "uppercase", letterSpacing: "0.08em" }}>Financial</p>
-                          <div style={{ height: 3, borderRadius: 999, background: "rgba(255,255,255,0.08)", overflow: "hidden", marginBottom: 6 }}>
-                            <div style={{ width: "58%", height: "100%", background: "#60a5fa", borderRadius: 999 }} />
+                          {/* Mental */}
+                          <div style={{ background: "#1e1e1e", borderRadius: 12, padding: "9px 9px 8px", display: "flex", flexDirection: "column" }}>
+                            <div style={{ width: 20, height: 20, borderRadius: 7, background: "rgba(167,139,250,0.15)", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 6 }}>
+                              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#a78bfa" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96-.46 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 1.98-3A2.5 2.5 0 0 1 9.5 2Z"/><path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96-.46 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-1.98-3A2.5 2.5 0 0 0 14.5 2Z"/></svg>
+                            </div>
+                            <p style={{ margin: "0 0 5px", fontSize: 8, fontWeight: 600, color: "rgba(255,255,255,0.4)", textTransform: "uppercase", letterSpacing: "0.07em" }}>Mental</p>
+                            <div style={{ height: 2.5, borderRadius: 999, background: "rgba(255,255,255,0.07)", overflow: "hidden", marginBottom: 5 }}>
+                              <div style={{ width: "55%", height: "100%", background: "#a78bfa", borderRadius: 999 }} />
+                            </div>
+                            <p style={{ margin: 0, fontSize: 13, fontWeight: 700, color: "#a78bfa", letterSpacing: "-0.02em" }}>55%</p>
                           </div>
-                          <p style={{ margin: 0, fontSize: 15, fontWeight: 700, color: "#60a5fa", letterSpacing: "-0.02em" }}>58%</p>
-                        </div>
-
-                        {/* Social */}
-                        <div style={{ background: "#1e1e32", borderRadius: 14, padding: "11px 11px 10px", display: "flex", flexDirection: "column" }}>
-                          <div style={{ width: 24, height: 24, borderRadius: 8, background: "rgba(248,113,113,0.15)", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 8 }}>
-                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#f87171" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                          {/* Financial */}
+                          <div style={{ background: "#1e1e1e", borderRadius: 12, padding: "9px 9px 8px", display: "flex", flexDirection: "column" }}>
+                            <div style={{ width: 20, height: 20, borderRadius: 7, background: "rgba(96,165,250,0.15)", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 6 }}>
+                              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+                            </div>
+                            <p style={{ margin: "0 0 5px", fontSize: 8, fontWeight: 600, color: "rgba(255,255,255,0.4)", textTransform: "uppercase", letterSpacing: "0.07em" }}>Financial</p>
+                            <div style={{ height: 2.5, borderRadius: 999, background: "rgba(255,255,255,0.07)", overflow: "hidden", marginBottom: 5 }}>
+                              <div style={{ width: "58%", height: "100%", background: "#60a5fa", borderRadius: 999 }} />
+                            </div>
+                            <p style={{ margin: 0, fontSize: 13, fontWeight: 700, color: "#60a5fa", letterSpacing: "-0.02em" }}>58%</p>
                           </div>
-                          <p style={{ margin: "0 0 6px", fontSize: 9, fontWeight: 600, color: "rgba(255,255,255,0.45)", textTransform: "uppercase", letterSpacing: "0.08em" }}>Social</p>
-                          <div style={{ height: 3, borderRadius: 999, background: "rgba(255,255,255,0.08)", overflow: "hidden", marginBottom: 6 }}>
-                            <div style={{ width: "70%", height: "100%", background: "#f87171", borderRadius: 999 }} />
+                          {/* Social */}
+                          <div style={{ background: "#1e1e1e", borderRadius: 12, padding: "9px 9px 8px", display: "flex", flexDirection: "column" }}>
+                            <div style={{ width: 20, height: 20, borderRadius: 7, background: "rgba(248,113,113,0.15)", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 6 }}>
+                              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#f87171" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                            </div>
+                            <p style={{ margin: "0 0 5px", fontSize: 8, fontWeight: 600, color: "rgba(255,255,255,0.4)", textTransform: "uppercase", letterSpacing: "0.07em" }}>Social</p>
+                            <div style={{ height: 2.5, borderRadius: 999, background: "rgba(255,255,255,0.07)", overflow: "hidden", marginBottom: 5 }}>
+                              <div style={{ width: "70%", height: "100%", background: "#f87171", borderRadius: 999 }} />
+                            </div>
+                            <p style={{ margin: 0, fontSize: 13, fontWeight: 700, color: "#f87171", letterSpacing: "-0.02em" }}>70%</p>
                           </div>
-                          <p style={{ margin: 0, fontSize: 15, fontWeight: 700, color: "#f87171", letterSpacing: "-0.02em" }}>70%</p>
                         </div>
                       </div>
 
                       {/* Home bar */}
-                      <div style={{ margin: "12px auto 0", width: 80, height: 3, background: "rgba(255,255,255,0.12)", borderRadius: 999 }} />
+                      <div style={{ margin: "4px auto 0", width: 70, height: 3, background: "rgba(255,255,255,0.1)", borderRadius: 999, flexShrink: 0 }} />
                     </div>
                   </div>
                 </div>
