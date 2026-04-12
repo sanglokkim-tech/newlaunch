@@ -106,7 +106,7 @@ export default function ScoreReveal() {
         >
           Most people score between 55–70%.
           <br />
-          Beam shows you exactly why — and what to fix first.
+          beam shows you exactly why — and what to fix first.
         </p>
       </div>
     </section>

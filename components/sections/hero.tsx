@@ -251,7 +251,7 @@ export default function Hero() {
           Get early access.
         </h2>
         <p style={{ fontSize: 18, color: "#6B7280", marginBottom: 40, maxWidth: 480, lineHeight: 1.7 }}>
-          Join the waitlist. Be among the first 200 to shape what Beam becomes.
+          Join the waitlist. Be among the first 200 to shape what beam becomes.
         </p>
 
         {submitted ? (
@@ -341,7 +341,7 @@ export default function Hero() {
                         <span style={{ fontSize: 9, color: "rgba(255,255,255,0.3)", marginLeft: 3 }}>↩</span>
                         <span style={{ fontSize: 9, color: "rgba(255,255,255,0.3)" }}>↪</span>
                         <div style={{ flex: 1, textAlign: "center" }}>
-                          <span style={{ fontSize: 11, fontWeight: 800, color: "#fff", letterSpacing: "-0.02em" }}>Beam</span>
+                          <span style={{ fontSize: 11, fontWeight: 500, letterSpacing: "-0.02em" }}><span style={{ color: "#FAFAFA" }}>bea</span><span style={{ color: "#14B8A6" }}>m</span></span>
                         </div>
                         <span style={{ fontSize: 10, color: "rgba(255,255,255,0.4)" }}>🔔</span>
                         <div style={{ display: "flex", alignItems: "center", gap: 2, background: "#4DB8B0", borderRadius: 8, padding: "3px 8px", marginLeft: 2 }}>
@@ -538,7 +538,7 @@ export default function Hero() {
                 Your priorities,<br />finally clear.
               </h3>
               <p className="hidden md:block" style={{ fontSize: 14, color: "#6B7280", lineHeight: 1.7, margin: "0 0 24px", maxWidth: 340 }}>
-                <span style={{ color: "#111827", fontWeight: 600 }}>Beam</span> illuminates where you actually stand across Physical, Mental, Capital, and Social — then tells you exactly what to focus on next.
+                beam illuminates where you actually stand across Physical, Mental, Capital, and Social — then tells you exactly what to focus on next.
               </p>
               <div className="hidden md:flex gap-6">
                 {["4 Pillars", "Beam System", "Deep Focus"].map((tag) => (

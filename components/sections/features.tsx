@@ -19,7 +19,7 @@ const FEATURES = [
       </svg>
     ),
     title: "The Beam System",
-    description: "Illuminate. Support. Focus. Beam reads your four pillars, balances the weight across all of them, and surfaces the one action that matters today.",
+    description: "Illuminate. Support. Focus. beam reads your four pillars, balances the weight across all of them, and surfaces the one action that matters today.",
   },
   {
     color: "#2E7DD4",

@@ -8,8 +8,8 @@ export default function Nav() {
         className="mx-auto flex items-center justify-between px-6 py-4"
         style={{ maxWidth: "1100px" }}
       >
-        <span className="text-white font-bold text-lg">
-          Beam
+        <span style={{ fontSize: "18px", fontWeight: 500, letterSpacing: "-0.02em", lineHeight: 1 }}>
+          <span style={{ color: "#FAFAFA" }}>bea</span><span style={{ color: "#14B8A6" }}>m</span>
         </span>
         <a
           href="#waitlist"

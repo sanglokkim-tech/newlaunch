@@ -8,8 +8,8 @@ export default function Footer() {
         className="mx-auto flex flex-col sm:flex-row items-center justify-between gap-4"
         style={{ maxWidth: "1100px" }}
       >
-        <span style={{ fontWeight: 700, fontSize: "15px", color: "#111827" }}>
-          Beam
+        <span style={{ fontSize: "16px", fontWeight: 500, letterSpacing: "-0.02em", lineHeight: 1 }}>
+          <span style={{ color: "#1A1A1A" }}>bea</span><span style={{ color: "#14B8A6" }}>m</span>
         </span>
 
         <div className="flex items-center gap-6">
