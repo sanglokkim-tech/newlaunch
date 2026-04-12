@@ -160,7 +160,7 @@ export default function ScrollNarrative() {
               Most people score between 55–70.
             </p>
             <p className="text-lg" style={{ color: "#6B7280" }}>
-              lifeOS shows you exactly why — and what to do about it.
+              Beam shows you exactly why — and what to do about it.
             </p>
           </div>
         </div>

@@ -106,7 +106,7 @@ export default function ScoreReveal() {
         >
           Most people score between 55–70%.
           <br />
-          life<span style={{ color: "#4DB8B0" }}>OS</span> shows you exactly why — and what to fix first.
+          Beam shows you exactly why — and what to fix first.
         </p>
       </div>
     </section>

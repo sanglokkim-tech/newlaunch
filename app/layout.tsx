@@ -10,9 +10,9 @@ const dmSans = DM_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "lifeOS — Run your life like a system",
+  title: "Beam — See clearly. Act on what matters.",
   description:
-    "Rate the 4 pillars of your life. Get your prioritised action list. Balance everything that matters.",
+    "Beam illuminates where you actually stand across your life pillars and tells you exactly what to focus on next.",
 };
 
 export default function RootLayout({

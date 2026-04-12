@@ -9,7 +9,7 @@ export default function Footer() {
         style={{ maxWidth: "1100px" }}
       >
         <span style={{ fontWeight: 700, fontSize: "15px", color: "#111827" }}>
-          Life<span style={{ color: "#4DB8B0" }}>OS</span>
+          Beam
         </span>
 
         <div className="flex items-center gap-6">
