@@ -341,7 +341,7 @@ export default function Hero() {
                         <span style={{ fontSize: 9, color: "rgba(255,255,255,0.3)", marginLeft: 3 }}>↩</span>
                         <span style={{ fontSize: 9, color: "rgba(255,255,255,0.3)" }}>↪</span>
                         <div style={{ flex: 1, textAlign: "center" }}>
-                          <span style={{ fontSize: 11, fontWeight: 500, letterSpacing: "-0.02em" }}><span style={{ color: "#FAFAFA" }}>bea</span><span style={{ color: "#14B8A6" }}>m</span></span>
+                          <span style={{ fontSize: 11, fontWeight: 500, letterSpacing: "-0.02em", color: "#14B8A6" }}>beam</span>
                         </div>
                         <span style={{ fontSize: 10, color: "rgba(255,255,255,0.4)" }}>🔔</span>
                         <div style={{ display: "flex", alignItems: "center", gap: 2, background: "#4DB8B0", borderRadius: 8, padding: "3px 8px", marginLeft: 2 }}>
