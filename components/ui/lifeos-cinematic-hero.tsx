@@ -411,16 +411,15 @@ export function LifeOSHero({
                         ))}
                       </div>
 
-                      {/* AI conductor nudge */}
+                      {/* Beam System nudge */}
                       <div className="phone-widget widget-depth rounded-2xl p-3 flex items-start gap-2.5">
                         <div className="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5" style={{ background: "rgba(78,205,196,0.1)", border: "1px solid rgba(78,205,196,0.2)" }}>
-                          {/* Conductor spark icon */}
                           <svg className="w-3.5 h-3.5" fill="none" stroke="#4ECDC4" viewBox="0 0 24 24" aria-hidden="true">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
                           </svg>
                         </div>
                         <div>
-                          <p className="text-[9px] uppercase tracking-widest font-bold mb-0.5" style={{ color: "rgba(78,205,196,0.6)" }}>AI Conductor</p>
+                          <p className="text-[9px] uppercase tracking-widest font-bold mb-0.5" style={{ color: "rgba(78,205,196,0.6)" }}>Beam</p>
                           <p className="text-[10px] text-white/70 leading-snug">Relationships neglected 5 days. One intentional action today balances your week.</p>
                         </div>
                       </div>
@@ -457,7 +456,7 @@ export function LifeOSHero({
 
             {/* Left: copy */}
             <div className="card-left-text gsap-reveal order-3 lg:order-1 flex flex-col justify-center text-center lg:text-left z-20 w-full px-4 lg:px-0">
-              <p className="text-[10px] uppercase tracking-[0.2em] font-bold mb-3 hidden md:block" style={{ color: "rgba(78,205,196,0.7)" }}>The operating system for your life</p>
+              <p className="text-[10px] uppercase tracking-[0.2em] font-bold mb-3 hidden md:block" style={{ color: "rgba(78,205,196,0.7)" }}>See clearly. Act on what matters.</p>
               <h3 className="text-white text-2xl md:text-3xl lg:text-4xl font-bold mb-4 tracking-tight">
                 {cardHeading}
               </h3>
@@ -465,7 +464,7 @@ export function LifeOSHero({
                 {cardDescription}
               </p>
               <div className="hidden md:flex gap-6 mt-6">
-                {["4 Pillars", "AI Insights", "Deep Focus"].map((f) => (
+                {["4 Pillars", "Beam System", "Deep Focus"].map((f) => (
                   <div key={f} className="flex items-center gap-1.5">
                     <div className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: "#4ECDC4" }} />
                     <span className="text-white/40 text-xs font-medium">{f}</span>

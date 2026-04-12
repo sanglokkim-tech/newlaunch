@@ -4,8 +4,8 @@ import { useEffect, useRef, useState } from "react";
 
 const FEATURES = [
   {
-    title: "AI Conductor",
-    desc: "Tells you exactly what to focus on today",
+    title: "The Beam System",
+    desc: "Reads your pillars, balances the weight, surfaces your one action.",
     icon: (
       <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
         <path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z" />

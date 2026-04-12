@@ -18,8 +18,8 @@ const FEATURES = [
         <path d="M11 2L4 13h7l-2 7 9-10h-7l2-8z" stroke="#5E59CC" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
       </svg>
     ),
-    title: "AI Conductor",
-    description: "Not a chatbot. A quiet intelligence that reads your patterns and nudges you before neglect becomes damage.",
+    title: "The Beam System",
+    description: "Illuminate. Support. Focus. Beam reads your four pillars, balances the weight across all of them, and surfaces the one action that matters today.",
   },
   {
     color: "#2E7DD4",

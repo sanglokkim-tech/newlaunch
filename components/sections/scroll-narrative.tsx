@@ -44,7 +44,7 @@ function scoreColor(score: number) {
 }
 
 const FEATURES = [
-  { icon: "⚡", title: "AI Conductor",     desc: "Tells you exactly what to focus on today" },
+  { icon: "⚡", title: "The Beam System",   desc: "Illuminates your gaps, balances your pillars, tells you what to do next" },
   { icon: "🎯", title: "Deep Focus Mode",  desc: "Locks in your top priority, blocks the rest" },
   { icon: "📊", title: "Pillar Scoring",   desc: "Rates 4 life areas 1–4, finds the gap" },
   { icon: "🔔", title: "Check-in Nudges",  desc: "Daily prompts before neglect sets in" },

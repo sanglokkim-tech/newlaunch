@@ -11,7 +11,7 @@ const steps = [
   {
     num: "02",
     label: "Get your priority",
-    desc: "The AI Conductor identifies your biggest gap",
+    desc: "Beam surfaces your single highest-priority action",
   },
   {
     num: "03",

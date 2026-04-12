@@ -532,7 +532,7 @@ export default function Hero() {
             {/* Left: copy */}
             <div className="lo-card-left order-3 lg:order-1 flex flex-col justify-center text-center lg:text-left z-20 w-full px-4 lg:px-0">
               <p className="hidden md:block" style={{ fontSize: 10, color: "#4DB8B0", textTransform: "uppercase", letterSpacing: "0.2em", fontWeight: 700, margin: "0 0 12px" }}>
-                The operating system for your life
+                See clearly. Act on what matters.
               </p>
               <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight" style={{ color: "#111827", margin: "0 0 16px", letterSpacing: "-0.02em", lineHeight: 1.2 }}>
                 Your priorities,<br />finally clear.
@@ -541,7 +541,7 @@ export default function Hero() {
                 <span style={{ color: "#111827", fontWeight: 600 }}>Beam</span> illuminates where you actually stand across Physical, Mental, Capital, and Social — then tells you exactly what to focus on next.
               </p>
               <div className="hidden md:flex gap-6">
-                {["4 Pillars", "AI Insights", "Deep Focus"].map((tag) => (
+                {["4 Pillars", "Beam System", "Deep Focus"].map((tag) => (
                   <div key={tag} className="flex items-center gap-1.5">
                     <div style={{ width: 6, height: 6, borderRadius: "50%", background: "#4DB8B0", flexShrink: 0 }} />
                     <span style={{ fontSize: 12, color: "#6B7280", fontWeight: 500 }}>{tag}</span>
