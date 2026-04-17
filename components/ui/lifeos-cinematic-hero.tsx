@@ -189,11 +189,11 @@ export function LifeOSHero({
   cardHeading = "Your priorities, finally clear.",
   cardDescription = (
     <>
-      beam illuminates where you stand across your life pillars, identifies what's being neglected, and gives you a prioritised action list — so every day moves the needle.
+      lifeOS illuminates where you stand across your life pillars, identifies what's being neglected, and gives you a prioritised action list — so every day moves the needle.
     </>
   ),
   ctaHeading = "Get early access.",
-  ctaDescription = "Join the waitlist. Be among the first 200 to shape what beam becomes.",
+  ctaDescription = "Join the waitlist. Be among the first 200 to shape what lifeOS becomes.",
   className,
   ...props
 }: LifeOSHeroProps) {
@@ -346,7 +346,7 @@ export function LifeOSHero({
             {/* Right: wordmark */}
             <div className="card-right-text gsap-reveal order-1 lg:order-3 flex justify-center lg:justify-end z-20 w-full">
               <h2 className="text-6xl md:text-[6rem] lg:text-[7rem] font-black uppercase tracking-tighter text-card-silver-matte lg:mt-0 leading-none">
-                Beam
+                Life<span style={{ color: "#4DB8B0" }}>OS</span>
               </h2>
             </div>
 
@@ -419,7 +419,7 @@ export function LifeOSHero({
                           </svg>
                         </div>
                         <div>
-                          <p className="text-[9px] uppercase tracking-widest font-bold mb-0.5" style={{ color: "rgba(78,205,196,0.6)" }}>beam</p>
+                          <p className="text-[9px] uppercase tracking-widest font-bold mb-0.5" style={{ color: "rgba(78,205,196,0.6)" }}>lifeOS</p>
                           <p className="text-[10px] text-white/70 leading-snug">Relationships neglected 5 days. One intentional action today balances your week.</p>
                         </div>
                       </div>

@@ -10,9 +10,9 @@ const dmSans = DM_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Beam — See clearly. Act on what matters.",
+  title: "lifeOS — See clearly. Act on what matters.",
   description:
-    "Beam illuminates where you actually stand across your life pillars and tells you exactly what to focus on next.",
+    "lifeOS illuminates where you actually stand across your life pillars and tells you exactly what to focus on next.",
 };
 
 export default function RootLayout({

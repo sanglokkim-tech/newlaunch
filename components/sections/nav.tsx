@@ -9,7 +9,7 @@ export default function Nav() {
         style={{ maxWidth: "1100px" }}
       >
         <span style={{ fontSize: "18px", fontWeight: 500, letterSpacing: "-0.02em", lineHeight: 1, color: "#FAFAFA" }}>
-          beam
+          life<span style={{ color: "#4DB8B0" }}>OS</span>
         </span>
         <a
           href="#waitlist"

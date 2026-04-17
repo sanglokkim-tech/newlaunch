@@ -11,7 +11,7 @@ const steps = [
   {
     num: "02",
     label: "Get your priority",
-    desc: "Beam surfaces your single highest-priority action",
+    desc: "lifeOS surfaces your single highest-priority action",
   },
   {
     num: "03",

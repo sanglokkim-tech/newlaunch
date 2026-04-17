@@ -24,7 +24,7 @@ const CATEGORIES: { id: Category; label: string; icon: string; placeholder: stri
     label: "Feature Request",
     icon: "◈",
     placeholder:
-      "What do you wish beam could do? Describe the gap — what are you trying to accomplish that isn't possible yet?",
+      "What do you wish lifeOS could do? Describe the gap — what are you trying to accomplish that isn't possible yet?",
   },
   {
     id: "bug",
@@ -299,7 +299,7 @@ function SuccessScreen() {
         onMouseOver={(e) => (e.currentTarget.style.opacity = "0.7")}
         onMouseOut={(e) => (e.currentTarget.style.opacity = "1")}
       >
-        ← Back to beam
+        ← Back to lifeOS
       </a>
     </div>
   );
@@ -350,7 +350,7 @@ export default function FeedbackPage() {
           category,
           feedback: text,
           sliders,
-          _subject: `beam feedback — ${RATING_CONFIG[rating - 1].label}`,
+          _subject: `lifeOS feedback — ${RATING_CONFIG[rating - 1].label}`,
         }),
       });
     } catch {
@@ -397,7 +397,7 @@ export default function FeedbackPage() {
               Tell us what&apos;s working.<br />Tell us what&apos;s not.
             </h1>
             <p style={{ fontSize: 16, color: "#6B7280", lineHeight: 1.7, margin: 0 }}>
-              Honest feedback shapes what beam becomes. No filters needed.
+              Honest feedback shapes what lifeOS becomes. No filters needed.
             </p>
           </div>
 
