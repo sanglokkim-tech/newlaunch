@@ -308,6 +308,7 @@ function SuccessScreen() {
 // ── Main page ──────────────────────────────────────────────────────────────
 
 export default function FeedbackPage() {
+  const [name, setName] = useState("");
   const [rating, setRating] = useState<Rating | null>(null);
   const [category, setCategory] = useState<Category | null>(null);
   const [text, setText] = useState("");
@@ -346,11 +347,12 @@ export default function FeedbackPage() {
         method: "POST",
         headers: { "Content-Type": "application/json", Accept: "application/json" },
         body: JSON.stringify({
+          name: name.trim() || "Anonymous",
           rating,
           category,
           feedback: text,
           sliders,
-          _subject: `lifeOS feedback — ${RATING_CONFIG[rating - 1].label}`,
+          _subject: `lifeOS feedback — ${name.trim() || "Anonymous"} — ${RATING_CONFIG[rating - 1].label}`,
         }),
       });
     } catch {
@@ -402,6 +404,57 @@ export default function FeedbackPage() {
           </div>
 
           <form onSubmit={handleSubmit}>
+
+            {/* ── Card 0: Name ── */}
+            <div
+              style={{
+                background: "#FFFFFF",
+                border: "1px solid #E5E7EB",
+                borderRadius: 16,
+                padding: "28px 32px",
+                boxShadow: "0 1px 4px rgba(0,0,0,0.05)",
+                marginBottom: 16,
+              }}
+            >
+              <SectionLabel>Who&apos;s sharing?</SectionLabel>
+              <p
+                style={{
+                  fontSize: 17,
+                  fontWeight: 600,
+                  color: "#111827",
+                  letterSpacing: "-0.01em",
+                  margin: "0 0 16px",
+                }}
+              >
+                What&apos;s your name?
+              </p>
+              <input
+                type="text"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                placeholder="First name or handle — totally optional"
+                style={{
+                  width: "100%",
+                  background: "#FAFAFA",
+                  border: "1.5px solid #E5E7EB",
+                  borderRadius: 10,
+                  padding: "12px 16px",
+                  fontSize: 14,
+                  color: "#111827",
+                  outline: "none",
+                  fontFamily: "inherit",
+                  transition: "border-color 0.2s ease, box-shadow 0.2s ease",
+                }}
+                onFocus={(e) => {
+                  e.currentTarget.style.borderColor = "rgba(77,184,176,0.5)";
+                  e.currentTarget.style.boxShadow = "0 0 0 3px rgba(77,184,176,0.08)";
+                }}
+                onBlur={(e) => {
+                  e.currentTarget.style.borderColor = "#E5E7EB";
+                  e.currentTarget.style.boxShadow = "none";
+                }}
+              />
+            </div>
 
             {/* ── Card 1: Quick rating ── */}
             <div
