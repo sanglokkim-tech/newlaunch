@@ -342,7 +342,7 @@ export default function FeedbackPage() {
 
     // Fire-and-forget — replace with your endpoint
     try {
-      await fetch("https://formspree.io/f/mykbwkza", {
+      await fetch("https://formspree.io/f/xjgjwpll", {
         method: "POST",
         headers: { "Content-Type": "application/json", Accept: "application/json" },
         body: JSON.stringify({
