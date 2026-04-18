@@ -338,7 +338,6 @@ export default function FeedbackPage() {
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    if (!rating) return;
     setLoading(true);
 
     // Fire-and-forget — replace with your endpoint
@@ -352,7 +351,7 @@ export default function FeedbackPage() {
           category,
           feedback: text,
           sliders,
-          _subject: `lifeOS feedback — ${name.trim() || "Anonymous"} — ${RATING_CONFIG[rating - 1].label}`,
+          _subject: `lifeOS feedback — ${name.trim() || "Anonymous"}`,
         }),
       });
     } catch {
@@ -454,70 +453,6 @@ export default function FeedbackPage() {
                   e.currentTarget.style.boxShadow = "none";
                 }}
               />
-            </div>
-
-            {/* ── Card 1: Quick rating ── */}
-            <div
-              style={{
-                background: "#FFFFFF",
-                border: "1px solid #E5E7EB",
-                borderRadius: 16,
-                padding: "28px 32px",
-                boxShadow: "0 1px 4px rgba(0,0,0,0.05)",
-                marginBottom: 16,
-              }}
-            >
-              <SectionLabel>Quick pulse</SectionLabel>
-              <p
-                style={{
-                  fontSize: 17,
-                  fontWeight: 600,
-                  color: "#111827",
-                  letterSpacing: "-0.01em",
-                  margin: "0 0 24px",
-                }}
-              >
-                How&apos;s beam feeling today?
-              </p>
-
-              <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
-                {RATING_CONFIG.map(({ value, emoji, label }) => {
-                  const isActive = rating === value;
-                  const isHovered = hoveredRating === value;
-                  return (
-                    <button
-                      key={value}
-                      type="button"
-                      onClick={() => setRating(value)}
-                      onMouseEnter={() => setHoveredRating(value)}
-                      onMouseLeave={() => setHoveredRating(null)}
-                      style={{
-                        flex: "1 1 0",
-                        minWidth: 72,
-                        display: "flex",
-                        flexDirection: "column",
-                        alignItems: "center",
-                        gap: 8,
-                        padding: "14px 8px",
-                        background: isActive ? "rgba(77,184,176,0.06)" : "#FFFFFF",
-                        border: `1.5px solid ${isActive ? "#4DB8B0" : isHovered ? "#D1D5DB" : "#E5E7EB"}`,
-                        borderRadius: 12,
-                        cursor: "pointer",
-                        transition: "all 0.18s ease",
-                        transform: isHovered && !isActive ? "translateY(-2px)" : "none",
-                        boxShadow: isActive ? "0 0 0 3px rgba(77,184,176,0.12)" : isHovered ? "0 4px 12px rgba(0,0,0,0.07)" : "none",
-                      }}
-                    >
-                      <span style={{ fontSize: 26, lineHeight: 1, transition: "transform 0.2s ease", transform: isHovered ? "scale(1.15)" : "scale(1)" }}>
-                        {emoji}
-                      </span>
-                      <span style={{ fontSize: 11, fontWeight: 500, color: isActive ? "#4DB8B0" : "#9CA3AF" }}>
-                        {label}
-                      </span>
-                    </button>
-                  );
-                })}
-              </div>
             </div>
 
             {/* ── Card 2: Category ── */}
@@ -666,109 +601,28 @@ export default function FeedbackPage() {
               </div>
             </div>
 
-            {/* ── Card 4: Sliders ── */}
-            <div
-              style={{
-                background: "#FFFFFF",
-                border: "1px solid #E5E7EB",
-                borderRadius: 16,
-                padding: "28px 32px",
-                boxShadow: "0 1px 4px rgba(0,0,0,0.05)",
-                marginBottom: 32,
-              }}
-            >
-              <SectionLabel>Score the experience</SectionLabel>
-              <p
-                style={{
-                  fontSize: 17,
-                  fontWeight: 600,
-                  color: "#111827",
-                  letterSpacing: "-0.01em",
-                  margin: "0 0 28px",
-                }}
-              >
-                Rate the three pillars of the product.
-              </p>
-
-              <div style={{ display: "flex", flexDirection: "column", gap: 32 }}>
-                {SLIDER_CONFIG.map(({ id, label, left, right }) => (
-                  <FeedbackSlider
-                    key={id}
-                    id={id}
-                    label={label}
-                    left={left}
-                    right={right}
-                    value={sliders[id]}
-                    onChange={(v) => setSliders((prev) => ({ ...prev, [id]: v }))}
-                  />
-                ))}
-              </div>
-
-              {/* Aggregate summary */}
-              <div
-                style={{
-                  marginTop: 32,
-                  padding: "14px 16px",
-                  background: "#F9FAFB",
-                  border: "1px solid #E5E7EB",
-                  borderRadius: 10,
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                  gap: 12,
-                }}
-              >
-                <div>
-                  <p style={{ fontSize: 11, fontWeight: 600, color: "#9CA3AF", textTransform: "uppercase", letterSpacing: "0.1em", margin: 0 }}>
-                    Overall
-                  </p>
-                  <p style={{ fontSize: 13, color: "#6B7280", margin: "4px 0 0", lineHeight: 1.5 }}>
-                    Based on your three ratings
-                  </p>
-                </div>
-                <div
-                  style={{
-                    display: "flex",
-                    alignItems: "baseline",
-                    gap: 4,
-                    color: "#4DB8B0",
-                  }}
-                >
-                  <span style={{ fontSize: 28, fontWeight: 700, letterSpacing: "-0.03em" }}>
-                    {((sliders.ease + sliders.value + sliders.design) / 3).toFixed(1)}
-                  </span>
-                  <span style={{ fontSize: 13, color: "#9CA3AF" }}>/5</span>
-                </div>
-              </div>
-            </div>
-
             {/* ── Submit ── */}
             <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 14 }}>
-              {!rating && (
-                <p style={{ fontSize: 12, color: "#9CA3AF", margin: 0 }}>
-                  Select a rating to submit
-                </p>
-              )}
               <button
                 type="submit"
-                disabled={!rating || loading}
+                disabled={loading}
                 style={{
                   width: "100%",
                   padding: "16px 24px",
-                  background: rating ? "#4DB8B0" : "#E5E7EB",
-                  color: rating ? "#FFFFFF" : "#9CA3AF",
+                  background: "#4DB8B0",
+                  color: "#FFFFFF",
                   border: "none",
                   borderRadius: 12,
                   fontSize: 15,
                   fontWeight: 600,
                   letterSpacing: "-0.01em",
-                  cursor: rating && !loading ? "pointer" : "not-allowed",
+                  cursor: loading ? "not-allowed" : "pointer",
                   transition: "all 0.2s ease",
-                  boxShadow: rating ? "0 8px 24px rgba(77,184,176,0.22)" : "none",
+                  boxShadow: "0 8px 24px rgba(77,184,176,0.22)",
                   transform: "none",
                 }}
                 onMouseOver={(e) => {
-                  if (rating && !loading) e.currentTarget.style.transform = "translateY(-1px)";
+                  if (!loading) e.currentTarget.style.transform = "translateY(-1px)";
                 }}
                 onMouseOut={(e) => {
                   e.currentTarget.style.transform = "none";
