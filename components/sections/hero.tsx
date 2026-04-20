@@ -11,82 +11,6 @@ if (typeof window !== "undefined") {
 const RATE_LIMIT_MS = 60_000;
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
-
-const INJECTED_STYLES = `
-  .lo-bg-grid {
-    background-size: 60px 60px;
-    background-image:
-      linear-gradient(to right, rgba(0,0,0,0.04) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(0,0,0,0.04) 1px, transparent 1px);
-    mask-image: radial-gradient(ellipse at center, black 0%, transparent 70%);
-    -webkit-mask-image: radial-gradient(ellipse at center, black 0%, transparent 70%);
-  }
-  .lo-text-3d {
-    color: #111827;
-    text-shadow: 0 2px 8px rgba(0,0,0,0.08);
-  }
-  .lo-text-accent {
-    color: #111827;
-  }
-  .lo-text-card-dark {
-    color: #111827;
-  }
-  .lo-depth-card {
-    background: #FFFFFF;
-    box-shadow:
-      0 40px 100px -20px rgba(0,0,0,0.12),
-      0 20px 40px -20px rgba(0,0,0,0.08);
-    border: 1px solid #E5E7EB;
-  }
-  .lo-card-sheen {
-    position: absolute; inset: 0; border-radius: inherit; pointer-events: none; z-index: 50;
-    background: radial-gradient(800px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(77,184,176,0.04) 0%, transparent 40%);
-  }
-  .lo-iphone {
-    background-color: #111;
-    box-shadow:
-      inset 0 0 0 2px #52525B,
-      inset 0 0 0 7px #000,
-      0 40px 80px -15px rgba(0,0,0,0.25),
-      0 15px 25px -5px rgba(0,0,0,0.15);
-    transform-style: preserve-3d;
-  }
-  .lo-hw-btn {
-    background: linear-gradient(90deg, #404040 0%, #171717 100%);
-    box-shadow: -2px 0 5px rgba(0,0,0,0.8), inset -1px 0 1px rgba(255,255,255,0.15), inset 1px 0 2px rgba(0,0,0,0.8);
-  }
-  .lo-badge {
-    background: rgba(255,255,255,0.9);
-    backdrop-filter: blur(24px);
-    -webkit-backdrop-filter: blur(24px);
-    box-shadow:
-      0 0 0 1px rgba(0,0,0,0.06),
-      0 8px 24px rgba(0,0,0,0.08);
-  }
-  .lo-widget {
-    background: rgba(255,255,255,0.06);
-    border: 1px solid rgba(255,255,255,0.04);
-  }
-  .lo-pillar-bar {
-    height: 3px; border-radius: 999px;
-    background: rgba(255,255,255,0.1); overflow: hidden;
-  }
-  .lo-pillar-fill { height: 100%; border-radius: 999px; }
-  .lo-score-ring {
-    transform: rotate(-90deg); transform-origin: center;
-    stroke-dasharray: 251; stroke-dashoffset: 251; stroke-linecap: round;
-  }
-  .lo-btn-primary {
-    background: #4DB8B0;
-    color: #FFFFFF;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.1), 0 8px 24px -4px rgba(77,184,176,0.3);
-    transition: all 0.3s cubic-bezier(0.25,1,0.5,1);
-    border: none; cursor: pointer;
-  }
-  .lo-btn-primary:hover { transform: translateY(-2px); opacity: 0.9; }
-  .lo-btn-primary:disabled { opacity: 0.7; cursor: not-allowed; transform: none; }
-`;
-
 export default function Hero() {
   const containerRef = useRef<HTMLDivElement>(null);
   const mainCardRef = useRef<HTMLDivElement>(null);
@@ -202,17 +126,23 @@ export default function Hero() {
     lastSubmit.current = now;
 
     try {
-      await fetch("https://formspree.io/f/mykbwkza", {
+      const res = await fetch("/api/waitlist", {
         method: "POST",
-        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email: clean }),
       });
-      setSubmitted(true);
+      if (!res.ok && res.status !== 429) throw new Error("failed");
+      if (res.status === 429) {
+        setError("Too many attempts. Please wait a moment.");
+        return;
+      }
     } catch {
-      setSubmitted(true);
+      setError("Something went wrong. Please try again.");
+      return;
     } finally {
       setLoading(false);
     }
+    setSubmitted(true);
   }
 
   return (
@@ -221,8 +151,6 @@ export default function Hero() {
       className="relative w-screen h-screen overflow-hidden flex items-center justify-center"
       style={{ background: "#F4F5F7", perspective: "1500px" }}
     >
-      <style dangerouslySetInnerHTML={{ __html: INJECTED_STYLES }} />
-
       {/* Grid background */}
       <div className="lo-bg-grid absolute inset-0 z-0 pointer-events-none" aria-hidden="true" />
 

@@ -7,7 +7,6 @@ import Footer from "@/components/sections/footer";
 // ── Types ──────────────────────────────────────────────────────────────────
 
 type Category = "ux" | "feature" | "bug" | "general";
-type Rating = 1 | 2 | 3 | 4 | 5;
 
 // ── Constants ──────────────────────────────────────────────────────────────
 
@@ -42,21 +41,6 @@ const CATEGORIES: { id: Category; label: string; icon: string; placeholder: stri
   },
 ];
 
-const RATING_CONFIG: { value: Rating; emoji: string; label: string }[] = [
-  { value: 1, emoji: "😞", label: "Frustrated" },
-  { value: 2, emoji: "😐", label: "Meh" },
-  { value: 3, emoji: "🙂", label: "Decent" },
-  { value: 4, emoji: "😊", label: "Good" },
-  { value: 5, emoji: "🤩", label: "Loving it" },
-];
-
-const SLIDER_CONFIG = [
-  { id: "ease", label: "Ease of use", left: "Confusing", right: "Effortless" },
-  { id: "value", label: "Value", left: "Not useful", right: "Essential" },
-  { id: "design", label: "Design", left: "Cluttered", right: "Pristine" },
-] as const;
-
-type SliderId = (typeof SLIDER_CONFIG)[number]["id"];
 
 // ── Sub-components ─────────────────────────────────────────────────────────
 
@@ -77,137 +61,9 @@ function SectionLabel({ children }: { children: React.ReactNode }) {
   );
 }
 
-function Divider() {
-  return (
-    <div
-      style={{
-        height: "1px",
-        background: "#E5E7EB",
-        margin: "48px 0",
-      }}
-    />
-  );
-}
 
 // ── Slider ─────────────────────────────────────────────────────────────────
 
-function FeedbackSlider({
-  id,
-  label,
-  left,
-  right,
-  value,
-  onChange,
-}: {
-  id: string;
-  label: string;
-  left: string;
-  right: string;
-  value: number;
-  onChange: (v: number) => void;
-}) {
-  const pct = ((value - 1) / 4) * 100;
-
-  return (
-    <div>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          marginBottom: 10,
-        }}
-      >
-        <span style={{ fontSize: 14, fontWeight: 600, color: "#111827" }}>{label}</span>
-        <span
-          style={{
-            fontSize: 12,
-            fontWeight: 600,
-            color: "#4DB8B0",
-            background: "rgba(77,184,176,0.08)",
-            border: "1px solid rgba(77,184,176,0.2)",
-            borderRadius: 6,
-            padding: "2px 10px",
-            minWidth: 28,
-            textAlign: "center",
-            transition: "all 0.2s ease",
-          }}
-        >
-          {value}
-        </span>
-      </div>
-
-      <div style={{ position: "relative", height: 36, display: "flex", alignItems: "center" }}>
-        {/* Track */}
-        <div
-          style={{
-            position: "absolute",
-            left: 0,
-            right: 0,
-            height: 6,
-            background: "#E5E7EB",
-            borderRadius: 999,
-          }}
-        />
-        {/* Fill */}
-        <div
-          style={{
-            position: "absolute",
-            left: 0,
-            width: `${pct}%`,
-            height: 6,
-            background: "#4DB8B0",
-            borderRadius: 999,
-            transition: "width 0.15s ease",
-          }}
-        />
-        {/* Input */}
-        <input
-          type="range"
-          min={1}
-          max={5}
-          step={1}
-          value={value}
-          onChange={(e) => onChange(Number(e.target.value))}
-          style={{
-            position: "absolute",
-            inset: 0,
-            width: "100%",
-            opacity: 0,
-            cursor: "pointer",
-            height: "100%",
-          }}
-        />
-        {/* Thumb visual */}
-        <div
-          style={{
-            position: "absolute",
-            left: `calc(${pct}% - 10px)`,
-            width: 20,
-            height: 20,
-            background: "#FFFFFF",
-            border: "2px solid #4DB8B0",
-            borderRadius: "50%",
-            boxShadow: "0 2px 8px rgba(77,184,176,0.3)",
-            transition: "left 0.15s ease",
-            pointerEvents: "none",
-          }}
-        />
-      </div>
-
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          marginTop: 6,
-        }}
-      >
-        <span style={{ fontSize: 11, color: "#9CA3AF" }}>{left}</span>
-        <span style={{ fontSize: 11, color: "#9CA3AF" }}>{right}</span>
-      </div>
-    </div>
-  );
-}
 
 // ── Success state ──────────────────────────────────────────────────────────
 
@@ -309,17 +165,10 @@ function SuccessScreen() {
 
 export default function FeedbackPage() {
   const [name, setName] = useState("");
-  const [rating, setRating] = useState<Rating | null>(null);
   const [category, setCategory] = useState<Category | null>(null);
   const [text, setText] = useState("");
-  const [sliders, setSliders] = useState<Record<SliderId, number>>({
-    ease: 3,
-    value: 3,
-    design: 3,
-  });
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [hoveredRating, setHoveredRating] = useState<Rating | null>(null);
 
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
@@ -339,23 +188,19 @@ export default function FeedbackPage() {
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setLoading(true);
-
-    // Fire-and-forget — replace with your endpoint
     try {
-      await fetch("https://formspree.io/f/xjgjwpll", {
+      const res = await fetch("/api/feedback", {
         method: "POST",
-        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          name: name.trim() || "Anonymous",
-          rating,
+          name: name.trim().slice(0, 100) || "Anonymous",
           category,
-          feedback: text,
-          sliders,
-          _subject: `lifeOS feedback — ${name.trim() || "Anonymous"}`,
+          feedback: text.slice(0, 5000),
         }),
       });
+      if (!res.ok && res.status !== 429) throw new Error("failed");
     } catch {
-      // submit anyway
+      // best-effort: show success even on network error
     } finally {
       setLoading(false);
       setSubmitted(true);

@@ -54,17 +54,23 @@ export default function WaitlistCTA() {
     lastSubmit.current = now;
 
     try {
-      await fetch("https://formspree.io/f/mykbwkza", {
+      const res = await fetch("/api/waitlist", {
         method: "POST",
-        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email: clean }),
       });
-      setSubmitted(true);
+      if (res.status === 429) {
+        setError("Too many attempts. Please wait a moment.");
+        return;
+      }
+      if (!res.ok) throw new Error("failed");
     } catch {
-      setSubmitted(true);
+      setError("Something went wrong. Please try again.");
+      return;
     } finally {
       setLoading(false);
     }
+    setSubmitted(true);
   }
 
   return (

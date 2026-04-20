@@ -7,12 +7,18 @@ export default function Waitlist() {
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    if (!email.trim()) return;
-    await fetch("https://formspree.io/f/mykbwkza", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email }),
-    });
+    const clean = email.trim().toLowerCase();
+    if (!clean) return;
+    try {
+      const res = await fetch("/api/waitlist", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: clean }),
+      });
+      if (!res.ok) return;
+    } catch {
+      return;
+    }
     setSubmitted(true);
   }
 
